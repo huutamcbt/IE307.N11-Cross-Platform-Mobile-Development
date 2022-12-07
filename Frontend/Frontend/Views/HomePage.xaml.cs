@@ -16,20 +16,21 @@ namespace Frontend.Views
         {
             InitializeComponent();
         }
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private  void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-
+            
+           //await Shell.Current.GoToAsync($"{nameof(ProductPage)}?ID={ProductID}");
         }
 
-        private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
-        {
-        }
-
-        private async void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        private  void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
         }
 
-        private async void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
+        private  void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
+        {
+        }
+
+        private  void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
         }
 

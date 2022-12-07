@@ -1,14 +1,22 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
-             x:Class="Frontend.Views.HomePage">
+             x:Class="Frontend.Views.HomePage"
+             x:Name="HomeView"
+             xmlns:frontend="clr-namespace:Frontend"
+             xmlns:viewmodels="clr-namespace:Frontend.ViewModels"
+             >
+              <ContentPage.BindingContext>
+                    <viewmodels:ItemPreviewViewModel />
+                </ContentPage.BindingContext>
     <ContentPage.Content>
+        <StackLayout Margin="15,25,25,0">
         <ScrollView VerticalScrollBarVisibility="Never">
 
             <StackLayout>
 
                 <!--  Categories  -->
-                <StackLayout>
+                <StackLayout >
                     <StackLayout Margin="0,5,0,5">
                         <Label
                                     FontAttributes="Bold"
@@ -26,7 +34,7 @@
                                     Margin="0,20,0,20"
                                     HeightRequest="90"
                                     Orientation="Horizontal">
-                            <CollectionView ItemsSource="{Binding categories}">
+                            <CollectionView ItemsSource="{Binding categoryList}">
 
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout ItemSpacing="10" Orientation="Horizontal" />
@@ -48,13 +56,13 @@
                                                             Margin="15"
                                                             Aspect="AspectFit"
                                                             HorizontalOptions="CenterAndExpand"
-                                                            Source="{Binding image}"
+                                                            Source="{Binding Image}"
                                                             VerticalOptions="CenterAndExpand" />
                                             </Frame>
                                             <Label
                                                         FontSize="12"
                                                         HorizontalOptions="Center"
-                                                        Text="{Binding title}"
+                                                        Text="{Binding Name}"
                                                         TextColor="Black">
                                                 <Label.FontFamily>
                                                     <OnPlatform x:TypeArguments="x:String">
@@ -63,7 +71,7 @@
                                                 </Label.FontFamily>
                                             </Label>
                                             <StackLayout.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference mainView}, Path=BindingContext.CatTapCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference HomeView}, Path=BindingContext.CatTapCommand}" CommandParameter="{Binding .}" />
                                             </StackLayout.GestureRecognizers>
                                         </StackLayout>
                                     </DataTemplate>
@@ -75,7 +83,7 @@
 
                 </StackLayout>
 
-                <!--  Best Seeling  -->
+                <!--Best Seeling-->
                 <StackLayout Margin="0,10,0,10">
                     <StackLayout Orientation="Horizontal">
                         <Label
@@ -110,7 +118,7 @@
                     </StackLayout>
 
                     <StackLayout HeightRequest="350">
-                        <CollectionView ItemsSource="{Binding itemPreview}">
+                        <CollectionView ItemsSource="{Binding productList}">
 
                             <CollectionView.ItemsLayout>
                                 <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />
@@ -127,8 +135,8 @@
                                                         IsClippedToBounds="True">
                                                 <Image
                                                             Aspect="AspectFit"
-                                                            HeightRequest="240"
-                                                            Source="{Binding ImageUrl}"
+                                                            HeightRequest="120"
+                                                            Source="{Binding Image}"
                                                             WidthRequest="165" />
                                             </Frame>
                                         </StackLayout>
@@ -150,7 +158,7 @@
                                             <Label
                                                         FontSize="12"
                                                         HorizontalOptions="Center"
-                                                        Text="{Binding brand}"
+                                                        Text="{Binding Desc}"
                                                         TextColor="#929292"
                                                         VerticalOptions="Start">
                                                 <Label.FontFamily>
@@ -163,7 +171,7 @@
                                             <Label
                                                         FontSize="16"
                                                         HorizontalOptions="Center"
-                                                        Text="{Binding price}"
+                                                        Text="{Binding Price}"
                                                         TextColor="#00C569"
                                                         VerticalOptions="Start">
                                                 <Label.FontFamily>
@@ -175,7 +183,7 @@
                                         </StackLayout>
 
                                         <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference mainView}, Path=BindingContext.ItemTapCommand}" CommandParameter="{Binding .}" />
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference HomeView}, Path=BindingContext.ItemTapCommand}" CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                 </DataTemplate>
@@ -185,8 +193,10 @@
 
                 </StackLayout>
 
+
+
                 <!--  Featured Brands  -->
-                <StackLayout>
+                <!--<StackLayout>
                     <StackLayout Orientation="Horizontal">
                         <Label
                                     FontAttributes="Bold"
@@ -267,7 +277,7 @@
                                                 </StackLayout>
                                             </StackLayout>
                                             <Frame.GestureRecognizers>
-                                                <TapGestureRecognizer Command="{Binding Source={x:Reference mainView}, Path=BindingContext.FeaturedTapCommand}" CommandParameter="{Binding .}" />
+                                                <TapGestureRecognizer Command="{Binding Source={x:Reference HomeView}, Path=BindingContext.FeaturedTapCommand}" CommandParameter="{Binding .}" />
                                             </Frame.GestureRecognizers>
                                         </Frame>
 
@@ -278,10 +288,10 @@
                         </CollectionView>
                     </StackLayout>
 
-                </StackLayout>
+                </StackLayout>-->
 
                 <!--  Recommended  -->
-                <StackLayout Margin="0,10,0,10">
+                <!--<StackLayout Margin="0,10,0,10">
                     <StackLayout Orientation="Horizontal">
                         <Label
                                     FontAttributes="Bold"
@@ -381,7 +391,7 @@
                                         </StackLayout>
 
                                         <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference mainView}, Path=BindingContext.ItemTapCommand}" CommandParameter="{Binding .}" />
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference HomeView}, Path=BindingContext.ItemTapCommand}" CommandParameter="{Binding .}" />
                                         </StackLayout.GestureRecognizers>
                                     </StackLayout>
                                 </DataTemplate>
@@ -389,9 +399,10 @@
                         </CollectionView>
                     </StackLayout>
 
-                </StackLayout>
+                </StackLayout>-->
 
             </StackLayout>
         </ScrollView>
+        </StackLayout>
     </ContentPage.Content>
 </ContentPage>

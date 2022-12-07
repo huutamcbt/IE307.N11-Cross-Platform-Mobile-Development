@@ -12,7 +12,7 @@ namespace Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class CategoriesPage : ContentPage
     {
-        public CategoriesPage()
+        public CategoriesPage(int ID)
         {
             InitializeComponent();
         }
