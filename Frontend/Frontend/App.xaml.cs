@@ -1,4 +1,4 @@
-﻿using Frontend.Services;
+﻿//using Frontend.Services;
 using Frontend.Views;
 using System;
 using Xamarin.Forms;
@@ -6,6 +6,7 @@ using Xamarin.Forms.Xaml;
 
 namespace Frontend
 {
+
     public partial class App : Application
     {
 
@@ -13,7 +14,7 @@ namespace Frontend
         {
             InitializeComponent();
 
-            DependencyService.Register<MockDataStore>();
+            //DependencyService.Register<MockDataStore>();
             MainPage = new AppShell();
         }
 
