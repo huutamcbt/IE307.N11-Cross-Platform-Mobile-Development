@@ -32,7 +32,7 @@
 
     <TabBar>
         <ShellContent Title="Home" Icon="icon_Home.png" Route="AboutPage" ContentTemplate="{DataTemplate local:HomePage}" />
-        <ShellContent Title="Giỏ hàng" Icon="Icon_blog.png" ContentTemplate="{DataTemplate local:BlogPage}" />
+        <ShellContent Title="Blog" Icon="Icon_blog.png" ContentTemplate="{DataTemplate local:BlogPage}" />
         <ShellContent Title="Tôi" Icon="profile.png" ContentTemplate="{DataTemplate local:ProfilePage}" />
     </TabBar>
 

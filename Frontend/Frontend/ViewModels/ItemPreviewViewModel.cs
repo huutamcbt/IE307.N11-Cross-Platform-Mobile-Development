@@ -13,7 +13,7 @@ using Frontend.Services;
 
 namespace Frontend.ViewModels
 {
-    class ItemPreviewViewModel: INotifyPropertyChanged
+    class ItemPreviewViewModel : INotifyPropertyChanged
     {
         readonly IList<Product> source;
         public ObservableCollection<Product> productList { get; private set; }
@@ -25,7 +25,7 @@ namespace Frontend.ViewModels
         public ICommand ItemTapCommand { get; set; }
 
         public ICommand CatTapCommand { get; set; }
-        
+
         public ItemPreviewViewModel()
         {
             source = new List<Product>();
@@ -36,11 +36,14 @@ namespace Frontend.ViewModels
                 await Shell.Current.GoToAsync(nameof(ProductPage));
             });
 
-            CatTapCommand = new Command<Category>(async(items )=>
+            CatTapCommand = new Command<Category>(async (items) =>
             {
                 int CategoryID = items.ID;
-                await Shell.Current.GoToAsync($"{nameof(CategoriesPage)}?ID={CategoryID}");
+                //await Shell.Current.GoToAsync($"{nameof(CategoriesPage)}?ID={CategoryID}");
+                await Shell.Current.GoToAsync($"{nameof(CategoriesPage)}");
             });
+
+
 
             CreateItemCollection();
             CreateCategoriesCollection();
@@ -60,14 +63,14 @@ namespace Frontend.ViewModels
         async void CreateItemCollection()
         {
             ProductService productService = new ProductService();
-            List < Product > products = await productService.GetAllProduct();
-            foreach(Product product in products)
+            List<Product> products = await productService.GetAllProduct();
+            foreach (Product product in products)
             {
                 source.Add(product);
             }
             productList = new ObservableCollection<Product>(source);
         }
- 
+
 
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -15,6 +16,8 @@ namespace Frontend.Views
         public HomePage()
         {
             InitializeComponent();
+            CultureInfo myCurrency = new CultureInfo("vi-VN");
+            CultureInfo.DefaultThreadCurrentCulture = myCurrency;
         }
         private  void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
@@ -37,6 +40,11 @@ namespace Frontend.Views
         protected override bool OnBackButtonPressed()
         {
             return false;
+        }
+
+        private async void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync(nameof(CartPage));
         }
     }
 }

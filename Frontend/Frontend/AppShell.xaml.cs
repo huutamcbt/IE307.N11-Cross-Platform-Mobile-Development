@@ -15,6 +15,7 @@ namespace Frontend
             Routing.RegisterRoute(nameof(CategoriesPage), typeof(CategoriesPage));
             Routing.RegisterRoute(nameof(ProductPage), typeof(ProductPage));
             Routing.RegisterRoute(nameof(BlogPage), typeof(BlogPage));
+            Routing.RegisterRoute(nameof(CartPage), typeof(CartPage));
         }
 
     }
