@@ -23,6 +23,7 @@ namespace Frontend.ViewModels
         {
             source = new List<Product>();
             CreateItemCollection();
+
             ProductTapCommand = new Command<Product>(async (item) =>
             {
                 await Shell.Current.GoToAsync(nameof(ProductDetailPage));
@@ -40,6 +41,7 @@ namespace Frontend.ViewModels
                 source.Add(product);
             }
             productList = new ObservableCollection<Product>(source);
+            OnPropertyChanged("productList");
         }
 
 

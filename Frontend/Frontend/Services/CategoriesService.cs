@@ -11,6 +11,7 @@ namespace Frontend.Services
         readonly List<Category> categories;
         public CategoriesService()
         {
+            
             categories = new List<Category>
             {
                 new Category{ID= 1, Image= "icon_noodle.png",Name="Đồ nước" },

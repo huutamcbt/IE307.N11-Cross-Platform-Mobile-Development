@@ -7,7 +7,7 @@
              xmlns:viewmodels="clr-namespace:Frontend.ViewModels"
              >
     <ContentPage.BindingContext>
-        <viewmodels:ItemPreviewViewModel />
+        <viewmodels:HomeViewModel />
     </ContentPage.BindingContext>
     <Shell.TitleView >
         <FlexLayout Padding="0,0,20,0" HeightRequest="40" JustifyContent="SpaceBetween" AlignContent="Center" FlowDirection="LeftToRight">
@@ -139,7 +139,7 @@
                         </StackLayout>
 
                         <StackLayout HeightRequest="280">
-                            <CollectionView ItemsSource="{Binding productList}">
+                            <CollectionView ItemsSource="{Binding productList,Mode=TwoWay}">
 
                                 <CollectionView.ItemsLayout>
                                     <LinearItemsLayout ItemSpacing="0" Orientation="Horizontal" />

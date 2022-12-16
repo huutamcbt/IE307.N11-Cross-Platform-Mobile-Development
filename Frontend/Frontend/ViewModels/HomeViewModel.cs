@@ -13,7 +13,7 @@ using Frontend.Services;
 
 namespace Frontend.ViewModels
 {
-    class ItemPreviewViewModel : INotifyPropertyChanged
+    class HomeViewModel : INotifyPropertyChanged
     {
         readonly IList<Product> source;
         public ObservableCollection<Product> productList { get; private set; }
@@ -27,11 +27,12 @@ namespace Frontend.ViewModels
         public ICommand ItemTapCommand { get; set; }
         public ICommand CatTapCommand { get; set; }
         public ICommand CarouselTapCommand { get; set; }
-        public ItemPreviewViewModel()
+        public HomeViewModel()
         {
             source = new List<Product>();
             source1 = new List<Category>();
             source2 = new List<CarouselItem>();
+
             ItemTapCommand = new Command<Product>(async (items) =>
             {
                 await Shell.Current.GoToAsync(nameof(ProductDetailPage));
@@ -64,14 +65,10 @@ namespace Frontend.ViewModels
             source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Femy-XoByiBymX20-unsplash.jpg?alt=media&token=5416a8e4-a16e-443e-882b-a74fc1b02344", NavigateRoute = nameof(ProductPage) });
 
             carouselList = new List<CarouselItem>(source2);
-
             
-
         }
 
         async void CreateCategoriesCollection()
-
-
         {
             CategoriesService categoriesService = new CategoriesService();
             List<Category> categories = await categoriesService.GetAllCategory();
@@ -90,6 +87,7 @@ namespace Frontend.ViewModels
                 source.Add(product);
             }
             productList = new ObservableCollection<Product>(source);
+            OnPropertyChanged("productList");
         }
 
 

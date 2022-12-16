@@ -25,7 +25,7 @@ namespace Frontend.Views
 
 
 
-    }
+        }
         private void HomeCarouselInitial()
         {
             Device.StartTimer(TimeSpan.FromSeconds(7), (Func<bool>)(() =>
@@ -49,11 +49,6 @@ namespace Frontend.Views
 
         private  void TapGestureRecognizer_Tapped_3(object sender, EventArgs e)
         {
-        }
-
-        protected override bool OnBackButtonPressed()
-        {
-            return false;
         }
 
         private async void TapGestureRecognizer_Tapped_4(object sender, EventArgs e)

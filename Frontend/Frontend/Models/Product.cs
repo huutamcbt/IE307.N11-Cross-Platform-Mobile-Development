@@ -8,7 +8,7 @@ namespace Frontend.Models
     {
         public Product(int iD, string name, double price, string image, int categoryID, int stock, int quantity , string description)
         {
-            ID = iD;
+            ProductId = iD;
             Name = name;
             Price = price;
             Image = image;
@@ -18,7 +18,7 @@ namespace Frontend.Models
             Description = description;
         }
 
-        public int ID { get; set; }
+        public int ProductId { get; set; }
         public string Name { get; set; }
         public double Price { get; set; }
         public string Image { get; set; }
