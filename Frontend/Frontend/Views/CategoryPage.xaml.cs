@@ -10,9 +10,9 @@ using Xamarin.Forms.Xaml;
 namespace Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CategoriesPage : ContentPage
+    public partial class CategoryPage : TabbedPage
     {
-        public CategoriesPage()
+        public CategoryPage()
         {
             InitializeComponent();
         }
