@@ -4,42 +4,43 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-
+using Frontend.Services;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using Frontend.Models;
 
 namespace Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class Filters : Rg.Plugins.Popup.Pages.PopupPage
     {
-        Command GoBackCommand;
         public Filters()
         {
             InitializeComponent();
-            GoBackCommand = new Command(() =>
-            {
-                goBackTriggered();
-            });
+            InitializePicker();
         }
 
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+        private async void InitializePicker()
         {
-
+            CategoriesService service = new CategoriesService();
+            List<Category> categories = await service.GetAllCategory();
+            PickerCategory.ItemsSource = categories;
+            
         }
 
-        async void goBackTriggered()
+        //go back trigger
+        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
-            //await PopupNavigation.Instance.PopAsync(true);
+            
+            await PopupNavigation.Instance.PopAsync(true);
         }
+
+        //apply filter
         private void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
 
         }
 
-        private void TapGestureRecognizer_Tapped_2(object sender, EventArgs e)
-        {
 
-        }
     }
 }

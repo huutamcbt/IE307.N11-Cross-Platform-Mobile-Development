@@ -17,7 +17,10 @@ namespace Frontend.Views
         {
             InitializeComponent();
         }
-
+        public ProductPage(int sortBy,int price,int rating, int categoryID )
+        {
+            InitializeComponent();
+        }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             await PopupNavigation.Instance.PushAsync(new Filters());

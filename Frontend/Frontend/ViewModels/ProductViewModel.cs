@@ -26,7 +26,7 @@ namespace Frontend.ViewModels
 
             ProductTapCommand = new Command<Product>(async (item) =>
             {
-                await Shell.Current.GoToAsync(nameof(ProductDetailPage));
+                await Shell.Current.GoToAsync($"{nameof(ProductDetailPage)}?productID={item.ProductId}");
             });
         }
 
