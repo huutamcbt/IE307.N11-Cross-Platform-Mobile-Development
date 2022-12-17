@@ -34,7 +34,23 @@
             <ScrollView VerticalScrollBarVisibility="Never">
 
                 <StackLayout>
-
+                    <!--Banner-->
+                    <StackLayout Margin="10,0,10,0"  >
+                        <CarouselView HeightRequest="220"  x:Name="HomeCarousel" ItemsSource="{Binding carouselList}" >
+                            <CarouselView.ItemTemplate>
+                                <DataTemplate>
+                                    <StackLayout  HeightRequest="100" >
+                                        <Image  Aspect="Fill"
+                                                    WidthRequest="300"
+                                                    HeightRequest="220" Source="{Binding Image}"/>
+                                        <StackLayout.GestureRecognizers>
+                                            <TapGestureRecognizer Command="{Binding Source={x:Reference HomeView}, Path=BindingContext.CarouselTapCommand}" CommandParameter="{Binding .}"/>
+                                        </StackLayout.GestureRecognizers>
+                                    </StackLayout>
+                                </DataTemplate>
+                            </CarouselView.ItemTemplate>
+                        </CarouselView>
+                    </StackLayout>
                     <!--  Categories  -->
                     <StackLayout >
                         <StackLayout Margin="0,5,0,5">
@@ -216,24 +232,7 @@
 
                     </StackLayout>
 
-                    <!--Banner-->
-                    <StackLayout Margin="10,0,10,0">
-                        <CarouselView x:Name="HomeCarousel" ItemsSource="{Binding carouselList}" >
-                 
-                            <CarouselView.ItemTemplate>
-                                <DataTemplate>
-                                    <StackLayout>
-                                            <Image  Aspect="Fill"
-                                                    WidthRequest="300"
-                                                    HeightRequest="220" Source="{Binding Image}"/>
-                                        <StackLayout.GestureRecognizers>
-                                            <TapGestureRecognizer Command="{Binding Source={x:Reference HomeView}, Path=BindingContext.CarouselTapCommand}" CommandParameter="{Binding .}"/>
-                                        </StackLayout.GestureRecognizers>
-                                    </StackLayout>
-                                </DataTemplate>
-                            </CarouselView.ItemTemplate>
-                        </CarouselView>
-                    </StackLayout>
+                    
 
             
 
