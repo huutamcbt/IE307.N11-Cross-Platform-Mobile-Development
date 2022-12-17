@@ -33,9 +33,9 @@ namespace Frontend.ViewModels
             source1 = new List<Category>();
             source2 = new List<CarouselItem>();
 
-            ItemTapCommand = new Command<Product>(async (items) =>
+            ItemTapCommand = new Command<Product>(async (item) =>
             {
-                await Shell.Current.GoToAsync(nameof(ProductDetailPage));
+                await Shell.Current.GoToAsync($"{nameof(ProductDetailPage)}?productID={item.ProductId}");
             });
 
             CatTapCommand = new Command<Category>(async (items) =>
