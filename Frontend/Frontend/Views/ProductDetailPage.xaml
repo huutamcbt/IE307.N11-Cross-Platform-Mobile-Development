@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Frontend.Views.ProductDetailPage"
              xmlns:viewmodels ="clr-namespace:Frontend.ViewModels"
-             
+                          Shell.TabBarIsVisible="False"
+             xmlns:sf="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
              >
     <ContentPage.BindingContext>
         <viewmodels:ProductDetailViewModel />
@@ -104,13 +105,38 @@
                                     </Label.FontFamily>
                                 </Label>
                                 <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="25"></RowDefinition>
+                                    </Grid.RowDefinitions>
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="70"></ColumnDefinition>
+                                        <ColumnDefinition Width="250"></ColumnDefinition>
                                         <ColumnDefinition Width="*"></ColumnDefinition>
                                     </Grid.ColumnDefinitions>
-                                    <Entry x:Name="entryReview" Grid.Column="0"></Entry>
-                                    <Button x:Name="buttonReview" Grid.Column="1" Text="Thêm"></Button>
-                                    
+                                    <sf:SfRating x:Name="ratingInput" Grid.Row="0" Grid.ColumnSpan="2" ItemSize="25"></sf:SfRating>
+                                    <Entry x:Name="entryReview" Grid.Column="0"  Grid.Row="1"></Entry>
+                                    <Frame
+                                        Padding="0"
+                                        BackgroundColor="#00C569"
+                                        CornerRadius="5"
+                                        HasShadow="False"
+                                        Grid.Column="1"
+                                        Grid.Row="1"
+                                        VerticalOptions="CenterAndExpand">
+                                        <Label
+                                            Margin="20,15,20,15"
+                                            FontSize="14"
+                                            HorizontalOptions="Center"
+                                            Text="Thêm"
+                                            TextColor="White"
+                                            VerticalTextAlignment="Center">
+                                            <Label.FontFamily>
+                                                <OnPlatform x:TypeArguments="x:String">
+                                                    <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                                </OnPlatform>
+                                            </Label.FontFamily>
+                                        </Label>
+                                    </Frame>
+
                                 </Grid>
                             </StackLayout>
 
