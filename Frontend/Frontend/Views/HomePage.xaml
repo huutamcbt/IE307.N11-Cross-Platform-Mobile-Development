@@ -58,7 +58,7 @@
                             <Label
                                     FontAttributes="Bold"
                                     FontSize="18"
-                                    Text="Categories"
+                                    Text="Phân loại"
                                     TextColor="Black">
                                 <Label.FontFamily>
                                     <OnPlatform x:TypeArguments="x:String">
