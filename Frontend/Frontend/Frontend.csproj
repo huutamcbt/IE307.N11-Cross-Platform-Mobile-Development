@@ -20,13 +20,6 @@
 
 
   <ItemGroup>
-    <Compile Update="Views\Filters.xaml.cs">
-      <DependentUpon>Filters.xaml</DependentUpon>
-    </Compile>
-  </ItemGroup>
-
-
-  <ItemGroup>
     <EmbeddedResource Update="Views\BlogPage.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
@@ -34,9 +27,6 @@
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\CategoriesPage.xaml">
-      <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
-    </EmbeddedResource>
-    <EmbeddedResource Update="Views\Filters.xaml">
       <Generator>MSBuild:UpdateDesignTimeXaml</Generator>
     </EmbeddedResource>
     <EmbeddedResource Update="Views\HomePage.xaml">
