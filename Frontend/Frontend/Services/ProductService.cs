@@ -45,14 +45,14 @@ namespace Frontend.Services
         public async Task<List<Product>> GetAllProduct()
         {
             HttpClient httpClient = new HttpClient();
-            var productList = await httpClient.GetStringAsync("http://172.17.26.241/FoodBookingAPI/api/GetAllProduct");
+            var productList = await httpClient.GetStringAsync("http://192.168.1.37/FoodBookingAPI/api/GetAllProduct");
             List<Product> productListConverted = JsonConvert.DeserializeObject<List<Product>>(productList);
             return await Task.FromResult(productListConverted);
         }
         public async Task<Product> GetProductByProductID(int productID)
         {
             HttpClient httpClient = new HttpClient();
-            var product = await httpClient.GetStringAsync("http://172.17.26.241/FoodBookingAPI/api/GetProductByID/"+ productID);
+            var product = await httpClient.GetStringAsync("http://192.168.1.37/FoodBookingAPI/api/GetProductByID/"+ productID);
             Product productConverted = JsonConvert.DeserializeObject<List<Product>>(product)[0];
             return await Task.FromResult(productConverted);
         }
