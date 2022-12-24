@@ -21,9 +21,10 @@ namespace Frontend.Views
         {
             InitializeComponent();
         }
-        private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
+
+        private void Picker_SelectedIndexChanged(object sender, EventArgs e)
         {
-            await PopupNavigation.Instance.PushAsync(new Filters());
+
         }
     }
 }
