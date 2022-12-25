@@ -5,19 +5,19 @@
 
 -- use FOODBOOKING;
 
-DROP TABLE OrderItems;
-DROP TABLE OrderDetails;
-DROP TABLE CartItems;
-DROP TABLE PaymentDetails;
-DROP TABLE UserPayments;
-DROP TABLE UserAddresss;
-DROP TABLE Blogs;
-DROP TABLE Reviews;
-DROP TABLE Products;
-DROP TABLE Discounts;
-DROP TABLE ProductCategorys;
-DROP TABLE ShoppingSessions;
-DROP TABLE Users;
+-- DROP TABLE OrderItems;
+-- DROP TABLE OrderDetails;
+-- DROP TABLE CartItems;
+-- DROP TABLE PaymentDetails;
+-- DROP TABLE UserPayments;
+-- DROP TABLE UserAddresss;
+-- DROP TABLE Blogs;
+-- DROP TABLE Reviews;
+-- DROP TABLE Products;
+-- DROP TABLE Discounts;
+-- DROP TABLE ProductCategorys;
+-- DROP TABLE ShoppingSessions;
+-- DROP TABLE Users;
 
 
 
