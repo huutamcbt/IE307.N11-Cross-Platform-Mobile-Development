@@ -17,7 +17,7 @@ namespace FoodBookingAPI.Controllers
         {
             try
             {
-                DataTable data = ProductRepository.ReadData(Constant.ProductCategory_Procedure_GetAll);
+                DataTable data = ProductCategoryRepository.GetAllCategory();
 
                 return Ok(data);
             }

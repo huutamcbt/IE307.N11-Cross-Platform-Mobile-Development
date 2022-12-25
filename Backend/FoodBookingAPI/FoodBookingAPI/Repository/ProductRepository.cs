@@ -1,52 +1,29 @@
-﻿using System;
+﻿using FoodBookingAPI.Models;
+using System;
 using System.Collections.Generic;
+using System.Data;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Web;
-using System.Data.SqlClient;
-using System.Data;
-using System.Configuration;
-using FoodBookingAPI.Models;
 
 namespace FoodBookingAPI.Repository
 {
     public class ProductRepository
     {
-        public static DataTable ReadData(string procedureName, Dictionary<string, object> param = null)
+        public static DataTable GetAllProduct()
         {
             try
             {
-                // sql connection string
-                string connectionString = ConfigurationManager.ConnectionStrings["FoodBooking"].ConnectionString;
-                
-                // Procedure name
-                string query = procedureName;
-                
-                // Init sql connection to sql server
-                using (SqlConnection connection = new SqlConnection(connectionString))
+                using (SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
                 {
                     connection.Open();
-                    // Create command for sql
-                    using (SqlCommand command = new SqlCommand(query, connection))
+
+                    string query = "SELECT * FROM " + nameof(Products);
+                    using(SqlCommand command = new SqlCommand(query, connection))
                     {
-                        // Add parameter for sql command
-                        if (param != null)
-                        {
-                            foreach(KeyValuePair<string,object> data in param)
-                            {
-                                if(data.Value == null)
-                                {
-                                    command.Parameters.AddWithValue("@" + data.Key, DBNull.Value);
-                                }
-                                else
-                                {
-                                    command.Parameters.AddWithValue("@" + data.Key, data.Value);
-                                }
-                            }
-                        }
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        using(SqlDataAdapter adapter = new SqlDataAdapter(command))
                         {
                             DataTable result = new DataTable();
-                            command.CommandType = CommandType.StoredProcedure;
                             adapter.Fill(result);
 
                             return result;
@@ -56,7 +33,35 @@ namespace FoodBookingAPI.Repository
             }
             catch (Exception)
             {
-                throw;
+                return null;
+            }
+        }
+        public static DataTable GetProductById()
+        {
+            try
+            {
+                using (SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
+                {
+                    connection.Open();
+
+                    string query = $"SELECT * " +
+                        $"FROM {nameof(Products.ProductId)}" +
+                        $"WHERE @{nameof(Products.ProductId)} = {nameof(Products.ProductId)}";
+                    using (SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            DataTable result = new DataTable();
+                            adapter.Fill(result);
+
+                            return result;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
             }
         }
     }

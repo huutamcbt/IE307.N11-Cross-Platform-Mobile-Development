@@ -1,11 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Diagnostics;
 using System.Linq;
 using System.Web;
 using System.Web.Http;
-
-
+using FoodBookingAPI.Models;
 using FoodBookingAPI.Repository;
 
 namespace FoodBookingAPI.Controllers
@@ -20,7 +20,7 @@ namespace FoodBookingAPI.Controllers
         {
             try
             {
-                DataTable dt = ProductRepository.ReadData(Constant.Product_Procedure_GetAll);
+                DataTable dt = ProductRepository.GetAllProduct();
                 
                 return Ok(dt);
             }
@@ -36,9 +36,9 @@ namespace FoodBookingAPI.Controllers
             try
             {
                 // Add Product Id parameter
-                param.Add("ProductId", id);
+                param.Add(nameof(Products.ProductId), id);
 
-                DataTable data = ProductRepository.ReadData(Constant.Product_Procedure_GetProduct_By_Id, param);
+                DataTable data = GeneralRepository.ReadData(Constant.Product_Procedure_GetProduct_By_Id, param);
 
                 return Ok(data);
             }
@@ -53,8 +53,28 @@ namespace FoodBookingAPI.Controllers
         {
             try
             {
-                param.Add("CategoryId", id);
-                DataTable data = ProductRepository.ReadData(Constant.Product_Procedure_GetProduct_By_CategoryId, param);
+                param.Add(nameof(Products.CategoryId), id);
+                DataTable data = GeneralRepository.ReadData(Constant.Product_Procedure_GetProduct_By_CategoryId, param);
+
+                return Ok(data);
+            }
+            catch (Exception)
+            {
+                return NotFound();
+            }
+        }
+        [Route("api/UpdateProductById/{id}")]
+        [HttpPost]
+        public IHttpActionResult UpdateProductById(int id, string productName, string desc)
+        {
+            try
+            {
+                Debug.WriteLine("Product Name: " + productName);
+                param.Add(nameof(Products.ProductId), id);
+                param.Add(nameof(Products.Name), productName);
+                param.Add(nameof(Products.Description), desc);
+
+                DataTable data = GeneralRepository.ReadData(Constant.Product_Procedure_UpdateProduct_By_Id, param);
 
                 return Ok(data);
             }
