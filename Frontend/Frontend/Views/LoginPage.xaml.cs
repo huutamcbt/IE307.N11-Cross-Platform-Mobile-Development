@@ -15,13 +15,17 @@ namespace Frontend.Views
         
         public LoginPage()
         {
-            if (App.isLogin)
-            {
-                Shell.Current.GoToAsync(nameof(HomePage));
-            }
+           
             InitializeComponent();
         }
-
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (App.isLogin)
+            {
+                Shell.Current.GoToAsync("//" + nameof(HomePage));
+            }
+        }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync(nameof(RegisterPage));
@@ -37,7 +41,7 @@ namespace Frontend.Views
         {
             Console.WriteLine(entryUsername.Text + entryPassword.Text);
             App.isLogin = true;
-            await Shell.Current(nameof(HomePage));
+            await Shell.Current.GoToAsync($"{nameof(HomePage)}");
         }
     }
 }
