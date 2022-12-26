@@ -37,7 +37,7 @@ namespace Frontend.Views
         {
             Console.WriteLine(entryUsername.Text + entryPassword.Text);
             App.isLogin = true;
-            await Shell.Current(nameof(HomePage));
+            await Shell.Current.GoToAsync(nameof(HomePage));
         }
     }
 }
