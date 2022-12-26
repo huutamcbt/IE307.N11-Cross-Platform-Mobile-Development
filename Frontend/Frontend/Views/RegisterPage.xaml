@@ -1,0 +1,42 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend.Views.RegisterPage"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
+             x:Name="RegisterView"
+             Shell.TabBarIsVisible="False"
+             Title="Đăng ký"
+             
+             >
+    <ContentPage.BindingContext>
+        <viewmodel:RegisterViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Padding="10,120,10,0" >
+            <Grid Padding="40,0,40,0" RowSpacing="20">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="120"/>
+                </Grid.ColumnDefinitions>
+                <Entry Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Tên tài khoản"  x:Name="entryUsername" Text="{Binding username,Mode=OneWayToSource}" ></Entry>
+                <Entry Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Mật khẩu" IsPassword="True" Text="{Binding password,Mode=OneWayToSource}" x:Name="entryPassword" />
+                <Entry Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Xác nhận mật khẩu" IsPassword="True" Text="{Binding passwordConfirm,Mode=OneWayToSource}" x:Name="entryConfirmPassword" />
+                <Entry Grid.Row="3" Grid.Column="0" Placeholder="Họ" Text="{Binding firstName,Mode=OneWayToSource}"></Entry>
+                <Entry Grid.Row="3" Grid.Column="1" Placeholder="Tên" Text="{Binding lastName,Mode=OneWayToSource}"></Entry>
+                <Entry Grid.Row="4" Grid.ColumnSpan="2" Keyboard="Telephone" Text="{Binding telephone,Mode=OneWayToSource}" Placeholder="Số điện thoại" ClearButtonVisibility="WhileEditing"/>
+                <Button  Grid.Row="5" Grid.ColumnSpan="2" Text="Đăng ký" Background="#111">
+                    <Button.GestureRecognizers>
+                        <TapGestureRecognizer Command="{Binding Source={x:Reference RegisterView}, Path=BindingContext.LoginTapCommand}" CommandParameter="{Binding .}"/>
+                    </Button.GestureRecognizers>
+                </Button>
+                <Label Grid.Row="6" Text="Đăng nhập ngay" TextColor="Blue" FontSize="Small" >
+                    <Label.GestureRecognizers>
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                    </Label.GestureRecognizers>
+                </Label>
+                
+
+            </Grid>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

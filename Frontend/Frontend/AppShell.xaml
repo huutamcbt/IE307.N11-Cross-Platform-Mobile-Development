@@ -31,7 +31,7 @@
 
 
     <TabBar >
-        <ShellContent Title="Home" Icon="icon_Home.png"  ContentTemplate="{DataTemplate local:HomePage}" />
+        <ShellContent Title="Home" Icon="icon_Home.png"  ContentTemplate="{DataTemplate local:LoginPage}" />
         <ShellContent Title="Blog" Icon="Icon_blog.png" ContentTemplate="{DataTemplate local:BlogPage}" />
         <ShellContent Title="Tôi" Icon="profile.png" ContentTemplate="{DataTemplate local:ProfilePage}" />
     </TabBar>

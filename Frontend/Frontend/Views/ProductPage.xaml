@@ -130,7 +130,7 @@
                                             <Label
                                                         FontSize="16"
                                                         HorizontalOptions="Center"
-                                                        Text="{Binding Price}"
+                                                        Text="{Binding Price, StringFormat='{0:c0}'}"
                                                         TextColor="#00C569"
                                                         VerticalOptions="Start">
                                                 <Label.FontFamily>
@@ -192,15 +192,19 @@
                             WidthRequest="200"
                             HorizontalOptions="StartAndExpand"
                             VerticalOptions="CenterAndExpand">
-                            <Picker SelectedIndex="{Binding SortMode, Mode=OneWayToSource}" >
+                            <Picker FontSize="14" SelectedIndex="{Binding SortMode, Mode=TwoWay}" >
                                 <Picker.Items>
-                                    <x:String>mặc định</x:String>
-                                    <x:String>tên a-> z</x:String>
-                                    <x:String>tên z-> a</x:String>
-                                    <x:String>giá bán tăng dần</x:String>
-                                    <x:String>giá bán giảm dần</x:String>
-                                </Picker.Items> 
-                                
+                                    <x:String>Mặc định</x:String>
+                                    <x:String>Tên a-> z</x:String>
+                                    <x:String>Tên z-> a</x:String>
+                                    <x:String>Giá bán tăng dần</x:String>
+                                    <x:String>Giá bán giảm dần</x:String>
+                                </Picker.Items>
+                                <Picker.FontFamily>
+                                    <OnPlatform x:TypeArguments="x:String">
+                                        <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                    </OnPlatform>
+                                </Picker.FontFamily>
                             </Picker>
                         </Frame>
                     </StackLayout>

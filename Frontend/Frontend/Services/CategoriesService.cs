@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace Frontend.Services
 {
-    class CategoriesService
+    public class CategoriesService
     {
         readonly List<Category> categories;
         public CategoriesService()

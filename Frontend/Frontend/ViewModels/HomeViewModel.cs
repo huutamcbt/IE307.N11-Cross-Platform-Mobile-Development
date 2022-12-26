@@ -41,8 +41,8 @@ namespace Frontend.ViewModels
             CatTapCommand = new Command<Category>(async (items) =>
             {
                 int CategoryID = items.ID;
-                //await Shell.Current.GoToAsync($"{nameof(CategoriesPage)}?ID={CategoryID}");
-                await Shell.Current.GoToAsync($"{nameof(CategoryPage)}");
+                await Shell.Current.GoToAsync($"{nameof(ProductPage)}?categoryID={CategoryID}");
+                //await Shell.Current.GoToAsync($"{nameof(CategoryPage)}");
             });
             CarouselTapCommand = new Command<CarouselItem>(async (items) =>
             {
@@ -70,8 +70,7 @@ namespace Frontend.ViewModels
 
         async void CreateCategoriesCollection()
         {
-            CategoriesService categoriesService = new CategoriesService();
-            List<Category> categories = await categoriesService.GetAllCategory();
+            List<Category> categories = await App.categoriesService.GetAllCategory();
             foreach (Category category in categories)
             {
                 source1.Add(category);
@@ -80,8 +79,8 @@ namespace Frontend.ViewModels
         }
         async void CreateItemCollection()
         {
-            ProductService productService = new ProductService();
-            List<Product> products = await productService.GetAllProduct();
+            List<Product> products = await App.productService.GetAllProduct();
+            Console.WriteLine("WTFFFFFF iss this shit\n\n\n\n\n");
             foreach (Product product in products)
             {
                 source.Add(product);

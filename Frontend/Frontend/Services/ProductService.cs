@@ -8,51 +8,25 @@ using Newtonsoft.Json;
 
 namespace Frontend.Services
 {
-    class ProductService
+    public class ProductService
     {
         public ProductService()
         {
-            //products = new List<Product>
-            //{
-            //    new Product(1, "Bún Bò Huế", 35000, "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2", 1 , 9999, 1, "abxcvdfgcd"),
-            //    new Product(2, "Bún Bò Huế", 35000, "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2", 1 , 9999, 1, "abcd"),
-            //    new Product(3, "Bún Bò Huế", 35000, "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2", 1 , 9999, 1, "abcd")
-            //};
+
         }
-        //public async Task<bool> AddItemAsync(Product product)
-        //{
-        //    products.Add(product);
 
-        //    return await Task.FromResult(true);
-        //}
-
-        //public async Task<bool> RemoveItemAsync(Product product)
-        //{
-
-        //    products.Remove(product);
-
-        //    return await Task.FromResult(true);
-        //}
-        //public async Task<List<Product>> GetProductsByCategoryID(Category category)
-        //{
-        //    return await Task.FromResult(products.FindAll((Product product) => product.CategoryID == category.ID));
-        //}
-        //public async Task<Product> GetProductByID(int productID)
-        //{
-        //    return await Task.FromResult(products.Find((Product product) => product.ID == productID));
-        //}
 
         public async Task<List<Product>> GetAllProduct()
         {
             HttpClient httpClient = new HttpClient();
-            var productList = await httpClient.GetStringAsync("http://192.168.1.37/FoodBookingAPI/api/GetAllProduct");
+            var productList = await httpClient.GetStringAsync("http://foodbookingapi.somee.com/api/GetAllProduct");
             List<Product> productListConverted = JsonConvert.DeserializeObject<List<Product>>(productList);
             return await Task.FromResult(productListConverted);
         }
         public async Task<Product> GetProductByProductID(int productID)
         {
             HttpClient httpClient = new HttpClient();
-            var product = await httpClient.GetStringAsync("http://192.168.1.37/FoodBookingAPI/api/GetProductByID/"+ productID);
+            var product = await httpClient.GetStringAsync("http://foodbookingapi.somee.com/api/GetProductByID/" + productID);
             Product productConverted = JsonConvert.DeserializeObject<List<Product>>(product)[0];
             return await Task.FromResult(productConverted);
         }

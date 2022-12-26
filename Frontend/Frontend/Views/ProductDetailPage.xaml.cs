@@ -6,7 +6,6 @@ using System.Threading.Tasks;
 using Frontend.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Frontend.Models;
 
 
 namespace Frontend.Views
@@ -15,7 +14,6 @@ namespace Frontend.Views
    
     public partial class ProductDetailPage : ContentPage
     {
-        public int productID;
         public ProductDetailPage()
         {
             InitializeComponent();

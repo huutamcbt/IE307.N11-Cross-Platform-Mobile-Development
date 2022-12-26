@@ -5,9 +5,33 @@
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
              mc:Ignorable="d"
              x:Class="Frontend.Views.LoginPage"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
+             x:Name="LoginView"
+             Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False">
+
     <ContentPage.Content>
-        <StackLayout Padding="10,0,10,0" VerticalOptions="Center">
+        <StackLayout Padding="10,120,10,0" >
+            <Image Source="logo.jpg" WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
+            <Grid Padding="40,0,40,0">
+                <Entry Grid.Row="0" Placeholder="Tên đăng nhập"  x:Name="entryUsername" ></Entry>
+                <Entry Grid.Row="1" Placeholder="Mật khẩu" IsPassword="True" x:Name="entryPassword" />
+                <Button  Grid.Row="2" Text="Đăng nhập" Background="#111" Clicked="Button_Clicked">
+                </Button>
+                <FlexLayout Grid.Row="3" JustifyContent="SpaceBetween">
+                    <Label Text="Đăng ký ngay" TextColor="Blue" FontSize="Small" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                    <Label Text="Quên mật khẩu" TextColor="Blue" FontSize="Small" >
+                        <Label.GestureRecognizers>
+                            <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
+                        </Label.GestureRecognizers>
+                    </Label>
+                </FlexLayout>
+     
+            </Grid>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

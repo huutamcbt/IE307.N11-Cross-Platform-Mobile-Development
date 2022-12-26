@@ -4,9 +4,7 @@
              x:Class="Frontend.Views.CartPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Cart Page!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
