@@ -5,30 +5,52 @@ using Frontend.Models;
 using System.Threading.Tasks;
 using System.Net.Http;
 using Newtonsoft.Json;
+using Xamarin.Essentials;
+using System.Diagnostics;
 
 namespace Frontend.Services
 {
-    public class ProductService
+    public static class ProductService
     {
-        public ProductService()
-        {
+        static string BaseURL = "http://foodbookingapi.somee.com";
+        static HttpClient client ;
 
+        static ProductService()
+        {
+            client = new HttpClient
+            {
+                BaseAddress = new Uri(BaseURL)
+            };
         }
 
 
-        public async Task<List<Product>> GetAllProduct()
+        public static async Task<List<Product>> GetAllProduct()
         {
-            HttpClient httpClient = new HttpClient();
-            var productList = await httpClient.GetStringAsync("http://foodbookingapi.somee.com/api/GetAllProduct");
-            List<Product> productListConverted = JsonConvert.DeserializeObject<List<Product>>(productList);
-            return await Task.FromResult(productListConverted);
+            try
+            {
+                var productList = await client.GetStringAsync("api/GetAllProduct");
+                List<Product> productListConverted = JsonConvert.DeserializeObject<List<Product>>(productList);
+                return productListConverted;
+            }
+            catch(Exception e)
+            {
+                Debug.WriteLine("error while calling api: " + e);
+                throw e;
+            }
         }
-        public async Task<Product> GetProductByProductID(int productID)
+        public static async Task<Product> GetProductByProductID(int productID)
         {
-            HttpClient httpClient = new HttpClient();
-            var product = await httpClient.GetStringAsync("http://foodbookingapi.somee.com/api/GetProductByID/" + productID);
+            try
+            {
+                var product = await client.GetStringAsync("api/GetProductByID/" + productID);
             Product productConverted = JsonConvert.DeserializeObject<List<Product>>(product)[0];
-            return await Task.FromResult(productConverted);
+            return productConverted;
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("error while calling api: " + e);
+                throw e;
+            }
         }
     }
 }

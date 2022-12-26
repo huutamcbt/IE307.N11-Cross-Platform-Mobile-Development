@@ -6,10 +6,10 @@ using System.Threading.Tasks;
 
 namespace Frontend.Services
 {
-    public class CategoriesService
+    public static class CategoriesService
     {
-        readonly List<Category> categories;
-        public CategoriesService()
+        static readonly List<Category> categories;
+        static CategoriesService()
         {
             
             categories = new List<Category>
@@ -20,7 +20,7 @@ namespace Frontend.Services
                 new Category{ID= 4, Image= "icon_snack.png", Name="Đồ ăn vặt"}
             };
         }
-        public async Task<List<Category>> GetAllCategory()
+        public static async Task<List<Category>> GetAllCategory()
         {
             return await Task.FromResult(categories);
         }

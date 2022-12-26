@@ -35,14 +35,14 @@ namespace Frontend.ViewModels
 
             ItemTapCommand = new Command<Product>(async (item) =>
             {
-                await Shell.Current.GoToAsync($"{nameof(ProductDetailPage)}?productID={item.ProductId}");
+                await Shell.Current.GoToAsync($"/{nameof(ProductDetailPage)}?productID={item.ProductId}");
             });
 
             CatTapCommand = new Command<Category>(async (items) =>
             {
                 int CategoryID = items.ID;
-                await Shell.Current.GoToAsync($"{nameof(ProductPage)}?categoryID={CategoryID}");
-                //await Shell.Current.GoToAsync($"{nameof(CategoryPage)}");
+                await Shell.Current.GoToAsync($"/{nameof(ProductPage)}?categoryID={CategoryID}");
+                //await Shell.Current.GoToAsync($"/{nameof(CategoryPage)}");
             });
             CarouselTapCommand = new Command<CarouselItem>(async (items) =>
             {
@@ -59,10 +59,10 @@ namespace Frontend.ViewModels
         void CreateCarouselCollection()
         {
 
-            source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Fadam-jaime-dmkmrNptMpw-unsplash.jpg?alt=media&token=24393dcc-bdde-46e8-9559-9881d1f42b09", NavigateRoute = nameof(ProductPage) });
-            source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Fbrooke-lark-M4E7X3z80PQ-unsplash.jpg?alt=media&token=bb71bf7f-9402-451f-8911-1c0f1b7aa850", NavigateRoute = nameof(ProductPage) });
-            source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Fcharlesdeluvio-D-vDQMTfAAU-unsplash.jpg?alt=media&token=a41e9fb8-829a-4f57-8e4e-d305f60e1e20", NavigateRoute = nameof(ProductPage) });
-            source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Femy-XoByiBymX20-unsplash.jpg?alt=media&token=5416a8e4-a16e-443e-882b-a74fc1b02344", NavigateRoute = nameof(ProductPage) });
+            source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Fadam-jaime-dmkmrNptMpw-unsplash.jpg?alt=media&token=24393dcc-bdde-46e8-9559-9881d1f42b09", NavigateRoute = $"/{nameof(ProductPage)}" });
+            source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Fbrooke-lark-M4E7X3z80PQ-unsplash.jpg?alt=media&token=bb71bf7f-9402-451f-8911-1c0f1b7aa850", NavigateRoute = $"/{nameof(ProductPage)}" });
+            source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Fcharlesdeluvio-D-vDQMTfAAU-unsplash.jpg?alt=media&token=a41e9fb8-829a-4f57-8e4e-d305f60e1e20", NavigateRoute = $"/{nameof(ProductPage)}" });
+            source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Femy-XoByiBymX20-unsplash.jpg?alt=media&token=5416a8e4-a16e-443e-882b-a74fc1b02344", NavigateRoute = $"/{nameof(ProductPage)}" });
 
             carouselList = new List<CarouselItem>(source2);
             
@@ -70,7 +70,7 @@ namespace Frontend.ViewModels
 
         async void CreateCategoriesCollection()
         {
-            List<Category> categories = await App.categoriesService.GetAllCategory();
+            List<Category> categories = await CategoriesService.GetAllCategory();
             foreach (Category category in categories)
             {
                 source1.Add(category);
@@ -79,8 +79,7 @@ namespace Frontend.ViewModels
         }
         async void CreateItemCollection()
         {
-            List<Product> products = await App.productService.GetAllProduct();
-            Console.WriteLine("WTFFFFFF iss this shit\n\n\n\n\n");
+            List<Product> products = await ProductService.GetAllProduct();
             foreach (Product product in products)
             {
                 source.Add(product);
