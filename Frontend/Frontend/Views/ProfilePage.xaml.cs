@@ -20,7 +20,7 @@ namespace Frontend.Views
         private async void Button_Clicked(object sender, EventArgs e)
         {
             App.isLogin = false;
-            await Shell.Current.GoToAsync($"//main/{nameof(HomePage)}");
+            await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}");
         }
     }
 }
