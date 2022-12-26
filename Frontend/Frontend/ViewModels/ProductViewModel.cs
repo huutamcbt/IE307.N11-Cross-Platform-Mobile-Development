@@ -74,7 +74,7 @@ namespace Frontend.ViewModels
 
             ProductTapCommand = new Command<Product>(async (item) =>
             {
-                await Shell.Current.GoToAsync($"{nameof(ProductDetailPage)}?productID={item.ProductId}");
+                await Shell.Current.GoToAsync($"/{nameof(ProductDetailPage)}?productID={item.ProductId}");
             });
            
             CatTapCommand = new Command<Category>((item) =>
@@ -126,7 +126,7 @@ namespace Frontend.ViewModels
 
         async Task InitializeProductList()
         {
-            List<Product> products = await App.productService.GetAllProduct();
+            List<Product> products = await ProductService.GetAllProduct();
 
             foreach (Product product in products)
             {
@@ -139,7 +139,7 @@ namespace Frontend.ViewModels
 
         async Task InitializeCategoryCollection()
         {
-            List<Category> categories = await App.categoriesService.GetAllCategory();
+            List<Category> categories = await CategoriesService.GetAllCategory();
             source1.Add(new Category { ID = 0, Name = "Tất cả", Image = "star.png" });
             foreach (Category category in categories)
             {

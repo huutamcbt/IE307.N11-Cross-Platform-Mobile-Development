@@ -27,9 +27,8 @@ namespace Frontend.ViewModels
             }
         }
         public async void initializeProduct (int productID){
-            ProductService service = new ProductService();
 
-            Product product = await service.GetProductByProductID(productID);
+            Product product = await ProductService.GetProductByProductID(productID);
             Name = product.Name;
             Image = product.Image;
             Description = product.Description;

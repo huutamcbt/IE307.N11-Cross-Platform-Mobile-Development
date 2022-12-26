@@ -17,10 +17,6 @@ namespace Frontend.Views
         {
             InitializeComponent();
         }
-        public ProductPage(int sortBy,int price,int rating, int categoryID )
-        {
-            InitializeComponent();
-        }
 
         private void Picker_SelectedIndexChanged(object sender, EventArgs e)
         {

@@ -7,6 +7,7 @@
              x:Class="Frontend.Views.LoginPage"
              xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
              x:Name="LoginView"
+             Shell.FlyoutBehavior="Disabled"
              Shell.TabBarIsVisible="False"
              Shell.NavBarIsVisible="False">
 
