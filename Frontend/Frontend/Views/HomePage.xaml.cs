@@ -26,6 +26,14 @@ namespace Frontend.Views
 
 
         }
+        protected override async void OnAppearing()
+        {
+            base.OnAppearing();
+            if (!App.isLogin)
+            {
+                await Shell.Current.GoToAsync($"{nameof(LoginPage)}");
+            }
+        }
         private void HomeCarouselInitial()
         {
             Device.StartTimer(TimeSpan.FromSeconds(7), (Func<bool>)(() =>
