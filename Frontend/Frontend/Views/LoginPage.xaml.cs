@@ -23,7 +23,7 @@ namespace Frontend.Views
             base.OnAppearing();
             if (App.isLogin)
             {
-                Shell.Current.GoToAsync("//" + nameof(HomePage));
+                await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}" );
             }
         }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)
@@ -41,7 +41,7 @@ namespace Frontend.Views
         {
             Console.WriteLine(entryUsername.Text + entryPassword.Text);
             App.isLogin = true;
-            await Shell.Current.GoToAsync($"{nameof(HomePage)}");
+            await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}");
         }
     }
 }
