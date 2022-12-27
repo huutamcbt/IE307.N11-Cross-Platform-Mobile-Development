@@ -18,8 +18,8 @@ namespace Frontend.ViewModels
     class ProductViewModel : INotifyPropertyChanged
     {
         private bool loaded = false;
-        private List<Product> source;
-        private List<Category> source1;
+        private IList<Product> source;
+        private IList<Category> source1;
         public String title { get; private set; }
         public ObservableCollection<Product> productList { get; private set; }
         public ObservableCollection<Category> categoryList { get; private set; }
@@ -74,6 +74,7 @@ namespace Frontend.ViewModels
 
             ProductTapCommand = new Command<Product>(async (item) =>
             {
+                //await Shell.Current.GoToAsync($"//Main/{nameof(ProductPage)}/{nameof(ProductDetailPage)}?productID={item.ProductId}");
                 await Shell.Current.GoToAsync($"/{nameof(ProductDetailPage)}?productID={item.ProductId}");
             });
            

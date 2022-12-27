@@ -4,7 +4,12 @@
              x:Class="Frontend.Views.ProfilePage"
              Title="Profile"
              Shell.NavBarIsVisible="False"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
+             x:Name="ProfileView"
              >
+    <ContentPage.BindingContext>
+        <viewmodel:ProfileViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
         <StackLayout>
             <StackLayout>
@@ -16,20 +21,20 @@
                             Padding="0"
                             BackgroundColor="Transparent"
                             HeightRequest="120"
+                            CornerRadius="60"
                             WidthRequest="120">
                                 <Image
                                 Aspect="AspectFit"
                                 HeightRequest="120"
-                                Source="Avatar"
+                                Source="{Binding Logo}"
                                 WidthRequest="120" />
-
                             </Frame>
                             <StackLayout Margin="20" VerticalOptions="CenterAndExpand">
                                 <Label
                                 FontAttributes="Bold"
                                 FontSize="26"
                                 HorizontalOptions="CenterAndExpand"
-                                Text="David Spade"
+                                Text="{Binding Name}"
                                 TextColor="Black"
                                 VerticalTextAlignment="Center">
                                     <Label.FontFamily>
@@ -40,9 +45,9 @@
                                 </Label>
 
                                 <Label
-                                FontSize="14"
+                                FontSize="15"
                                 HorizontalOptions="CenterAndExpand"
-                                Text="iamdavid@gmail.com"
+                                Text="{Binding Telephone}"
                                 TextColor="Black"
                                 VerticalTextAlignment="Center">
                                     <Label.FontFamily>
@@ -54,7 +59,7 @@
                             </StackLayout>
                         </StackLayout>
 
-                        <StackLayout Margin="0,30,0,0">
+                        <StackLayout Margin="10,30,0,0">
 
                             <!--  Start of Menu Item  -->
                             <StackLayout Margin="0,5,5,5">
@@ -63,10 +68,10 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Image
                                         Aspect="AspectFill"
-                                        HeightRequest="40"
+                                        HeightRequest="30"
                                         HorizontalOptions="StartAndExpand"
                                         Source="Icon_edit.png"
-                                        WidthRequest="40" />
+                                        WidthRequest="30" />
                                         <Label
                                         Margin="15,0,0,0"
                                         FontSize="18"
@@ -107,10 +112,10 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Image
                                         Aspect="AspectFill"
-                                        HeightRequest="40"
+                                        HeightRequest="30"
                                         HorizontalOptions="StartAndExpand"
                                         Source="Icon_address.png"
-                                        WidthRequest="40" />
+                                        WidthRequest="30" />
                                         <Label
                                         Margin="15,0,0,0"
                                         FontSize="18"
@@ -137,7 +142,7 @@
                                     WidthRequest="10" />
 
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
 
@@ -152,10 +157,10 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Image
                                         Aspect="AspectFill"
-                                        HeightRequest="40"
+                                        HeightRequest="30"
                                         HorizontalOptions="StartAndExpand"
                                         Source="Icon_history.png"
-                                        WidthRequest="40" />
+                                        WidthRequest="30" />
                                         <Label
                                         Margin="15,0,0,0"
                                         FontSize="18"
@@ -182,7 +187,7 @@
                                     WidthRequest="10" />
 
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_2" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
 
@@ -196,10 +201,10 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Image
                                         Aspect="AspectFill"
-                                        HeightRequest="40"
+                                        HeightRequest="30"
                                         HorizontalOptions="StartAndExpand"
                                         Source="Icon_TrackOrder.png"
-                                        WidthRequest="40" />
+                                        WidthRequest="30" />
                                         <Label
                                         Margin="15,0,0,0"
                                         FontSize="18"
@@ -226,13 +231,12 @@
                                     WidthRequest="10" />
 
                                     <StackLayout.GestureRecognizers>
-                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_3" />
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
 
                             </StackLayout>
                             <!--  End of Menu Item  -->
-
 
                             <!--  Start of Menu Item  -->
                             <StackLayout Margin="0,5,5,5">
@@ -241,10 +245,54 @@
                                     <StackLayout Orientation="Horizontal">
                                         <Image
                                         Aspect="AspectFill"
-                                        HeightRequest="40"
+                                        HeightRequest="30"
+                                        HorizontalOptions="StartAndExpand"
+                                        Source="Icon_setting.png"
+                                        WidthRequest="30" />
+                                        <Label
+                                        Margin="15,0,0,0"
+                                        FontSize="18"
+                                        HorizontalOptions="StartAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        Text="Cài đặt"
+                                        TextColor="Black"
+                                        VerticalTextAlignment="Center">
+                                            <Label.FontFamily>
+                                                <OnPlatform x:TypeArguments="x:String">
+                                                    <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                                </OnPlatform>
+                                            </Label.FontFamily>
+                                        </Label>
+                                    </StackLayout>
+
+                                    <Image
+                                    Margin="20,0,20,0"
+                                    Aspect="AspectFit"
+                                    HeightRequest="10"
+                                    HorizontalOptions="EndAndExpand"
+                                    Source="more"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="10" />
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_4" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                            </StackLayout>
+                            <!--  End of Menu Item  -->
+
+                            <!--  Start of Menu Item  -->
+                            <StackLayout Margin="0,5,5,5">
+
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="30"
                                         HorizontalOptions="StartAndExpand"
                                         Source="Icon_logout.png"
-                                        WidthRequest="40" />
+                                        WidthRequest="30" />
                                         <Label
                                         Margin="15,0,0,0"
                                         FontSize="18"
