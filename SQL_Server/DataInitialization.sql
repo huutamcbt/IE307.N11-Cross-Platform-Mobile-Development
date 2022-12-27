@@ -124,7 +124,7 @@ create table FOODBOOKING.dbo.Users(
 	Password text,
 	FirstName nvarchar(50),
 	LastName nvarchar(20),
-	Telephone int,
+	Telephone varchar(15),
 	CreatedDate DateTime,
 	ModifiedDate DateTime,
 	Logo varchar(100)

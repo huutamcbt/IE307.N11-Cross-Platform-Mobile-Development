@@ -2,6 +2,8 @@ USE FOODBOOKING;
 
 GO
 
+---------------------------------------------------------------------------------------------------------
+
 CREATE PROCEDURE usp_GetAllProduct
 AS
 BEGIN
@@ -9,6 +11,8 @@ BEGIN
 END
 
 GO
+
+---------------------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE usp_GetProductById(@ProductId INT)
 AS
@@ -20,6 +24,8 @@ END
 
 GO
 
+---------------------------------------------------------------------------------------------------------
+
 CREATE PROCEDURE usp_GetProductByCategory(@CategoryId INT)
 AS
 BEGIN
@@ -30,6 +36,7 @@ END
 
 GO
 
+---------------------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE usp_GetAllCategory
 AS
@@ -38,6 +45,8 @@ BEGIN
 END
 
 GO
+
+---------------------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE usp_UpdateProductById(@ProductId INT, @Name NVARCHAR(30), @Description NVARCHAR(200))
 AS
@@ -49,17 +58,20 @@ END
 
 GO
 
-DROP PROCEDURE usp_UpdateProductById;
+---------------------------------------------------------------------------------------------------------
 
-SELECT TOP (1000) [ProductId]
-      ,[Name]
-      ,[Description]
-      ,[CategoryId]
-      ,[Price]
-      ,[DiscountId]
-      ,[CreatedDate]
-      ,[ModifiedDate]
-      ,[DeletedDate]
-      ,[Stock]
-      ,[Image]
-  FROM [FOODBOOKING].[dbo].[Products]
+
+-- DROP PROCEDURE usp_UpdateProductById;
+
+-- SELECT TOP (1000) [ProductId]
+--       ,[Name]
+--       ,[Description]
+--       ,[CategoryId]
+--       ,[Price]
+--       ,[DiscountId]
+--       ,[CreatedDate]
+--       ,[ModifiedDate]
+--       ,[DeletedDate]
+--       ,[Stock]
+--       ,[Image]
+--   FROM [FOODBOOKING].[dbo].[Products]
