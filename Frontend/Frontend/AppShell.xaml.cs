@@ -15,7 +15,13 @@ namespace Frontend
             Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute(nameof(ProductPage), typeof(ProductPage));
             Routing.RegisterRoute(nameof(ProductDetailPage), typeof(ProductDetailPage));
+            //Routing.RegisterRoute($"{nameof(ProductPage)}/{nameof(ProductDetailPage)}", typeof(ProductDetailPage));
+            
             Routing.RegisterRoute(nameof(BlogPage), typeof(BlogPage));
+            Routing.RegisterRoute(nameof(EditProfilePage), typeof(EditProfilePage));
+            Routing.RegisterRoute(nameof(EditAddressPage), typeof(EditAddressPage));
+            Routing.RegisterRoute(nameof(OrderHistoryPage), typeof(OrderHistoryPage));
+            Routing.RegisterRoute(nameof(TrackOrderPage), typeof(TrackOrderPage));
             Routing.RegisterRoute(nameof(CartPage), typeof(CartPage));
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
