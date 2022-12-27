@@ -33,7 +33,7 @@
     <TabBar Route="Main">
         <ShellContent Route="HomePage"  Title="Home" Icon="icon_Home.png"  ContentTemplate="{DataTemplate local:HomePage}" />
         <ShellContent Route="BlogPage" Title="Blog" Icon="Icon_blog.png" ContentTemplate="{DataTemplate local:BlogPage}" />
-        <ShellContent Route="ProfilePage" Title="Tôi" Icon="profile.png" ContentTemplate="{DataTemplate local:ProfilePage}" />
+        <ShellContent Route="ProfilePage" Title="Tôi" Icon="Icon_profile.png" ContentTemplate="{DataTemplate local:ProfilePage}" />
     </TabBar>
     <ShellItem Route="LoginPage">
         <ShellContent  IsVisible="False" ContentTemplate="{DataTemplate local:LoginPage}" />
