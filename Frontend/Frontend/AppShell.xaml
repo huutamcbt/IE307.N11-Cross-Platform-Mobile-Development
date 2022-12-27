@@ -29,6 +29,7 @@
         </ResourceDictionary>
     </Shell.Resources>
 
+    <ShellContent ContentTemplate="{DataTemplate local:LoadingPage}"/>
 
     <TabBar Route="Main">
         <ShellContent Route="HomePage"  Title="Home" Icon="icon_Home.png"  ContentTemplate="{DataTemplate local:HomePage}" />
