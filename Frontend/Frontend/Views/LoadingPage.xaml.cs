@@ -25,7 +25,7 @@ namespace Frontend.Views
             
             await loading_progress.ProgressTo(1, 5000, Easing.SpringIn);
             await Shell.Current.GoToAsync("//Main");
-            //await Shell.Current.GoToAsync(nameof(TestPage));
+            
         }
 
     }

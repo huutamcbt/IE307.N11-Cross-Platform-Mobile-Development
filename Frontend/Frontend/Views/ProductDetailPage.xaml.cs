@@ -1,8 +1,10 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
 using Frontend.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
@@ -14,9 +16,17 @@ namespace Frontend.Views
    
     public partial class ProductDetailPage : ContentPage
     {
+        public ICommand GoBackCommand;
+        
         public ProductDetailPage()
         {
             InitializeComponent();
+
+            GoBackCommand = new Command(async () =>
+            {
+                Debug.WriteLine(Shell.Current.CurrentItem.CurrentItem.Route);
+                await Shell.Current.GoToAsync("..");
+            });
             //InitializeProduct();
         }
 

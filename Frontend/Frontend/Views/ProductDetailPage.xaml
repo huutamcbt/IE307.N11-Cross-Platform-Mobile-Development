@@ -5,10 +5,14 @@
              xmlns:viewmodels ="clr-namespace:Frontend.ViewModels"
              Shell.TabBarIsVisible="False"
              xmlns:sf="clr-namespace:Syncfusion.SfRating.XForms;assembly=Syncfusion.SfRating.XForms"
+             x:Name="ProductDetailView"
              >
     <ContentPage.BindingContext>
         <viewmodels:ProductDetailViewModel />
     </ContentPage.BindingContext>
+    <!--<Shell.BackButtonBehavior>
+        <BackButtonBehavior Command="{Binding Source={x:Reference ProductDetailView}, Path=BindingContext.GoBackCommand}" />
+    </Shell.BackButtonBehavior>-->
     <ContentPage.Content>
         <Grid>
             <!--  Body  -->
