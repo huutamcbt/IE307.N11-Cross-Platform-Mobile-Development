@@ -1,4 +1,4 @@
-﻿using Frontend.ViewModels;
+﻿ using Frontend.ViewModels;
 using Frontend.Views;
 using System;
 using System.Collections.Generic;
@@ -25,7 +25,6 @@ namespace Frontend
             Routing.RegisterRoute(nameof(CartPage), typeof(CartPage));
             Routing.RegisterRoute(nameof(RegisterPage), typeof(RegisterPage));
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
-            Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));
         }
 
     }
