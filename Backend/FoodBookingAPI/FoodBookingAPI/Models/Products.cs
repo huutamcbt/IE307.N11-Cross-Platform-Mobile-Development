@@ -15,6 +15,7 @@ namespace FoodBookingAPI.Models
         public int DiscountId { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public DateTime DeletedDate { get; set; }
         public int Stock { get; set; }
         public string Image { get; set; }
     }
