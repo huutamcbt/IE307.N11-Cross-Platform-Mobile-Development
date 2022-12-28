@@ -4,7 +4,8 @@
              x:Class="Frontend.Views.ProfilePage"
              Title="Profile"
              Shell.NavBarIsVisible="False"
-             xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModels" 
+             x:DataType="viewmodel:ProfileViewModel"
              x:Name="ProfileView"
              >
     <ContentPage.BindingContext>
@@ -26,7 +27,7 @@
                                 <Image
                                 Aspect="AspectFit"
                                 HeightRequest="120"
-                                Source="{Binding Logo}"
+                                Source="{Binding user.Logo}"
                                 WidthRequest="120" />
                             </Frame>
                             <StackLayout Margin="20" VerticalOptions="CenterAndExpand">
@@ -47,7 +48,7 @@
                                 <Label
                                 FontSize="15"
                                 HorizontalOptions="CenterAndExpand"
-                                Text="{Binding Telephone}"
+                                Text="{Binding user.Telephone}"
                                 TextColor="Black"
                                 VerticalTextAlignment="Center">
                                     <Label.FontFamily>

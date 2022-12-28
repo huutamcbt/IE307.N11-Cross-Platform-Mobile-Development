@@ -5,12 +5,17 @@
              Title="Sửa thông tin"
              xmlns:frontend="clr-namespace:Frontend"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
+             x:Name="EditProfileView"
              >
     <ContentPage.ToolbarItems>
-        <ToolbarItem Text="Lưu"  />
+        <ToolbarItem Text="Lưu" Command="{Binding Source={x:Reference EditProfileView}, Path=BindingContext.SaveProfileCommand}" CommandParameter="{Binding .}"  />
     </ContentPage.ToolbarItems>
+    <ContentPage.BindingContext>
+        <viewmodel:ProfileViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
+        <StackLayout >
             <StackLayout>
                 <Frame HeightRequest="90" Padding="0" >
                 </Frame>
@@ -37,18 +42,18 @@
                         <Grid.ColumnDefinitions>
                             <ColumnDefinition Width="240"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
-                            <inputLayout:SfTextInputLayout Grid.Column="0"  Grid.Row="0" ContainerType="Outlined"  Hint="Họ" >
-                                <Entry TextColor="Black" Text="Nguyễn Văn"/>
-                            </inputLayout:SfTextInputLayout>
-                            <inputLayout:SfTextInputLayout Grid.Column="1"  Grid.Row="0" ContainerType="Outlined" Hint="Tên">
-                                <Entry TextColor="Black" Text="A"/>
-                            </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Grid.Column="0"  Grid.Row="0" ContainerType="Outlined"  Hint="Họ" >
+                            <Entry TextColor="Black" Text="{Binding user.Firstname}" FontSize="14"/>
+                        </inputLayout:SfTextInputLayout>
+                        <inputLayout:SfTextInputLayout Grid.Column="1"  Grid.Row="0" ContainerType="Outlined" Hint="Tên">
+                        <Entry TextColor="Black" Text="{Binding user.Lastname}" FontSize="14"/>
+                        </inputLayout:SfTextInputLayout>
                         <inputLayout:SfTextInputLayout Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="1" ContainerType="Outlined" Hint="Số điện thoại">
-                            <Entry TextColor="Black" Text="546498721" Keyboard="Telephone"/>
+                            <Entry TextColor="Black" Text="{Binding user.Telephone}" FontSize="14" Keyboard="Telephone"/>
                         </inputLayout:SfTextInputLayout>
-                        <inputLayout:SfTextInputLayout Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="2" ContainerType="Outlined" Hint="">
-                            <Entry TextColor="Black" Text="546498721" Keyboard="Telephone"/>
-                        </inputLayout:SfTextInputLayout>
+                        <!--<inputLayout:SfTextInputLayout Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="2" ContainerType="Outlined" Hint="">
+                            <Entry TextColor="Black" Text="546498721" FontSize="14" Keyboard="Telephone"/>
+                        </inputLayout:SfTextInputLayout>-->
                     </Grid>
                 </ScrollView>
             </StackLayout>

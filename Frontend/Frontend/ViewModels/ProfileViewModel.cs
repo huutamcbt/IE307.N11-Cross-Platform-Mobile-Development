@@ -6,32 +6,54 @@ using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Frontend.ViewModels
 {
     class ProfileViewModel : INotifyPropertyChanged
     {
         public string Name { get; private set; }
-        public string Telephone { get; private set; }
-        public string Logo { get; private set; }
 
-        public ProfileViewModel(){
+        private User _user { get; set; }
+ 
+        public User user { 
+            get => _user; 
+            set{
+                _user = value;
+            } 
+        }
+
+
+
+        public ICommand SaveProfileCommand { get; set; }
+        public ProfileViewModel()
+        {
             Task.Run(async () =>
             {
                 await InitializeProfile();
             }).Wait();
-            
+
+            SaveProfileCommand = new Command(async() =>
+            {
+                bool confirm = await Shell.Current.DisplayAlert("Thông báo", "Bạn có chắc thay đổi những thông tin này", "Xác nhận", "Thoát");
+                if (confirm)
+                {
+                     await UserService.UpdateUser(_user);
+                    await Shell.Current.GoToAsync("..");
+                }
+                else
+                    await Shell.Current.GoToAsync("..");
+            });
+
         }
 
         async Task InitializeProfile()
         {
-            User user = await UserService.GetUser();
-            Name = user.Firstname + " " + user.Lastname;
-            Telephone = user.Telephone;
-            Logo = user.Logo;
+            _user = await UserService.GetUser();
+            Name = _user.Firstname + " " + _user.Lastname;
             OnPropertyChanged("Name");
-            OnPropertyChanged("Telephone");
-            OnPropertyChanged("Logo");
+            OnPropertyChanged("user");
         }
 
         #region INotifyPropertyChanged

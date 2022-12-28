@@ -30,6 +30,10 @@ namespace Frontend.Services
                 throw e;
             }
         }
+        public static int GetUserID()
+        {
+            return user.UserId;
+        }
         public static Task<int> UpdateUser(User _user)
         {
             try
