@@ -13,7 +13,7 @@ namespace Frontend.Services
     public static class ProductService
     {
         static string BaseURL = "http://foodbookingapi.somee.com";
-        static HttpClient client ;
+        static HttpClient client;
 
         static ProductService()
         {
@@ -28,11 +28,13 @@ namespace Frontend.Services
         {
             try
             {
-                var productList = await client.GetStringAsync("api/GetAllProduct");
+                HttpResponseMessage response = await client.GetAsync("api/GetAllProduct");
+                string productList = await response.Content.ReadAsStringAsync();
+                //var productList = await client.GetStringAsync("api/GetAllProduct");
                 List<Product> productListConverted = JsonConvert.DeserializeObject<List<Product>>(productList);
                 return productListConverted;
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 Debug.WriteLine("error while calling api: " + e);
                 throw e;
@@ -43,8 +45,8 @@ namespace Frontend.Services
             try
             {
                 var product = await client.GetStringAsync("api/GetProductByID/" + productID);
-            Product productConverted = JsonConvert.DeserializeObject<List<Product>>(product)[0];
-            return productConverted;
+                Product productConverted = JsonConvert.DeserializeObject<List<Product>>(product)[0];
+                return productConverted;
             }
             catch (Exception e)
             {

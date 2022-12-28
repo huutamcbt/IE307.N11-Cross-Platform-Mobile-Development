@@ -75,3 +75,5 @@ GO
 --       ,[Stock]
 --       ,[Image]
 --   FROM [FOODBOOKING].[dbo].[Products]
+
+

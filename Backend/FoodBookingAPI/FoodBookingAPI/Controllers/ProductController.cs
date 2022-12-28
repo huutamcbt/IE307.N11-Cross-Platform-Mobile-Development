@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Data;
 using System.Diagnostics;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Http;
 using FoodBookingAPI.Models;
@@ -38,7 +39,7 @@ namespace FoodBookingAPI.Controllers
                 // Add Product Id parameter
                 param.Add(nameof(Products.ProductId), id);
 
-                DataTable data = GeneralRepository.ReadData(Constant.Product_Procedure_GetProduct_By_Id, param);
+                DataTable data = ProductRepository.GetProductById(param);
 
                 return Ok(data);
             }
@@ -47,14 +48,14 @@ namespace FoodBookingAPI.Controllers
                 return NotFound();
             }
         }
-        [Route("api/GetProductByCategory/{id}")]
+        [Route("api/GetProductByCategoryId/{id}")]
         [HttpGet]
         public IHttpActionResult GetProductByCategoryId(int id)
         {
             try
             {
                 param.Add(nameof(Products.CategoryId), id);
-                DataTable data = GeneralRepository.ReadData(Constant.Product_Procedure_GetProduct_By_CategoryId, param);
+                DataTable data = ProductRepository.GetProductByCategoryId(param);
 
                 return Ok(data);
             }
