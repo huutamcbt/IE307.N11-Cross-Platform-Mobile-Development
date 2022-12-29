@@ -180,6 +180,7 @@
     <Compile Include="Repository\ProductCategoryRepository.cs" />
     <Compile Include="Repository\GeneralRepository.cs" />
     <Compile Include="Repository\ProductRepository.cs" />
+    <Compile Include="Repository\UserRepository.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
