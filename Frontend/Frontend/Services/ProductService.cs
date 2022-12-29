@@ -12,15 +12,11 @@ namespace Frontend.Services
 {
     public static class ProductService
     {
-        static string BaseURL = "http://foodbookingapi.somee.com";
-        static HttpClient client;
+
 
         static ProductService()
         {
-            client = new HttpClient
-            {
-                BaseAddress = new Uri(BaseURL)
-            };
+
         }
 
 
@@ -28,7 +24,7 @@ namespace Frontend.Services
         {
             try
             {
-                HttpResponseMessage response = await client.GetAsync("api/GetAllProduct");
+                HttpResponseMessage response = await Base.client.GetAsync("api/GetAllProduct");
                 string productList = await response.Content.ReadAsStringAsync();
                 //var productList = await client.GetStringAsync("api/GetAllProduct");
                 List<Product> productListConverted = JsonConvert.DeserializeObject<List<Product>>(productList);
@@ -44,7 +40,7 @@ namespace Frontend.Services
         {
             try
             {
-                var product = await client.GetStringAsync("api/GetProductByID/" + productID);
+                var product = await Base.client.GetStringAsync("api/GetProductByID/" + productID);
                 Product productConverted = JsonConvert.DeserializeObject<List<Product>>(product)[0];
                 return productConverted;
             }
