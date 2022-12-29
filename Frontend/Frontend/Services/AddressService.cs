@@ -31,16 +31,16 @@ namespace Frontend.Services
                 throw e;
             }
         }
-        static async public Task<HttpResponseMessage> UpdateAddress(UserAddress address)
+        static async public Task UpdateAddress(UserAddress address)
         {
             try
             {
-                var json = JsonConvert.SerializeObject(address);
-                var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
-                HttpResponseMessage response = await Base.client.PostAsync("api/updateAddress/" + address.AddressId, stringContent);
-                Console.WriteLine(response);
-                return response;
-                //userAddresses[address.AddressId - 1] = address;
+                //var json = JsonConvert.SerializeObject(address);
+                //var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
+                //HttpResponseMessage response = await Base.client.PostAsync("api/updateAddress/" + address.AddressId, stringContent);
+                //Console.WriteLine(response);
+                //return response;
+                userAddresses[address.AddressId - 1] = address;
             }
             catch (Exception e)
             {
@@ -58,6 +58,17 @@ namespace Frontend.Services
                 //Console.WriteLine(response);
                 userAddresses.Add(address);
 
+            }
+            catch(Exception e)
+            {
+                throw e;
+            }
+        }
+        static async public Task RemoveAddress(UserAddress address)
+        {
+            try
+            {
+                userAddresses.Remove(address);
             }
             catch(Exception e)
             {

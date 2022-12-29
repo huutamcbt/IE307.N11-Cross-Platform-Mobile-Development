@@ -3,11 +3,76 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Frontend.Views.EditAddressPage"
              Title="Địa chỉ giao hàng"
-             
-             >
+             x:Name="EditAddressView" 
+             xmlns:vm="clr-namespace:Frontend.ViewModels"
+                 >
+    <ContentPage.BindingContext>
+        <vm:AddressViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Thêm" Command="{Binding Source={x:Reference EditAddressView}, Path=BindingContext.AddCommand}"></ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            
+        <StackLayout Padding="0,10,0,0">
+            <CollectionView ItemsSource="{Binding addressList}"  >
+                <!--<CollectionView.ItemsLayout>
+                    <LinearItemsLayout  Orientation="Vertical" />
+                </CollectionView.ItemsLayout>-->
+                <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <SwipeView Padding="0,5,0,0">
+                                <SwipeView.LeftItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                                BackgroundColor="#FFC107"
+                                                Command="{Binding Source={x:Reference EditAddressView}, Path=BindingContext.EditCommand}" 
+                                                 CommandParameter="{Binding .}"
+                                                Text="Sửa" />
+                                    </SwipeItems>
+                                </SwipeView.LeftItems>
+                                <SwipeView.RightItems>
+                                    <SwipeItems>
+                                        <SwipeItem
+                                                BackgroundColor="#FF3D00"
+                                                Command="{Binding Source={x:Reference EditAddressView}, Path=BindingContext.DeleteCommand}"
+                                                CommandParameter="{Binding .}"
+                                                Text="Xóa" />
+                                    </SwipeItems>
+                                </SwipeView.RightItems>
+                                <!--  Content  -->
+                            <StackLayout
+                                 Background="#fff">
+                                <Frame
+                                        Margin="0,8,0,8"
+                                        Padding="0"
+                                        BackgroundColor="Transparent"
+                                        HasShadow="True">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image Margin="5,5,5,5" Source="Icon_Location.png" HeightRequest="30" VerticalOptions="Center" HorizontalOptions="Start"/>
+                                        <StackLayout Margin="15,0,0,0"> 
+                                            <Label Grid.Row="0" FontSize="15" FontAttributes="Bold" Text="{Binding Mobile}"/>
+                                            <StackLayout Orientation="Horizontal">
+                                                <Label Text="{Binding Address}"/>
+                                                <Label Text="{Binding District}"/>
+                                                <Label Text="{Binding City}"/>
+                                                <Label Text="{Binding Province}"/>
+                                            </StackLayout>
+                                            <Label Text="{Binding Country}"/>
+                                        </StackLayout>
+                                    </StackLayout>
+                                </Frame>
+                            <BoxView HeightRequest="1"
+                               BackgroundColor="#ccc"
+                               Grid.ColumnSpan="2"
+                               Grid.Row="2"
+                               VerticalOptions="End"/>  
+                            </StackLayout>
+                        </SwipeView>
+                        
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

@@ -28,11 +28,13 @@ namespace Frontend.Views
             //string productList = await response.Content.ReadAsStringAsync();
             //Console.WriteLine(productList);
             //Product list = JsonConvert.DeserializeObject<Product>(productList);
-            UserAddress address = new UserAddress { AddressId = 1, Address = "123", City = "Gia Nghĩa", Country = "V", District = "Hoàng Thế Thiện", Province = "Đăk Nông", UserId = 1, Mobile = "0123456789" };
-            HttpResponseMessage response = await AddressService.UpdateAddress(address);
-            var statusCode = response.StatusCode;
-            response_content.Text = $"Status code: {statusCode}\n";
-                                    //+ $"Content: {address.Address}";
+
+
+            //UserAddress address = new UserAddress { AddressId = 1, Address = "123", City = "Gia Nghĩa", Country = "V", District = "Hoàng Thế Thiện", Province = "Đăk Nông", UserId = 1, Mobile = "0123456789" };
+            //HttpResponseMessage response = await AddressService.UpdateAddress(address);
+            //var statusCode = response.StatusCode;
+            //response_content.Text = $"Status code: {statusCode}\n";
+                                    //+ $"Content: {address}";
         }
     }
 }
