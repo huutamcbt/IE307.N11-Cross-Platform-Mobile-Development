@@ -33,7 +33,7 @@ namespace FoodBookingAPI.Repository
                                 command.Parameters["@" + data.Key].Value = data.Value;
                                 break;
                             case nameof(Users.Password):
-                                command.Parameters.Add("@" + data.Key, SqlDbType.VarChar,100);
+                                command.Parameters.Add("@" + data.Key, SqlDbType.Text);
                                 command.Parameters["@" + data.Key].Value = data.Value;
                                 break;
                             case nameof(Users.FirstName):

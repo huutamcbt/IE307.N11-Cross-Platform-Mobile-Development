@@ -120,7 +120,7 @@ create table FOODBOOKING.dbo.PaymentDetails(
 create table FOODBOOKING.dbo.Users(
 	UserId int not null identity(1,1),
 	Username varchar(20),
-	Password VARCHAR(100),
+	Password TEXT,
 	FirstName nvarchar(50),
 	LastName nvarchar(20),
 	Telephone varchar(15),
