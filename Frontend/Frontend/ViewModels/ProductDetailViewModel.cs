@@ -20,8 +20,8 @@ namespace Frontend.ViewModels
         public string Description { get; private set; }
         public double Price { get; private set; }
 
-        private IList<Review> sourse;
-        public ObservableCollection<Review> reviewList { get; private set; }
+        private IList<ReviewRendered> sourse;
+        public ObservableCollection<ReviewRendered> reviewList { get; private set; }
         private int productID;
         public int ProductID
         {
@@ -51,10 +51,11 @@ namespace Frontend.ViewModels
             }
         }
 
-        public ICommand addReviewCommand { get;  set; }
+        public ICommand AddReviewCommand { get;  set; }
+        public ICommand DeleteReviewCommand { get; set; }
         public async void initializeProduct(int productID)
         {
-            sourse = new List<Review>();
+            sourse = new List<ReviewRendered>();
 
 
             Product product = await ProductService.GetProductByProductID(productID);
@@ -75,25 +76,38 @@ namespace Frontend.ViewModels
         }
         public ProductDetailViewModel()
         {
-            addReviewCommand = new Command(async () =>
+            AddReviewCommand = new Command(async () =>
             {
                 await Shell.Current.DisplayAlert("a", reviewEntryValue + "\n" + ratingValue, "a");
                 int userID = UserService.GetUserID();
 
-                await ReviewService.AddReview(new Review {ProductID = productID,Content=reviewEntryValue,Rating = ratingValue, CreatedDate = new DateTime(),ModifiedDate= new DateTime(), UserID=userID });
+                sourse.Insert(0,await ReviewService.AddReview(new Review { ProductID = productID, Content = reviewEntryValue, Rating = ratingValue, CreatedDate = new DateTime(), ModifiedDate = new DateTime(), UserID = userID }));
 
+                reviewList = new ObservableCollection<ReviewRendered>(sourse);
+                ratingValue = 0;
+                reviewEntryValue = "";
+                OnPropertyChanged("RatingValue");
+                OnPropertyChanged("ReviewEntryValue");
+                OnPropertyChanged("reviewList");
+
+            });
+            DeleteReviewCommand = new Command<ReviewRendered>(async (review) =>
+            {
+                await Shell.Current.DisplayAlert("a", review.Content + "\n" + review.Rating, "a");
+                await ReviewService.DeleteReview(review.ReviewID);
             });
 
         }
 
         async Task InitializeReview()
         {
-            List<Review> reviews = await ReviewService.GetReviewsByProductId(productID);
-            foreach (Review review in reviews)
+            List<ReviewRendered> reviews = await ReviewService.GetReviewsByProductId(productID);
+            foreach (ReviewRendered review in reviews)
             {
+                review.IsEditable = review.UserID == UserService.GetUserID();
                 sourse.Add(review);
             }
-            reviewList = new ObservableCollection<Review>(sourse);
+            reviewList = new ObservableCollection<ReviewRendered>(sourse);
             OnPropertyChanged("reviewList");
         }
 
