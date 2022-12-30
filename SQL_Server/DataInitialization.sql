@@ -25,7 +25,8 @@
 ----- Create Table -----
 
 
-create table FOODBOOKING.dbo.Discounts(
+create table FOODBOOKING.dbo.Discounts
+(
 	DiscountId int not null identity(1,1),
 	Name varchar(30),
 	Description NVARCHAR(100),
@@ -36,7 +37,8 @@ create table FOODBOOKING.dbo.Discounts(
 	DeletedDate DateTime,
 );
 
-create table FOODBOOKING.dbo.ProductCategorys(
+create table FOODBOOKING.dbo.ProductCategorys
+(
 	CategoryId int not null identity(1,1),
 	Name nvarchar(30),
 	Description NVARCHAR(100),
@@ -46,7 +48,8 @@ create table FOODBOOKING.dbo.ProductCategorys(
 	DeletedDate DateTime,
 );
 
-CREATE TABLE FOODBOOKING.dbo.Products(
+CREATE TABLE FOODBOOKING.dbo.Products
+(
 	ProductId INT NOT NULL IDENTITY(1,1),
 	Name nvarchar(30) NOT NULL,
 	Description NVARCHAR(200) NOT NULL,
@@ -60,7 +63,8 @@ CREATE TABLE FOODBOOKING.dbo.Products(
 	Image varchar(200),
 );
 
-create table FOODBOOKING.dbo.OrderItems(
+create table FOODBOOKING.dbo.OrderItems
+(
 	OrderItemId int not null identity(1,1),
 	OrderId int not null,
 	ProductId int,
@@ -69,7 +73,8 @@ create table FOODBOOKING.dbo.OrderItems(
 	ModifiedDate DateTime,
 );
 
-create table FOODBOOKING.dbo.OrderDetails(
+create table FOODBOOKING.dbo.OrderDetails
+(
 	OrderId int not null identity(1,1),
 	PaymentId int,
 	UserId int,
@@ -78,7 +83,8 @@ create table FOODBOOKING.dbo.OrderDetails(
 	ModifiedDate DateTime,
 );
 
-create table FOODBOOKING.dbo.CartItems(
+create table FOODBOOKING.dbo.CartItems
+(
 	CartItemId int not null identity(1,1),
 	SessionId int,
 	ProductId int,
@@ -87,7 +93,8 @@ create table FOODBOOKING.dbo.CartItems(
 	ModifiedDate DateTime,
 );
 
-create table FOODBOOKING.dbo.Reviews(
+create table FOODBOOKING.dbo.Reviews
+(
 	ReviewId int not null identity(1,1),
 	ProductId int,
 	Rating int,
@@ -99,15 +106,18 @@ create table FOODBOOKING.dbo.Reviews(
 );
 
 
-create table FOODBOOKING.dbo.ShoppingSessions(
+create table FOODBOOKING.dbo.ShoppingSessions
+(
 	SessionId int not null identity(1,1),
 	UserId int,
-	Total float,
+	Total int,
+	-- NUMBER OF ITEMS IN CART
 	CreatedDate DateTime,
 	ModifiedDate DateTime
 );
 
-create table FOODBOOKING.dbo.PaymentDetails(
+create table FOODBOOKING.dbo.PaymentDetails
+(
 	PaymentId int not null identity(1,1),
 	OrderId int,
 	Amount float,
@@ -117,7 +127,8 @@ create table FOODBOOKING.dbo.PaymentDetails(
 	ModifiedDate DateTime
 );
 
-create table FOODBOOKING.dbo.Users(
+create table FOODBOOKING.dbo.Users
+(
 	UserId int not null identity(1,1),
 	Username varchar(20),
 	Password TEXT,
@@ -129,7 +140,8 @@ create table FOODBOOKING.dbo.Users(
 	Logo varchar(100)
 );
 
-create table FOODBOOKING.dbo.UserPayments(
+create table FOODBOOKING.dbo.UserPayments
+(
 	UserPaymentId int not null identity(1,1),
 	UserId int,
 	PaymentType varchar(10),
@@ -138,7 +150,8 @@ create table FOODBOOKING.dbo.UserPayments(
 	Expiry DateTime
 );
 
-create table FOODBOOKING.dbo.UserAddresss(
+create table FOODBOOKING.dbo.UserAddresss
+(
 	AddressId int not null identity(1,1),
 	UserId int,
 	Address nvarchar(50),
@@ -149,7 +162,8 @@ create table FOODBOOKING.dbo.UserAddresss(
 	Mobile varchar(15)
 );
 
-create table FOODBOOKING.dbo.Blogs(
+create table FOODBOOKING.dbo.Blogs
+(
 	BlogId int not null identity(1,1),
 	Title nvarchar(30),
 	Content varchar(300),
@@ -193,39 +207,58 @@ alter table Blogs add constraint PK_Blog primary key (BlogId);
 
 
 
-insert into ProductCategorys (Name, Description,Image, CreatedDate, ModifiedDate, DeletedDate)
-values(N'Đồ nước','Description 1','icon_noodle.png','','','');
-insert into ProductCategorys (Name, Description,Image, CreatedDate, ModifiedDate, DeletedDate)
-values(N'Cơm','Description 2','icon_rice.png','','','');
-insert into ProductCategorys (Name, Description,Image, CreatedDate, ModifiedDate, DeletedDate)
-values(N'Đồ uống','Description 3','icon_drink.png','','','');
-insert into ProductCategorys (Name, Description,Image, CreatedDate, ModifiedDate, DeletedDate)
-values(N'Đồ ăn vặt','Description 4','icon_snack.png','','','');
+insert into ProductCategorys
+	(Name, Description,Image, CreatedDate, ModifiedDate, DeletedDate)
+values(N'Đồ nước', 'Description 1', 'icon_noodle.png', '', '', '');
+insert into ProductCategorys
+	(Name, Description,Image, CreatedDate, ModifiedDate, DeletedDate)
+values(N'Cơm', 'Description 2', 'icon_rice.png', '', '', '');
+insert into ProductCategorys
+	(Name, Description,Image, CreatedDate, ModifiedDate, DeletedDate)
+values(N'Đồ uống', 'Description 3', 'icon_drink.png', '', '', '');
+insert into ProductCategorys
+	(Name, Description,Image, CreatedDate, ModifiedDate, DeletedDate)
+values(N'Đồ ăn vặt', 'Description 4', 'icon_snack.png', '', '', '');
 
 
 
-insert into Discounts(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
-values (N'Name 1', 'Description 1',10, 1,'','','');
-insert into Discounts(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
-values (N'Name 2', 'Description 2',10, 1,'','','');
-insert into Discounts(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
-values (N'Name 3', 'Description 3',10, 1,'','','');
-insert into Discounts(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
-values (N'Name 4', 'Description 4',10, 1,'','','');
-insert into Discounts(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
-values (N'Name 5', 'Description 5',10, 1,'','','');
+insert into Discounts
+	(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
+values
+	(N'Name 1', 'Description 1', 10, 1, '', '', '');
+insert into Discounts
+	(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
+values
+	(N'Name 2', 'Description 2', 10, 1, '', '', '');
+insert into Discounts
+	(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
+values
+	(N'Name 3', 'Description 3', 10, 1, '', '', '');
+insert into Discounts
+	(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
+values
+	(N'Name 4', 'Description 4', 10, 1, '', '', '');
+insert into Discounts
+	(Name, Description, DiscountPercent, Active, CreatedDate, ModifiedDate, DeletedDate)
+values
+	(N'Name 5', 'Description 5', 10, 1, '', '', '');
 
 
-Insert into Products (Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image) 
-values(N'Bún Bò Huế 1',N'Ngon bổ rẻ 1',1,30000,1,'','','',1,'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
-Insert into Products (Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image) 
-values(N'Bún Bò Huế 2',N'Ngon bổ rẻ 2',2,30000,2,'','','',2,'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
-Insert into Products (Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image) 
-values(N'Bún Bò Huế 3',N'Ngon bổ rẻ 3',4,30000,1,'','','',1,'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
-Insert into Products (Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image) 
-values(N'Bún Bò Huế 4',N'Ngon bổ rẻ 4',1,30000,1,'','','',1,'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
-Insert into Products (Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image) 
-values(N'Bún Bò Huế 5',N'Ngon bổ rẻ 5',1,30000,5,'','','',1,'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
+Insert into Products
+	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
+values(N'Bún Bò Huế 1', N'Ngon bổ rẻ 1', 1, 30000, 1, '', '', '', 1, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
+Insert into Products
+	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
+values(N'Bún Bò Huế 2', N'Ngon bổ rẻ 2', 2, 30000, 2, '', '', '', 2, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
+Insert into Products
+	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
+values(N'Bún Bò Huế 3', N'Ngon bổ rẻ 3', 4, 30000, 1, '', '', '', 1, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
+Insert into Products
+	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
+values(N'Bún Bò Huế 4', N'Ngon bổ rẻ 4', 1, 30000, 1, '', '', '', 1, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
+Insert into Products
+	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
+values(N'Bún Bò Huế 5', N'Ngon bổ rẻ 5', 1, 30000, 5, '', '', '', 1, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
 
 
 
