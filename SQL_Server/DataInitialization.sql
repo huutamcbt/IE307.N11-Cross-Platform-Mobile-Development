@@ -110,7 +110,7 @@ create table FOODBOOKING.dbo.ShoppingSessions
 (
 	SessionId int not null identity(1,1),
 	UserId int,
-	Total int,
+	Total float,
 	-- NUMBER OF ITEMS IN CART
 	CreatedDate DateTime,
 	ModifiedDate DateTime
