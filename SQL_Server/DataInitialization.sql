@@ -88,23 +88,23 @@ create table FOODBOOKING.dbo.CartItems(
 );
 
 create table FOODBOOKING.dbo.Reviews(
-	ReviewId int not null identity(1,1),
-	ProductId int,
-	Rating int,
-	UserId int,
-	Content text,
-	CreatedDate DateTime,
-	ModifiedDate DateTime,
-	DeletedDate DateTime,
+	ReviewId INT NOT NULL IDENTITY(1,1),
+	ProductId INT,
+	Rating INT,
+	UserId INT,
+	Content NVARCHAR(150),
+	CreatedDate DATETIME,
+	ModifiedDate DATETIME,
+	DeletedDate DATETIME,
 );
 
 
 create table FOODBOOKING.dbo.ShoppingSessions(
-	SessionId int not null identity(1,1),
-	UserId int,
-	Total float,
-	CreatedDate DateTime,
-	ModifiedDate DateTime
+	SessionId INT NOT NULL IDENTITY(1,1),
+	UserId INT,
+	Total FLOAT,
+	CreatedDate DATETIME,
+	ModifiedDate DATETIME
 );
 
 create table FOODBOOKING.dbo.PaymentDetails(
@@ -118,15 +118,15 @@ create table FOODBOOKING.dbo.PaymentDetails(
 );
 
 create table FOODBOOKING.dbo.Users(
-	UserId int not null identity(1,1),
-	Username varchar(20),
+	UserId INT not null identity(1,1),
+	Username VARCHAR(20),
 	Password TEXT,
-	FirstName nvarchar(50),
-	LastName nvarchar(20),
-	Telephone varchar(15),
-	CreatedDate DateTime,
-	ModifiedDate DateTime,
-	Logo varchar(100)
+	FirstName NVARCHAR(50),
+	LastName NVARCHAR(20),
+	Telephone VARCHAR(15),
+	CreatedDate DATETIME,
+	ModifiedDate DATETIME,
+	Logo VARCHAR(100)
 );
 
 create table FOODBOOKING.dbo.UserPayments(
@@ -227,6 +227,12 @@ values(N'Bún Bò Huế 4',N'Ngon bổ rẻ 4',1,30000,1,'','','',1,'https://fir
 Insert into Products (Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image) 
 values(N'Bún Bò Huế 5',N'Ngon bổ rẻ 5',1,30000,5,'','','',1,'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_bo_hue.jpg?alt=media&token=f8f49341-0907-48a5-913f-0e9248535cf2');
 
+-- SET IDENTITY_INSERT Users ON;
+-- SET IDENTITY_INSERT UserAddresss ON;
 
+INSERT INTO Users(Username, Password, FirstName, LastName, Telephone, CreatedDate, ModifiedDate, Logo)
+VALUES(N'toinomon', 'Password',N'Nguyễn Văn', N'B','0654986587','','',N'profile.webp');
 
+INSERT INTO UserAddresss (UserId, Address, District, Province, City, Country, Mobile)
+VALUES(1,N'123',N'Hoàng Thế Thiện',N'Đăk Nông',N'Gia Nghĩa', N'V','0123456789');
 
