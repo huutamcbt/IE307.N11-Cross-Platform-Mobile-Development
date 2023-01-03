@@ -11,7 +11,7 @@ namespace FoodBookingAPI.Repository
 {
     public class ProductRepository
     {
-        private static void AddParameters(Dictionary<string, object> param, SqlCommand command)
+        private static void AddParameters(SqlCommand command, Dictionary<string, object> param)
         {
             
             if (param != null)
@@ -116,14 +116,14 @@ namespace FoodBookingAPI.Repository
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         // Add parameter for sql command
-                        AddParameters(param, command);
+                        AddParameters(command, param);
 
                         using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                         {
                             DataTable result = new DataTable();
                             command.CommandType = CommandType.StoredProcedure;
                             adapter.Fill(result);
-
+                            
                             return result;
                         }
                     }
@@ -148,7 +148,7 @@ namespace FoodBookingAPI.Repository
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
                         // Add parameter for sql command
-                        AddParameters(param, command);
+                        AddParameters(command, param);
 
                         using (SqlDataAdapter adapter = new SqlDataAdapter(command))
                         {
