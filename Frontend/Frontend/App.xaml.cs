@@ -18,6 +18,7 @@ namespace Frontend
 
         public App()
         {
+            Syncfusion.Licensing.SyncfusionLicenseProvider.RegisterLicense("MDAxQDMyMzAyZTM0MmUzMG41MmZLMEF4WkZDN1RUWHE1Z1ErNTBESVZLSXRTSnFCYTg4S0ZpNzY5WHc9");
             InitializeComponent();
             MainPage = new AppShell();
         }
