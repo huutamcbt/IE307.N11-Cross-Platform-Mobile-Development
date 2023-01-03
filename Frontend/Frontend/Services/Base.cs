@@ -7,14 +7,26 @@ namespace Frontend.Services
 {
     static class Base
     {
-        static string BaseURL = "http://foodbookingapi.somee.com";
+        static string BaseURL = "http://192.168.1.6/FoodBookingAPI/";
         public static HttpClient client;
         static Base()
         {
-            client = new HttpClient
-            {
-                BaseAddress = new Uri(BaseURL)
-            };
+
+            HttpClientHandler insecureHandler = GetInsecureHandler();
+            client = new HttpClient(insecureHandler);
+            client.BaseAddress = new Uri(BaseURL);
         }
-}
+
+        public static HttpClientHandler GetInsecureHandler()
+        {
+            HttpClientHandler handler = new HttpClientHandler();
+            handler.ServerCertificateCustomValidationCallback = (message, cert, chain, errors) =>
+            {
+                if (cert.Issuer.Equals("CN=localhost"))
+                    return true;
+                return errors == System.Net.Security.SslPolicyErrors.None;
+            };
+            return handler;
+        }
+    }
 }

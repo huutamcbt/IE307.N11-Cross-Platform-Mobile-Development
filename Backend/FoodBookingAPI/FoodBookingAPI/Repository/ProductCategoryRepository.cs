@@ -11,7 +11,7 @@ namespace FoodBookingAPI.Repository
 {
     public class ProductCategoryRepository
     {
-        private static void AddParameters(Dictionary<string, object> param, SqlCommand command)
+        private static void AddParameters(SqlCommand command, Dictionary<string, object> param)
         {
             if (param != null)
             {
