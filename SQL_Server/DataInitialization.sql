@@ -93,7 +93,8 @@ create table FOODBOOKING.dbo.CartItems
 	ModifiedDate DateTime,
 );
 
-create table FOODBOOKING.dbo.Reviews(
+create table FOODBOOKING.dbo.Reviews
+(
 	ReviewId INT NOT NULL IDENTITY(1,1),
 	ProductId INT,
 	Rating INT,
@@ -105,23 +106,13 @@ create table FOODBOOKING.dbo.Reviews(
 );
 
 
-<<<<<<< HEAD
 create table FOODBOOKING.dbo.ShoppingSessions
 (
-	SessionId int not null identity(1,1),
-	UserId int,
-	Total float,
-	-- NUMBER OF ITEMS IN CART
-	CreatedDate DateTime,
-	ModifiedDate DateTime
-=======
-create table FOODBOOKING.dbo.ShoppingSessions(
 	SessionId INT NOT NULL IDENTITY(1,1),
 	UserId INT,
 	Total FLOAT,
 	CreatedDate DATETIME,
 	ModifiedDate DATETIME
->>>>>>> 3603cf697b093613bd3e62d5d34eb5e1e5924d03
 );
 
 create table FOODBOOKING.dbo.PaymentDetails
@@ -135,7 +126,8 @@ create table FOODBOOKING.dbo.PaymentDetails
 	ModifiedDate DateTime
 );
 
-create table FOODBOOKING.dbo.Users(
+create table FOODBOOKING.dbo.Users
+(
 	UserId INT not null identity(1,1),
 	Username VARCHAR(20),
 	Password TEXT,
@@ -270,9 +262,11 @@ values(N'Bún Bò Huế 5', N'Ngon bổ rẻ 5', 1, 30000, 5, '', '', '', 1, 'ht
 -- SET IDENTITY_INSERT Users ON;
 -- SET IDENTITY_INSERT UserAddresss ON;
 
-INSERT INTO Users(Username, Password, FirstName, LastName, Telephone, CreatedDate, ModifiedDate, Logo)
-VALUES(N'toinomon', 'Password',N'Nguyễn Văn', N'B','0654986587','','',N'profile.webp');
+INSERT INTO Users
+	(Username, Password, FirstName, LastName, Telephone, CreatedDate, ModifiedDate, Logo)
+VALUES(N'toinomon', 'Password', N'Nguyễn Văn', N'B', '0654986587', '', '', N'profile.webp');
 
-INSERT INTO UserAddresss (UserId, Address, District, Province, City, Country, Mobile)
-VALUES(1,N'123',N'Hoàng Thế Thiện',N'Đăk Nông',N'Gia Nghĩa', N'V','0123456789');
+INSERT INTO UserAddresss
+	(UserId, Address, District, Province, City, Country, Mobile)
+VALUES(1, N'123', N'Hoàng Thế Thiện', N'Đăk Nông', N'Gia Nghĩa', N'V', '0123456789');
 

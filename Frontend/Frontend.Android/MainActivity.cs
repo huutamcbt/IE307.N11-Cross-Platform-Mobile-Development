@@ -4,11 +4,8 @@ using Android.App;
 using Android.Content.PM;
 using Android.Runtime;
 using Android.OS;
-<<<<<<< HEAD
 using AndroidX.AppCompat.App;
-=======
 using System.Net;
->>>>>>> 3603cf697b093613bd3e62d5d34eb5e1e5924d03
 
 namespace Frontend.Droid
 {
