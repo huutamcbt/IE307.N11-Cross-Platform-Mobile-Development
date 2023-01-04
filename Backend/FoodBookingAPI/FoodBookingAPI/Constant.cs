@@ -24,6 +24,7 @@ namespace FoodBookingAPI
 
         // User
         public static string User_Procedure_GetUserById => "usp_GetUSerById";
+        public static string User_Procedure_AddUser => "usp_AddUser";
         public static string User_Procedure_UpdateUser => "usp_UpdateUser";
 
         // Review
