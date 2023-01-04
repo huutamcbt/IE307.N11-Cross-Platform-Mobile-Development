@@ -14,5 +14,6 @@ namespace Frontend.Models
         public string City { get; set; }
         public string Country { get; set; }
         public string Mobile { get; set; }
+        public string Display { get; set; }
     }
 }

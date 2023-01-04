@@ -1,0 +1,141 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+                 xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                 x:Class="Frontend.Views.OrderPage"
+                 x:Name="OrderView"
+                 xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
+                 >
+    <ContentPage.BindingContext>
+        <viewmodel:OrderViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.Content>
+        <StackLayout Margin="10,10,10,10">
+            <!--Địa chỉ giao hàng-->
+            <StackLayout>
+                <Label Text="Chọn địa chỉ giao hàng">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="SFPro.ttf#Bold" />
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+                <Picker x:Name="AddressPicker" SelectedIndex="{Binding AddressPickerIndex,Mode=TwoWay}" FontSize="14" ItemsSource="{Binding addressList}" ItemDisplayBinding="{Binding Display}">
+                </Picker>
+            </StackLayout>
+            <!--Danh sách sản phẩm-->
+            <StackLayout VerticalOptions="StartAndExpand"  HeightRequest="450" >
+                <Label Text="Danh sách sản phẩm">
+                    <Label.FontFamily>
+                        <OnPlatform x:TypeArguments="x:String">
+                            <On Platform="Android" Value="SFPro.ttf#Bold" />
+                        </OnPlatform>
+                    </Label.FontFamily>
+                </Label>
+                <CollectionView ItemsSource="{Binding productList}" >
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <StackLayout >
+                                <Grid HeightRequest="100">
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="100"/>
+                                        <ColumnDefinition Width="*"/>
+                                    </Grid.ColumnDefinitions>
+                                    <Image HorizontalOptions="Start"  HeightRequest="100" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" />
+                                    <Label Grid.Column="1" Grid.Row="0" VerticalOptions="End" FontSize="16" Text="{Binding Name}"/>
+                                    <Label
+                                    Grid.Column="1" Grid.Row="1"
+                                                                FontSize="16"
+                                    HorizontalOptions="End"
+                                                                Text="{Binding Price, StringFormat='{0:c0}'}"
+                                                                TextColor="#00C569">
+                                        <Label.FontFamily>
+                                            <OnPlatform x:TypeArguments="x:String">
+                                                <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                            </OnPlatform>
+                                        </Label.FontFamily>
+                                    </Label>
+                                    <Label Grid.Column="1" Grid.Row="2" VerticalOptions="Start" 
+                                   HorizontalOptions="End">
+                                        <Label.FormattedText>
+                                            <FormattedString>
+                                                <Span Text="x"></Span>
+                                                <Span Text="{Binding Quantity}"/>
+                                            </FormattedString>
+                                        </Label.FormattedText>
+                                        <Label.FontFamily>
+                                            <OnPlatform x:TypeArguments="x:String">
+                                                <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                            </OnPlatform>
+                                        </Label.FontFamily>
+                                    </Label>
+                                </Grid>
+                            </StackLayout>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+                <FlexLayout JustifyContent="SpaceBetween" >
+                    <Label Text="Chi phí giao hàng:">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="SFPro.ttf#Bold" />
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                    <Label Text="{Binding SHIPCOST, StringFormat='{0:c0}'}" TextColor="#00C569">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="SFPro.ttf#Bold" />
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                </FlexLayout>
+            </StackLayout>
+            
+            <StackLayout HorizontalOptions="End">
+                <StackLayout>
+                    <FlexLayout JustifyContent="SpaceBetween">
+                        <Label Text="Tổng giá:" FontSize="22">
+                            <Label.FontFamily >
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                        <Label
+                                Grid.Column="1" Grid.Row="1"
+                                FontSize="20"
+                                HorizontalOptions="End"
+                                Text="{Binding Total, StringFormat='{0:c0}'}"
+                                TextColor="#00C569">
+                            <Label.FontFamily>
+                                <OnPlatform x:TypeArguments="x:String">
+                                    <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                </OnPlatform>
+                            </Label.FontFamily>
+                        </Label>
+                    </FlexLayout>
+                </StackLayout>
+                <StackLayout>
+                    <Label Text="Phương thức thanh toán">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="SFPro.ttf#Bold" />
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                    <Picker SelectedIndex="{Binding PaymentMethodPickerIndex,Mode=TwoWay}"  FontSize="16" >
+                        <Picker.Items>
+                            <x:String >Thanh toán khi nhận hàng</x:String>
+                            <x:String>Thanh toán bằng cách chuyển khoản</x:String>
+                        </Picker.Items>
+                    </Picker>
+                </StackLayout>
+
+                <Button Command="{Binding PlaceOrderCommand}" Text="Thanh toán" Background="#000" WidthRequest="250" 
+                            HorizontalOptions="Center" VerticalOptions="EndAndExpand" >
+                    
+                </Button>
+            </StackLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -6,17 +6,17 @@ namespace Frontend.Models
 {
     public class Product
     {
-        public Product(int iD, string name, double price, string image, int categoryID, int stock, int quantity , string description)
-        {
-            ProductId = iD;
-            Name = name;
-            Price = price;
-            Image = image;
-            CategoryID = categoryID;
-            Stock = stock;
-            Quantity = quantity;
-            Description = description;
-        }
+        //public Product(int id, string name, double price, string image, int categoryID, int stock, int quantity , string description)
+        //{
+        //    ProductId = id;
+        //    Name = name;
+        //    Price = price;
+        //    Image = image;
+        //    CategoryID = categoryID;
+        //    Stock = stock;
+        //    Quantity = quantity;
+        //    Description = description;
+        //}
 
         public int ProductId { get; set; }
         public string Name { get; set; }
@@ -24,7 +24,7 @@ namespace Frontend.Models
         public string Image { get; set; }
         public int CategoryID { get; set; }
         public int Stock { get; set; }
-        public int Quantity { get; set; } // Chi frontend co
+        public int Quantity { get; set; } // only frontend
         public string Description { get; set; }
 
         
