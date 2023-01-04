@@ -15,24 +15,63 @@ namespace Frontend.ViewModels
 {
     class OrderViewModel : INotifyPropertyChanged
     {
-        const int SHIPCOST = 30000;
+        public int SHIPCOST { get; private set; }
         public IList<Product> source;
         public ObservableCollection<Product> productList { get; private set; }
 
         private IList<UserAddress> sourse1;
         public ObservableCollection<UserAddress> addressList { get; private set; }
         public double Total { get; set; }
+        int addressPickerIndex ;
+        public int AddressPickerIndex { 
+            get => addressPickerIndex;
+            set {
+                addressPickerIndex = value;
+                OnPropertyChanged("AddressPickerIndex");
+            } 
+        }
+        int paymentMethodPickerIndex = 0;
+        public int PaymentMethodPickerIndex
+        {
+            get => paymentMethodPickerIndex;
+            set
+            {
+                paymentMethodPickerIndex = value;
+                OnPropertyChanged("PaymentMethodPickerIndex");
+            }
+        }
+
+        public ICommand PlaceOrderCommand { get; private set; }
         public OrderViewModel()
         {
+            SHIPCOST = 30000;
+            OnPropertyChanged("SHIPCOST");
             source = new List<Product>();
             sourse1 = new List<UserAddress>();
-            Task.Run(async () =>
-            {
-                await initializeCartItem();
-            }).Wait();
+            PlaceOrderCommand = new Command(async() => {
+                List<OrderItem> orderItems = new List<OrderItem>();
+                foreach (Product product in productList)
+                {
+                    orderItems.Add(new OrderItem {ProductId = product.ProductId, Quantity=product.Quantity });
+                }
+                var response = await OrderService.PlaceOrder(orderItems, Total);
+                if (response.IsSuccessStatusCode)
+                {
+                    await Shell.Current.DisplayAlert("Thông báo", "Đặt hàng thành công! \n bạn sẽ được đưa về trang chủ", "ok");
+                    await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}");
+                }
+            
+            });
             Task.Run(async () =>
             {
                 await InitializeAddresses();
+            }).Wait();
+            Task.Run(async () =>
+            {
+                await initializeCartItem();
+                addressPickerIndex = 0;
+                OnPropertyChanged("AddressPickerIndex");
+
             }).Wait();
         }
         async Task InitializeAddresses()

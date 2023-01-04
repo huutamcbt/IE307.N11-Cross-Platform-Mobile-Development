@@ -19,7 +19,7 @@
                         </OnPlatform>
                     </Label.FontFamily>
                 </Label>
-                <Picker x:Name="AddressPicker" SelectedIndex="0" FontSize="14" ItemsSource="{Binding addressList}" ItemDisplayBinding="{Binding Display}">
+                <Picker x:Name="AddressPicker" SelectedIndex="{Binding AddressPickerIndex,Mode=TwoWay}" FontSize="14" ItemsSource="{Binding addressList}" ItemDisplayBinding="{Binding Display}">
                 </Picker>
             </StackLayout>
             <!--Danh sách sản phẩm-->
@@ -34,13 +34,13 @@
                 <CollectionView ItemsSource="{Binding productList}" >
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <StackLayout>
-                                <Grid HeightRequest="130">
+                            <StackLayout >
+                                <Grid HeightRequest="100">
                                     <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="120"/>
+                                        <ColumnDefinition Width="100"/>
                                         <ColumnDefinition Width="*"/>
                                     </Grid.ColumnDefinitions>
-                                    <Image HorizontalOptions="Start"  HeightRequest="120" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" />
+                                    <Image HorizontalOptions="Start"  HeightRequest="100" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" />
                                     <Label Grid.Column="1" Grid.Row="0" VerticalOptions="End" FontSize="16" Text="{Binding Name}"/>
                                     <Label
                                     Grid.Column="1" Grid.Row="1"
@@ -73,6 +73,22 @@
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
+                <FlexLayout JustifyContent="SpaceBetween" >
+                    <Label Text="Chi phí giao hàng:">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="SFPro.ttf#Bold" />
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                    <Label Text="{Binding SHIPCOST, StringFormat='{0:c0}'}" TextColor="#00C569">
+                        <Label.FontFamily>
+                            <OnPlatform x:TypeArguments="x:String">
+                                <On Platform="Android" Value="SFPro.ttf#Bold" />
+                            </OnPlatform>
+                        </Label.FontFamily>
+                    </Label>
+                </FlexLayout>
             </StackLayout>
             
             <StackLayout HorizontalOptions="End">
@@ -107,7 +123,7 @@
                             </OnPlatform>
                         </Label.FontFamily>
                     </Label>
-                    <Picker SelectedIndex="0"  FontSize="16" >
+                    <Picker SelectedIndex="{Binding PaymentMethodPickerIndex,Mode=TwoWay}"  FontSize="16" >
                         <Picker.Items>
                             <x:String >Thanh toán khi nhận hàng</x:String>
                             <x:String>Thanh toán bằng cách chuyển khoản</x:String>
@@ -115,7 +131,7 @@
                     </Picker>
                 </StackLayout>
 
-                <Button Text="Thanh toán" Background="#00C569" WidthRequest="250" 
+                <Button Command="{Binding PlaceOrderCommand}" Text="Thanh toán" Background="#000" WidthRequest="250" 
                             HorizontalOptions="Center" VerticalOptions="EndAndExpand" >
                     
                 </Button>
