@@ -45,11 +45,8 @@ namespace FoodBookingAPI.Controllers
                 param = new Dictionary<string, object>();
                 // Get content of post request body
                 string content = Request.Content.ReadAsStringAsync().Result;
-
-                // Convert string to jsonAddress string
-                string jsonAddress = "[" + content + "]";
-                
-                UserAddresss userAddresss = JsonConvert.DeserializeObject<List<UserAddresss>>(jsonAddress)[0];
+         
+                UserAddresss userAddresss = JsonConvert.DeserializeObject<UserAddresss>(content);
 
                 //param.Add(nameof(UserAddresss.AddressId), userAddresss.AddressId);
                 param.Add(nameof(UserAddresss.Address), userAddresss.Address);
@@ -81,13 +78,9 @@ namespace FoodBookingAPI.Controllers
                 param = new Dictionary<string, object>();
                 // Get content of post body and replace \ character empty character
                 string content = Request.Content.ReadAsStringAsync().Result;
-                //Debug.WriteLine(content
-
-                // Create Json object string
-                string result = "[" + content + "]";
 
                 // Convert json object to UserAddress object
-                UserAddresss userAddresss = JsonConvert.DeserializeObject<List<UserAddresss>>(result)[0];
+                UserAddresss userAddresss = JsonConvert.DeserializeObject<UserAddresss>(content);
 
                 param.Add(nameof(UserAddresss.AddressId), userAddresss.AddressId);
                 param.Add(nameof(UserAddresss.Address), userAddresss.Address);

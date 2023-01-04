@@ -74,7 +74,7 @@ namespace FoodBookingAPI.Repository
                 using (SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
                 {
                     connection.Open();
-                    Debug.WriteLine("Get User By Id");
+                  
                     string query = Constant.User_Procedure_GetUserById;
                     using (SqlCommand command = new SqlCommand(query, connection))
                     {
@@ -94,6 +94,34 @@ namespace FoodBookingAPI.Repository
             catch (Exception)
             {
                 return null;
+            }
+        }
+
+        public static bool AddUser(Dictionary<string, object> param)
+        {
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
+                {
+                    connection.Open();
+
+                    string query = Constant.User_Procedure_AddUser;
+                    using(SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        AddParameters(command, param);
+
+                        command.CommandType = CommandType.StoredProcedure;
+                        int userId = (int)command.ExecuteScalar();
+
+                        if (userId > 0)
+                            return true;
+                        return false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
             }
         }
 

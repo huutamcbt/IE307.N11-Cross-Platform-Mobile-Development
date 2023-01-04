@@ -6,6 +6,7 @@ namespace Frontend.Models
     {
         public int UserId { get; set; }
         public String Username { get; set; }
+        public String Password { get; set; }
         public String Firstname { get; set; }
         public String Lastname { get; set; }
         public String Telephone { get; set; }

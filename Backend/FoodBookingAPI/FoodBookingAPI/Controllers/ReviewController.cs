@@ -50,9 +50,7 @@ namespace FoodBookingAPI.Controllers
 
                 string content = Request.Content.ReadAsStringAsync().Result;
 
-                string jsonContent = "[" + content + "]";
-
-                Reviews newReview = JsonConvert.DeserializeObject<List<Reviews>>(jsonContent)[0];
+                Reviews newReview = JsonConvert.DeserializeObject<Reviews>(content);
 
                 param.Add(nameof(Reviews.ProductId), newReview.ProductId);
                 param.Add(nameof(Reviews.Rating), newReview.Rating);
@@ -83,8 +81,7 @@ namespace FoodBookingAPI.Controllers
                 param = new Dictionary<string, object>();
 
                 string content = Request.Content.ReadAsStringAsync().Result;
-                string jsonContent = "[" + content + "]";
-                Reviews updateReview = JsonConvert.DeserializeObject<List<Reviews>>(jsonContent)[0];
+                Reviews updateReview = JsonConvert.DeserializeObject<Reviews>(content);
 
                 param.Add(nameof(Reviews.ReviewId), updateReview.ReviewId);
                 param.Add(nameof(Reviews.ProductId), updateReview.ProductId);

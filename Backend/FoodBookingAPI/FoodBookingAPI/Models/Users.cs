@@ -12,7 +12,7 @@ namespace FoodBookingAPI.Models
         public string Password { get; set; }
         public string FirstName { get; set; }
         public string LastName { get; set; }
-        public int Telephone { get; set; }
+        public string Telephone { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
         public string Logo { get; set; }

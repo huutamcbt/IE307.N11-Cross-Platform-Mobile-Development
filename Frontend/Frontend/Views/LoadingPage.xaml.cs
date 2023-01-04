@@ -22,6 +22,5 @@ namespace Frontend.Views
             await Shell.Current.GoToAsync("//Main");
             //await Shell.Current.GoToAsync(nameof(TestPage));
         }
-
     }
 }

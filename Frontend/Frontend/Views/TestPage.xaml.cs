@@ -19,21 +19,18 @@ namespace Frontend.Views
 
         private async void send_request_Clicked(object sender, EventArgs e)
         {
-            //HttpClient client = new HttpClient();
-            //HttpResponseMessage response = await client.GetAsync("http://foodbookingapi.somee.com/api/GetAllProduct");
-            //string productList = await response.Content.ReadAsStringAsync();
-            //Console.WriteLine(productList);
-            //Product list = JsonConvert.DeserializeObject<Product>(productList);
+          
             User user = new User
             {
                 UserId = 1,
                 Username = "Username_1",
-                Firstname = "Văn C",
+                Firstname = "Văn B",
                 Lastname = "Nguyễn",
                 Telephone = "0123456789",
                 Logo = "logo.png",
                 CreatedDate = DateTime.Now,
-                ModifiedDate = DateTime.Now
+                ModifiedDate = DateTime.Now,
+                Password = "Username@12345"
             };
 
             UserAddress address = new UserAddress
@@ -61,9 +58,9 @@ namespace Frontend.Views
             };
 
 
-            var json = JsonConvert.SerializeObject(review);
+            var json = JsonConvert.SerializeObject(user);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
-            HttpResponseMessage response = await Base.client.DeleteAsync("api/DeleteReview/" + review.ReviewID);
+            HttpResponseMessage response = await Base.client.PostAsync("api/Login/",stringContent);
             var statusCode = response.StatusCode;
 
             string content = response.Content.ReadAsStringAsync().Result.Replace("\\", "");
