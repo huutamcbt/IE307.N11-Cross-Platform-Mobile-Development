@@ -24,7 +24,7 @@ namespace Frontend.Models
         public string Image { get; set; }
         public int CategoryID { get; set; }
         public int Stock { get; set; }
-        public int Quantity { get; set; } // Chi frontend co
+        public int Quantity { get; set; } // only frontend
         public string Description { get; set; }
 
         
