@@ -130,6 +130,25 @@ END
 GO
 
 ---------------------------------------------------------------------------------------------------------
+CREATE PROCEDURE usp_AddUser
+    @Username VARCHAR(20),
+	@Password TEXT,
+	@FirstName NVARCHAR(50),
+	@LastName NVARCHAR(20),
+	@Telephone VARCHAR(15),
+	@CreatedDate DATETIME,
+	@ModifiedDate DATETIME,
+	@Logo VARCHAR(100)
+AS
+BEGIN
+    INSERT INTO Users(Username, Password, FirstName, LastName, Telephone, CreatedDate, ModifiedDate, Logo)
+    OUTPUT Inserted.UserId
+    VALUES(@Username, @Password, @FirstName, @LastName, @Telephone, @CreatedDate, @ModifiedDate, @Logo)
+END
+
+GO
+
+---------------------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE usp_UpdateUser
     @UserId INT,
