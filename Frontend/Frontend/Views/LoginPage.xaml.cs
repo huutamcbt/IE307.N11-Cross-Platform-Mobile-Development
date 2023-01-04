@@ -1,9 +1,4 @@
-﻿using Frontend.ViewModels;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -12,10 +7,10 @@ namespace Frontend.Views
     [XamlCompilation(XamlCompilationOptions.Compile)]
     public partial class LoginPage : ContentPage
     {
-        
+
         public LoginPage()
         {
-           
+
             InitializeComponent();
         }
         protected override async void OnAppearing()
@@ -23,7 +18,7 @@ namespace Frontend.Views
             base.OnAppearing();
             if (App.isLogin)
             {
-                await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}" );
+                await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}");
             }
         }
         private async void TapGestureRecognizer_Tapped(object sender, EventArgs e)

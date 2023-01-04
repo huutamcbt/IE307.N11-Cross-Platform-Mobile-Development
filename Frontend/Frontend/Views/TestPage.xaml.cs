@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Frontend.Models;
+using Frontend.Services;
+using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http.Json;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Frontend.Models;
-using Newtonsoft.Json;
-using Frontend.Services;
-using System.Diagnostics;
-using System.IO;
 
 namespace Frontend.Views
 {
@@ -70,7 +63,7 @@ namespace Frontend.Views
 
             var json = JsonConvert.SerializeObject(review);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
-            HttpResponseMessage response = await Base.client.DeleteAsync("api/DeleteReview/"+ review.ReviewID);
+            HttpResponseMessage response = await Base.client.DeleteAsync("api/DeleteReview/" + review.ReviewID);
             var statusCode = response.StatusCode;
 
             string content = response.Content.ReadAsStringAsync().Result.Replace("\\", "");

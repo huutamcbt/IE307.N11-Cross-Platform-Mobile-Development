@@ -1,13 +1,5 @@
 ﻿//using Frontend.Services;
-using Frontend.Models;
-using Frontend.Views;
-using Frontend.Services;
-using System;
-using System.Collections.Generic;
 using Xamarin.Forms;
-using Xamarin.Forms.Xaml;
-using System.Collections.ObjectModel;
-using System.Threading.Tasks;
 
 namespace Frontend
 {

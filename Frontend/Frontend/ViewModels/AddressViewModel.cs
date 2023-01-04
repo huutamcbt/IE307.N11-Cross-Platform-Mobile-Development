@@ -2,12 +2,10 @@
 using Frontend.Services;
 using Frontend.Views;
 using Rg.Plugins.Popup.Services;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -28,12 +26,12 @@ namespace Frontend.ViewModels
         public AddressViewModel()
         {
             sourse = new List<UserAddress>();
-            MessagingCenter.Subscribe<AddressPopupPage>(this, "refresh",async (sender) =>
-            {
-                sourse = new List<UserAddress>();
-                await InitializeAddresses();
-                // Do something whenever the "Hi" message is received
-            });
+            MessagingCenter.Subscribe<AddressPopupPage>(this, "refresh", async (sender) =>
+             {
+                 sourse = new List<UserAddress>();
+                 await InitializeAddresses();
+                 // Do something whenever the "Hi" message is received
+             });
             DeleteCommand = new Command<UserAddress>(async (address) =>
             {
                 bool confirm = await Shell.Current.DisplayAlert("Thông báo", "Bạn có chắc xóa địa chỉ này không", "Có", "Không");
@@ -67,7 +65,7 @@ namespace Frontend.ViewModels
         async Task InitializeAddresses()
         {
             List<UserAddress> userAddresses = await AddressService.GetAddressesByUserId(1);
-            foreach(UserAddress address in userAddresses)
+            foreach (UserAddress address in userAddresses)
             {
                 sourse.Add(address);
             }

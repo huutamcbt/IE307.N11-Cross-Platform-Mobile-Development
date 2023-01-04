@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Frontend.Models
+﻿namespace Frontend.Models
 {
     public class Product
     {
@@ -27,7 +23,7 @@ namespace Frontend.Models
         public int Quantity { get; set; } // only frontend
         public string Description { get; set; }
 
-        
+
 
     }
 }

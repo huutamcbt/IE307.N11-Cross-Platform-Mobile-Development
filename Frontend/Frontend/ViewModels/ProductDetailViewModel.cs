@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Frontend.Models;
+using Frontend.Services;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Frontend.Models;
-using Frontend.Views;
 using Xamarin.Forms;
-using Frontend.Services;
 namespace Frontend.ViewModels
 {
     [QueryProperty("ProductID", "productID")]
@@ -32,7 +30,7 @@ namespace Frontend.ViewModels
                 initializeProduct(value);
             }
         }
-        private int ratingValue =3;
+        private int ratingValue = 3;
         public int RatingValue
         {
             get => ratingValue;
@@ -51,7 +49,7 @@ namespace Frontend.ViewModels
             }
         }
 
-        public ICommand AddReviewCommand { get;  set; }
+        public ICommand AddReviewCommand { get; set; }
         public ICommand DeleteReviewCommand { get; set; }
         public async void initializeProduct(int productID)
         {
@@ -81,7 +79,7 @@ namespace Frontend.ViewModels
                 await Shell.Current.DisplayAlert("a", reviewEntryValue + "\n" + ratingValue, "a");
                 int userID = UserService.GetUserID();
 
-                sourse.Insert(0,await ReviewService.AddReview(new Review { ProductID = productID, Content = reviewEntryValue, Rating = ratingValue, CreatedDate = new DateTime(), ModifiedDate = new DateTime(), UserID = userID }));
+                sourse.Insert(0, await ReviewService.AddReview(new Review { ProductID = productID, Content = reviewEntryValue, Rating = ratingValue, CreatedDate = new DateTime(), ModifiedDate = new DateTime(), UserID = userID }));
 
                 reviewList = new ObservableCollection<ReviewRendered>(sourse);
                 ratingValue = 0;

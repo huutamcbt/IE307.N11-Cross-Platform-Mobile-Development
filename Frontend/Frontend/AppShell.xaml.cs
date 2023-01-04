@@ -1,7 +1,4 @@
-﻿ using Frontend.ViewModels;
-using Frontend.Views;
-using System;
-using System.Collections.Generic;
+﻿using Frontend.Views;
 using Xamarin.Forms;
 
 namespace Frontend
@@ -11,7 +8,7 @@ namespace Frontend
         public AppShell()
         {
             InitializeComponent();
-            
+
             //Routing.RegisterRoute(nameof(HomePage), typeof(HomePage));
             Routing.RegisterRoute(nameof(ProductPage), typeof(ProductPage));
             Routing.RegisterRoute(nameof(ProductDetailPage), typeof(ProductDetailPage));
@@ -28,6 +25,7 @@ namespace Frontend
             Routing.RegisterRoute(nameof(LoginPage), typeof(LoginPage));
             Routing.RegisterRoute(nameof(AddressPopupPage), typeof(AddressPopupPage));
             Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));
+            Routing.RegisterRoute(nameof(OrderDetailPage), typeof(OrderDetailPage));
         }
 
     }

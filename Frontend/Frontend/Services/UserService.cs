@@ -2,7 +2,6 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Frontend.Services
@@ -15,21 +14,24 @@ namespace Frontend.Services
         static UserService()
         {
 
-            user = new User { 
-                UserId = 1, 
-                Username = "toinomon", 
-                Firstname = "Nguyễn Văn", Lastname = "A", 
-                Telephone = "0654986587", 
-                Logo = "profile.webp", 
-                CreatedDate = new DateTime(), ModifiedDate = new DateTime() 
+            user = new User
+            {
+                UserId = 1,
+                Username = "toinomon",
+                Firstname = "Nguyễn Văn",
+                Lastname = "A",
+                Telephone = "0654986587",
+                Logo = "profile.webp",
+                CreatedDate = new DateTime(),
+                ModifiedDate = new DateTime()
             };
 
             shoppingSession = new ShoppingSession { SessionId = 1, Total = 2, UserId = 1 };
-            
+
         }
 
         //Called after logging in
-        public static async Task InitializeShoppingSession (int userId)
+        public static async Task InitializeShoppingSession(int userId)
         {
             try
             {

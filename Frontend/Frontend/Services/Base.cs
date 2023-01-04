@@ -1,13 +1,12 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 
 namespace Frontend.Services
 {
     static class Base
     {
-        static string BaseURL = "http://192.168.1.6/FoodBookingAPI/";
+        //static string BaseURL = "http://192.168.1.6/FoodBookingAPI/";
+        static string BaseURL = "http://www.foodbookingapi.somee.com/";
         public static HttpClient client;
         static Base()
         {

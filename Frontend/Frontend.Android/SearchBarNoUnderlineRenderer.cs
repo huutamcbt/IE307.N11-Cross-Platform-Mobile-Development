@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using Android.Content;
-using Android.Content.Res;
-using Android.Graphics.Drawables;
+﻿using Android.Content.Res;
 using Frontend;
 using Frontend.Droid;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Platform.Android;
 
