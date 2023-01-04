@@ -15,7 +15,7 @@ namespace FoodBookingAPI.Controllers
     {
         Dictionary<string, object> param = new Dictionary<string, object>();
         // Get all products
-        [Route("api/GetAllProduct")]
+        [Route("api/GetAllProducts")]
         [HttpGet]
         public IHttpActionResult GetAllProducts()
         {

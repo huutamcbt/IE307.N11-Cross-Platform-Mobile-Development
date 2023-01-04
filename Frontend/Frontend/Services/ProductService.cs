@@ -24,8 +24,9 @@ namespace Frontend.Services
         {
             try
             {
-                HttpResponseMessage response = await Base.client.GetAsync("api/GetAllProduct");
-                string productList = await response.Content.ReadAsStringAsync();
+                HttpResponseMessage response = await Base.client.GetAsync("api/GetAllProducts");
+                string productList = response.Content.ReadAsStringAsync().Result;
+                Debug.WriteLine("Product list: " + productList);
                 //var productList = await client.GetStringAsync("api/GetAllProduct");
                 List<Product> productListConverted = JsonConvert.DeserializeObject<List<Product>>(productList);
                 return productListConverted;
