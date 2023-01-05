@@ -18,28 +18,32 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <inputLayout:SfTextInputLayout Grid.Row="0" Grid.ColumnSpan="2"  Hint="Tên tài khoản">
-                <Entry   x:Name="entryUsername" Text="{Binding Username,Mode=TwoWay}" ></Entry>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="60"/>
+                </Grid.RowDefinitions>
+                <inputLayout:SfTextInputLayout  Grid.Row="0" Grid.ColumnSpan="2"  Hint="Tên tài khoản">
+                    <Entry x:Name="entryUsername" HeightRequest="60" Text="{Binding Username,Mode=TwoWay}" ></Entry>
                 </inputLayout:SfTextInputLayout>
                 <inputLayout:SfTextInputLayout Grid.Row="1" Grid.ColumnSpan="2" Hint="Mật khẩu">
                         <Entry   IsPassword="True" Text="{Binding Password,Mode=TwoWay}" x:Name="entryPassword" />
                 </inputLayout:SfTextInputLayout>
                 <inputLayout:SfTextInputLayout Grid.Row="2" Grid.ColumnSpan="2" Hint="Xác nhận mật khẩu">
-                <Entry   IsPassword="True" Text="{Binding PasswordConfirm,Mode=TwoWay}" x:Name="entryConfirmPassword" />
+                 <Entry   IsPassword="True" Text="{Binding PasswordConfirm,Mode=TwoWay}" x:Name="entryConfirmPassword" />
                 </inputLayout:SfTextInputLayout>
                 <inputLayout:SfTextInputLayout Grid.Row="3" Grid.Column="0" Hint="Họ">
-                <Entry Text="{Binding FirstName,Mode=OneWayToSource}"></Entry>
+                    <Entry Text="{Binding FirstName,Mode=OneWayToSource}"></Entry>
                 </inputLayout:SfTextInputLayout>
                 <inputLayout:SfTextInputLayout Grid.Row="3" Grid.Column="1" Hint="Tên">
-                <Entry Grid.Row="3" Grid.Column="1" Text="{Binding LastName,Mode=TwoWay}"></Entry>
+                    <Entry Grid.Row="3" Grid.Column="1" Text="{Binding LastName,Mode=TwoWay}"></Entry>
                 </inputLayout:SfTextInputLayout>
                 <inputLayout:SfTextInputLayout Grid.Row="4" Grid.ColumnSpan="2" Hint="Số điện thoại">
-                <Entry  Keyboard="Telephone" Text="{Binding Telephone,Mode=TwoWay}"  ClearButtonVisibility="WhileEditing"/>
+                    <Entry  Keyboard="Telephone" Text="{Binding Telephone,Mode=TwoWay}"  ClearButtonVisibility="WhileEditing"/>
                 </inputLayout:SfTextInputLayout>
-                <Button  Grid.Row="5" Grid.ColumnSpan="2" HeightRequest="60" Text="Đăng ký" Background="#111">
-                    <Button.GestureRecognizers>
-                        <TapGestureRecognizer Command="{Binding Source={x:Reference RegisterView}, Path=BindingContext.LoginTapCommand}" CommandParameter="{Binding .}"/>
-                    </Button.GestureRecognizers>
+                <Button  Grid.Row="5" Grid.ColumnSpan="2" HeightRequest="60" Text="Đăng ký" Background="#111" Command="{Binding Source={x:Reference RegisterView}, Path=BindingContext.RegisterCommand}" >
                 </Button>
                 <Label Grid.Row="6" Text="Đăng nhập ngay" TextColor="Blue" FontSize="Small" >
                     <Label.GestureRecognizers>
