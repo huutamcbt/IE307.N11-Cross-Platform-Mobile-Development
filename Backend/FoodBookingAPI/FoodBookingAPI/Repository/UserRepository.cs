@@ -97,6 +97,36 @@ namespace FoodBookingAPI.Repository
             }
         }
 
+        public static DataTable GetUserByUsername(Dictionary<string, object> param)
+        {
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
+                {
+                    connection.Open();
+
+                    string query = $"SELECT * FROM {nameof(Users)} WHERE {nameof(Users.Username)} = @Username";
+                    using(SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        AddParameters(command, param);
+                        command.CommandType = CommandType.Text;
+
+                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
+                        {
+                            DataTable result = new DataTable();
+                            adapter.Fill(result);
+
+                            return result;
+                        }
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return null;
+            }
+        }
+
         public static bool AddUser(Dictionary<string, object> param)
         {
             try

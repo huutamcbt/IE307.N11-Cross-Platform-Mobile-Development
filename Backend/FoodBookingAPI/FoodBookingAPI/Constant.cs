@@ -33,6 +33,12 @@ namespace FoodBookingAPI
         public static string Review_Procedure_UpdateReview => "usp_UpdateReview";
         public static string Review_Procedure_DeleteReview => "usp_DeleteReview";
 
+        // CartItem
+        public static string CartItem_Procedure_AddCartItem => "usp_AddCartItem";
+        public static string CartItem_Procedure_GetCartItemBySessionId => "usp_GetCartItemBySessionId";
+        public static string CartItem_Procedure_UpdateCartItem => "usp_UpdateCartItem";
+        public static string CartItem_Procedure_DeleteCartItem => "usp_DeleteCartItem";
+
         // SQL Connection
         public static string SQLConnectionString => ConfigurationManager.ConnectionStrings["FoodBooking"].ConnectionString;
     }

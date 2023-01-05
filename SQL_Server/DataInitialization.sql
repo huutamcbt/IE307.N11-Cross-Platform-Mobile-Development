@@ -65,32 +65,32 @@ CREATE TABLE FOODBOOKING.dbo.Products
 
 create table FOODBOOKING.dbo.OrderItems
 (
-	OrderItemId int not null identity(1,1),
-	OrderId int not null,
-	ProductId int,
-	Quantity int,
-	CreatedDate DateTime,
-	ModifiedDate DateTime,
+	OrderItemId INT NOT NULL IDENTITY(1,1),
+	OrderId INT NOT NULL,
+	ProductId INT,
+	Quantity INT,
+	CreatedDate DATETIME,
+	ModifiedDate DATETIME,
 );
 
 create table FOODBOOKING.dbo.OrderDetails
 (
-	OrderId int not null identity(1,1),
-	PaymentId int,
-	UserId int,
-	Total float,
-	CreatedDate DateTime,
-	ModifiedDate DateTime,
+	OrderId INT NOT NULL IDENTITY(1,1),
+	--PaymentId INT,
+	UserId INT,
+	Total FLOAT,
+	CreatedDate DATETIME,
+	ModifiedDate DATETIME,
 );
 
 create table FOODBOOKING.dbo.CartItems
 (
-	CartItemId int not null identity(1,1),
-	SessionId int,
-	ProductId int,
-	Quantity int,
-	CreatedDate DateTime,
-	ModifiedDate DateTime,
+	CartItemId INT NOT NULL IDENTITY(1,1),
+	SessionId INT,
+	ProductId INT,
+	Quantity INT,
+	CreatedDate DATETIME,
+	ModifiedDate DATETIME,
 );
 
 create table FOODBOOKING.dbo.Reviews
@@ -191,7 +191,7 @@ alter table Products add constraint FK_ProductCategory_Product foreign key (Cate
 alter table Products add constraint FK_Discount_Product foreign key (DiscountId) references Discounts(DiscountId);
 alter table OrderItems add constraint FK_Product_OrderItem foreign key (ProductId) references Products(ProductId);
 alter table OrderItems add constraint FK_OrderDetail_OrderItem foreign key (OrderId) references OrderDetails(OrderId);
-alter table OrderDetails add constraint FK_PaymentDetail_OrderDetail foreign key (PaymentId) references PaymentDetails(PaymentId);
+--alter table OrderDetails add constraint FK_PaymentDetail_OrderDetail foreign key (PaymentId) references PaymentDetails(PaymentId);
 alter table OrderDetails add constraint FK_User_OrderDetail foreign key (UserId) references Users(UserId);
 alter table CartItems add constraint FK_Product_CartItem foreign key (ProductId) references Products(ProductId);
 alter table CartItems add constraint FK_ShoppingSession_CartItem foreign key (SessionId) references ShoppingSessions(SessionId);
@@ -270,3 +270,11 @@ INSERT INTO UserAddresss
 	(UserId, Address, District, Province, City, Country, Mobile)
 VALUES(1, N'123', N'Hoàng Thế Thiện', N'Đăk Nông', N'Gia Nghĩa', N'V', '0123456789');
 
+
+INSERT INTO OrderDetails(UserId, Total, CreatedDate, ModifiedDate)
+VALUES(1, 20000000,'','');
+
+INSERT INTO  ShoppingSessions (UserId, Total, CreatedDate, ModifiedDate)
+VALUES(1, 10, '','');
+
+SELECT * FROM ShoppingSessions;

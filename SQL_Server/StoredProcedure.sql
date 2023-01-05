@@ -241,21 +241,71 @@ BEGIN
     WHERE ReviewId = @ReviewId;
 END
 
+GO
 
---EXEC usp_AddUserAddress 1, N'123',N'Hoàng Thế Thiện',N'Đăk Nông',N'Gia Nghĩa', N'V','0123456789';
--- DROP PROCEDURE usp_UpdateProductById;
+---------------------------------------------------------------------------------------------------------
+-- CartItem Stored Procedure
 
--- SELECT TOP (1000) [ProductId]
---       ,[Name]
---       ,[Description]
---       ,[CategoryId]
---       ,[Price]
---       ,[DiscountId]
---       ,[CreatedDate]
---       ,[ModifiedDate]
---       ,[DeletedDate]
---       ,[Stock]
---       ,[Image]
---   FROM [FOODBOOKING].[dbo].[Products]
+CREATE PROCEDURE usp_AddCartItem
+	@SessionId int,
+	@ProductId int,
+	@Quantity int,
+	@CreatedDate DateTime,
+	@ModifiedDate DateTime
+AS
+BEGIN
+    INSERT INTO CartItems(SessionId, ProductId, Quantity, CreatedDate, ModifiedDate)
+    OUTPUT Inserted.CartItemId
+    VALUES(@SessionId, @ProductId, @Quantity, @CreatedDate, @ModifiedDate)
+END
+
+GO
+
+---------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE usp_GetCartItemBySessionId
+    @SessionId INT
+AS
+BEGIN
+    SELECT *
+    FROM CartItems 
+    WHERE SessionId = @SessionId; 
+END
+
+GO
+
+---------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE usp_UpdateCartItem
+    @CartItemId INT,
+	@SessionId INT,
+	@ProductId INT,
+	@Quantity INT,
+	@CreatedDate DATETIME,
+	@ModifiedDate DATETIME
+AS
+BEGIN
+    UPDATE CartItems
+    SET SessionId = @SessionId, ProductId = @ProductId, Quantity = @Quantity, CreatedDate = @CreatedDate, ModifiedDate = @ModifiedDate
+    OUTPUT Inserted.CartItemId
+    WHERE CartItemId = @CartItemId;
+END
+
+GO
+
+---------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE usp_DeleteCartItem
+    @SessionId INT,
+	@ProductId INT
+AS
+BEGIN
+    DELETE FROM  CartItems
+    OUTPUT Deleted.CartItemId
+    WHERE SessionId = @SessionId AND ProductId = @ProductId;
+END
+
+
+
 
 
