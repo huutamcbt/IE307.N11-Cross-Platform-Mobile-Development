@@ -22,7 +22,7 @@ namespace Frontend.Views
           
             User user = new User
             {
-                UserId = 1,
+                UserId = -1,
                 Username = "Username_1",
                 Firstname = "Văn B",
                 Lastname = "Nguyễn",
@@ -30,7 +30,7 @@ namespace Frontend.Views
                 Logo = "logo.png",
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now,
-                Password = "Username@12345"
+                Password = "Username@12"
             };
 
             UserAddress address = new UserAddress
@@ -73,7 +73,7 @@ namespace Frontend.Views
             HttpResponseMessage response = await Base.client.PostAsync("api/Login/",stringContent);
             var statusCode = response.StatusCode;
 
-            string content = response.Content.ReadAsStringAsync().Result.Replace("\\", "");
+            string content = response.Content.ReadAsStringAsync().Result;
             response_content.Text = $"Status code: {statusCode}\n"
                 + $"Content: {content}";
         }
