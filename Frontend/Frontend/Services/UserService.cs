@@ -2,6 +2,8 @@
 using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
+using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Frontend.Services
@@ -71,7 +73,24 @@ namespace Frontend.Services
             }
             catch (Exception e)
             {
-                return Task.FromResult(-1);
+                throw e;
+            }
+        }
+        public static async Task<HttpResponseMessage> Login(User _user)
+        {
+            try
+            {
+                var stringContent= new StringContent(JsonConvert.SerializeObject(_user), UnicodeEncoding.UTF8, "application/json");
+                var result = await Base.client.PostAsync("/api/login", stringContent);
+                if (result.IsSuccessStatusCode)
+                {
+
+                    //await InitializeShoppingSession(int userId);
+                }
+                return result;
+            }
+            catch (Exception e)
+            {
                 throw e;
             }
         }

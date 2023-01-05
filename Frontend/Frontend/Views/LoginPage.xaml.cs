@@ -34,7 +34,7 @@ namespace Frontend.Views
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            Console.WriteLine(entryUsername.Text + entryPassword.Text);
+            
             App.isLogin = true;
             await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}");
         }

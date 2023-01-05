@@ -1,6 +1,8 @@
 ﻿using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using System.Windows.Input;
+using Xamarin.Forms;
 
 namespace Frontend.ViewModels
 {
@@ -20,8 +22,20 @@ namespace Frontend.ViewModels
         public String LastName { get => lastName; set { lastName = value; } }
         string telephone = "";
         public String Telephone { get => telephone; set { telephone = value; } }
+        public ICommand RegisterCommand { get; private set; }
+
+        public RegisterViewModel()
+        {
+            RegisterCommand = new Command(async () =>
+            {
+                // await call account service
+
+                await Shell.Current.DisplayAlert("a", $"username: {username}, \npassword: {password}, \npasswordConfirm: {passwordConfirm}, \nfirstName: {firstName}, \nlastName: {lastName},, \ntelephone: {telephone}", "ok");
 
 
+
+            });
+        }
 
 
         #region INotifyPropertyChanged
