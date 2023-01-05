@@ -5,8 +5,8 @@ namespace Frontend.Services
 {
     static class Base
     {
-        //static string BaseURL = "http://192.168.1.6/FoodBookingAPI/";
-        static string BaseURL = "http://www.foodbookingapi.somee.com/";
+        static string BaseURL = "http://192.168.1.37/FoodBookingAPI/";
+        //static string BaseURL = "http://www.foodbookingapi.somee.com/";
         public static HttpClient client;
         static Base()
         {

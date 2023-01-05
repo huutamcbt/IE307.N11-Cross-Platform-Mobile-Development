@@ -20,8 +20,8 @@ namespace Frontend.Services
             {
                 UserId = 1,
                 Username = "toinomon",
-                Firstname = "Nguyễn Văn",
-                Lastname = "A",
+                FirstName = "Nguyễn Văn",
+                LastName = "A",
                 Telephone = "0654986587",
                 Logo = "profile.webp",
                 CreatedDate = new DateTime(),
@@ -81,12 +81,27 @@ namespace Frontend.Services
             try
             {
                 var stringContent= new StringContent(JsonConvert.SerializeObject(_user), UnicodeEncoding.UTF8, "application/json");
-                var result = await Base.client.PostAsync("/api/login", stringContent);
+                var result = await Base.client.PostAsync("/api/Login", stringContent);
                 if (result.IsSuccessStatusCode)
                 {
 
                     //await InitializeShoppingSession(int userId);
                 }
+                App.isLogin = true;
+                return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+        public static async Task<HttpResponseMessage> AddUser(User _user)
+        {
+            try
+            {
+                var json = JsonConvert.SerializeObject(_user);
+                var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
+                var result = await Base.client.PostAsync("/api/AddUser", stringContent);
                 return result;
             }
             catch (Exception e)
