@@ -33,7 +33,7 @@
                          WidthRequest="50"
                          Source="Profile.webp"></Image>
                 </Frame>
-                    <Label Margin="20,0,0,0" Text="Username" TextColor="Black" FontSize="20" ></Label>
+                    <Label Margin="20,0,0,0" Text="{Binding user.Username}" TextColor="Black" FontSize="20" ></Label>
                 </FlexLayout>
             </StackLayout>
             <StackLayout >
@@ -43,10 +43,10 @@
                             <ColumnDefinition Width="240"></ColumnDefinition>
                         </Grid.ColumnDefinitions>
                         <inputLayout:SfTextInputLayout Grid.Column="0"  Grid.Row="0" ContainerType="Outlined"  Hint="Họ" >
-                            <Entry TextColor="Black" Text="{Binding user.Firstname}" FontSize="14"/>
+                            <Entry TextColor="Black" Text="{Binding user.FirstName}" FontSize="14"/>
                         </inputLayout:SfTextInputLayout>
                         <inputLayout:SfTextInputLayout Grid.Column="1"  Grid.Row="0" ContainerType="Outlined" Hint="Tên">
-                        <Entry TextColor="Black" Text="{Binding user.Lastname}" FontSize="14"/>
+                        <Entry TextColor="Black" Text="{Binding user.LastName}" FontSize="14"/>
                         </inputLayout:SfTextInputLayout>
                         <inputLayout:SfTextInputLayout Grid.Column="0" Grid.ColumnSpan="2"  Grid.Row="1" ContainerType="Outlined" Hint="Số điện thoại">
                             <Entry TextColor="Black" Text="{Binding user.Telephone}" FontSize="14" Keyboard="Telephone"/>

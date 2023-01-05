@@ -33,14 +33,14 @@ namespace Frontend.Services
         }
 
         //Called after logging in
-        public static async Task InitializeShoppingSession(int userId)
+        public static async Task InitializeShoppingSession(string userId)
         {
             try
             {
-                //var userRequest = await Base.client.GetStringAsync("api/getUserById/" + userId);
-                //user = JsonConvert.DeserializeObject<User>(userRequest);
-                var sessionRequest = await Base.client.GetStringAsync("api/getShoppingSessionByUserId/" + user.UserId);
-                shoppingSession = JsonConvert.DeserializeObject<List<ShoppingSession>>(sessionRequest)[0];
+                var userRequest = await Base.client.GetStringAsync("api/getUserById/" + userId);
+                user = JsonConvert.DeserializeObject<List<User>>(userRequest)[0];
+                //var sessionRequest = await Base.client.GetStringAsync("api/getShoppingSessionByUserId/" + user.UserId);
+                //shoppingSession = JsonConvert.DeserializeObject<List<ShoppingSession>>(sessionRequest)[0];
             }
             catch (Exception e)
             { throw e; }
@@ -84,8 +84,9 @@ namespace Frontend.Services
                 var result = await Base.client.PostAsync("/api/Login", stringContent);
                 if (result.IsSuccessStatusCode)
                 {
+                    var userId = await result.Content.ReadAsStringAsync();
 
-                    //await InitializeShoppingSession(int userId);
+                    await InitializeShoppingSession( userId);
                 }
                 App.isLogin = true;
                 return result;
