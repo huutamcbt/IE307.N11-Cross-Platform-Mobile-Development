@@ -195,7 +195,7 @@ namespace FoodBookingAPI.Controllers
                     bool check = CompareTwoHashValues(testPassword, newHashPassword);
                     Debug.WriteLine("Login");
                     if (check == true)
-                        return Ok();
+                        return Ok(testUser.Rows[0].Field<int>(nameof(Users.UserId)));
                     return NotFound();
                 }
                 return NotFound();
