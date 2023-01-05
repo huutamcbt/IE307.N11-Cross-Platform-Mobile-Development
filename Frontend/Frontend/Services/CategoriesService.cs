@@ -1,7 +1,5 @@
-﻿using System;
+﻿using Frontend.Models;
 using System.Collections.Generic;
-using System.Text;
-using Frontend.Models;
 using System.Threading.Tasks;
 
 namespace Frontend.Services
@@ -11,7 +9,7 @@ namespace Frontend.Services
         static readonly List<Category> categories;
         static CategoriesService()
         {
-            
+
             categories = new List<Category>
             {
                 new Category{ID= 1, Image= "icon_noodle.png",Name="Đồ nước" },

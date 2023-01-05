@@ -1,18 +1,11 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
+﻿using Frontend.Models;
+using Frontend.Services;
+using Newtonsoft.Json;
+using System;
 using System.Net.Http;
 using System.Text;
-using System.Threading.Tasks;
-using System.Net.Http.Json;
-
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
-using Frontend.Models;
-using Newtonsoft.Json;
-using Frontend.Services;
-using System.Diagnostics;
-using System.IO;
 
 namespace Frontend.Views
 {

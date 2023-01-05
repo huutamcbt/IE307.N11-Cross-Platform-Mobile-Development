@@ -1,21 +1,15 @@
-﻿using System;
-
+﻿
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
 namespace Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-    public partial class CartPage : ContentPage
+    public partial class OrderDetailPage : ContentPage
     {
-        public CartPage()
+        public OrderDetailPage()
         {
             InitializeComponent();
-        }
-
-        private void TapGestureRecognizer_Tapped(object sender, EventArgs e)
-        {
-
         }
     }
 }

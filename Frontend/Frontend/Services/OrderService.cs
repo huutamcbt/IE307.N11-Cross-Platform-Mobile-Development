@@ -3,7 +3,6 @@ using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Frontend.Services
@@ -24,7 +23,7 @@ namespace Frontend.Services
             OrderItems = new List<OrderItem>();
             //OrderItems.Add(new OrderItem { })
         }
-        public static async Task<HttpResponseMessage> PlaceOrder (List<OrderItem> orderItems, double Total)
+        public static async Task<HttpResponseMessage> PlaceOrder(List<OrderItem> orderItems, double Total)
         {
             try
             {

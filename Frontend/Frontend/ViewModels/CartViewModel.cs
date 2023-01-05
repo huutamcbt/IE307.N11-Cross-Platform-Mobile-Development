@@ -1,21 +1,19 @@
 ﻿using Frontend.Models;
 using Frontend.Services;
 using Frontend.Views;
-using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
 
 namespace Frontend.ViewModels
 {
-    class CartViewModel: INotifyPropertyChanged
+    class CartViewModel : INotifyPropertyChanged
     {
-        
+
         public IList<Product> source;
         public ObservableCollection<Product> productList { get; private set; }
         public double Total { get; set; }
@@ -78,17 +76,17 @@ namespace Frontend.ViewModels
                 await initializeCartItem();
             }).Wait();
 
-        }        
+        }
 
         async Task initializeCartItem()
         {
             List<Product> products = await CartService.getCartItem();
             Total = 0;
-            foreach(Product product in products)
+            foreach (Product product in products)
             {
                 source.Add(product);
                 Total += product.Price * product.Quantity;
-                
+
             }
             productList = new ObservableCollection<Product>(source);
             OnPropertyChanged("productList");

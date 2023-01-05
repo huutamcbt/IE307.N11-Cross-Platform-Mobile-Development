@@ -1,12 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using Frontend.Models;
-using System.Threading.Tasks;
-using System.Net.Http;
+﻿using Frontend.Models;
 using Newtonsoft.Json;
-using Xamarin.Essentials;
+using System;
+using System.Collections.Generic;
 using System.Diagnostics;
+using System.Net.Http;
+using System.Threading.Tasks;
 
 namespace Frontend.Services
 {

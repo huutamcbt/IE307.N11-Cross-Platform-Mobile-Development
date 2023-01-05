@@ -6,6 +6,7 @@
              mc:Ignorable="d"
              x:Class="Frontend.Views.LoginPage"
              xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              x:Name="LoginView"
              Shell.FlyoutBehavior="Disabled"
              Shell.TabBarIsVisible="False"
@@ -15,10 +16,18 @@
         <StackLayout Padding="10,120,10,0" >
             <Image Source="logo.jpg" WidthRequest="250" HorizontalOptions="CenterAndExpand" VerticalOptions="Start"/>
             <Grid Padding="40,0,40,0">
-                <Entry Grid.Row="0" Placeholder="Tên đăng nhập"  x:Name="entryUsername" ></Entry>
-                <Entry Grid.Row="1" Placeholder="Mật khẩu" IsPassword="True" x:Name="entryPassword" />
-                <Button  Grid.Row="2" Text="Đăng nhập" Background="#111" Clicked="Button_Clicked">
-                </Button>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="60"></RowDefinition>
+                    <RowDefinition Height="80"></RowDefinition>
+                </Grid.RowDefinitions>
+                <inputLayout:SfTextInputLayout Grid.Row="0"  Hint="Tên đăng nhập"  ContainerType="Outlined" >
+                    <Entry   x:Name="entryUsername" ></Entry>
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Grid.Row="1" Hint="Mật khẩu"  ContainerType="Outlined">
+                    <Entry   IsPassword="True" x:Name="entryPassword" />
+                </inputLayout:SfTextInputLayout>
+                <Button Margin="0,20,0,0"  Grid.Row="2" HeightRequest="60" Text="Đăng nhập" Background="#111" Clicked="Button_Clicked"></Button>
                 <FlexLayout Grid.Row="3" JustifyContent="SpaceBetween">
                     <Label Text="Đăng ký ngay" TextColor="Blue" FontSize="Small" >
                         <Label.GestureRecognizers>

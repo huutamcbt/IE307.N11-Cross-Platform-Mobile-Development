@@ -1,16 +1,15 @@
-﻿using System;
+﻿using Frontend.Models;
+using Frontend.Services;
+using Frontend.Views;
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.Linq;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Frontend.Models;
-using Frontend.Views;
 using Xamarin.Forms;
-using Frontend.Services;
-using System.Linq;
 
 namespace Frontend.ViewModels
 {
@@ -61,7 +60,7 @@ namespace Frontend.ViewModels
         }
         public ProductViewModel()
         {
-            
+
             title = "Tất cả";
             source = new List<Product>();
             source1 = new List<Category>();
@@ -77,10 +76,10 @@ namespace Frontend.ViewModels
                 //await Shell.Current.GoToAsync($"//Main/{nameof(ProductPage)}/{nameof(ProductDetailPage)}?productID={item.ProductId}");
                 await Shell.Current.GoToAsync($"/{nameof(ProductDetailPage)}?productID={item.ProductId}");
             });
-           
+
             CatTapCommand = new Command<Category>((item) =>
             {
-                
+
                 //title = item.Name;
                 CategoryID = item.ID;
                 //CategoryFilterHandler();

@@ -1,10 +1,7 @@
 ﻿using Frontend.Models;
 using Frontend.Services;
-using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -16,12 +13,14 @@ namespace Frontend.ViewModels
         public string Name { get; private set; }
 
         private User _user { get; set; }
- 
-        public User user { 
-            get => _user; 
-            set{
+
+        public User user
+        {
+            get => _user;
+            set
+            {
                 _user = value;
-            } 
+            }
         }
 
 
@@ -34,12 +33,12 @@ namespace Frontend.ViewModels
                 await InitializeProfile();
             }).Wait();
 
-            SaveProfileCommand = new Command(async() =>
+            SaveProfileCommand = new Command(async () =>
             {
                 bool confirm = await Shell.Current.DisplayAlert("Thông báo", "Bạn có chắc thay đổi những thông tin này", "Xác nhận", "Thoát");
                 if (confirm)
                 {
-                     await UserService.UpdateUser(_user);
+                    await UserService.UpdateUser(_user);
                     await Shell.Current.GoToAsync("..");
                 }
                 else

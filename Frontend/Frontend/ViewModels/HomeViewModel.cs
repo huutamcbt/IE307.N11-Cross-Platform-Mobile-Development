@@ -1,15 +1,12 @@
-﻿using System;
+﻿using Frontend.Models;
+using Frontend.Services;
+using Frontend.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Frontend.Models;
-using Frontend.Views;
 using Xamarin.Forms;
-using Frontend.Services;
 
 namespace Frontend.ViewModels
 {
@@ -65,7 +62,7 @@ namespace Frontend.ViewModels
             source2.Add(new CarouselItem { Image = "https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/banner%2Femy-XoByiBymX20-unsplash.jpg?alt=media&token=5416a8e4-a16e-443e-882b-a74fc1b02344", NavigateRoute = $"/{nameof(ProductPage)}" });
 
             carouselList = new List<CarouselItem>(source2);
-            
+
         }
 
         async void CreateCategoriesCollection()

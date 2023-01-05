@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 
 namespace Frontend.ViewModels
 {
@@ -10,12 +8,18 @@ namespace Frontend.ViewModels
 
     class RegisterViewModel : INotifyPropertyChanged
     {
-        public String username;
-        public String password { private get; set; }
-        public String passwordConfirm { private get; set; }
-        public String firstName;
-        public String lastName;
-        public String telephone;
+        string username = "";
+        public String Username { get => username; set { username = value; } }
+        string password = "";
+        public String Password { get => password; set { password = value; } }
+        string passwordConfirm;
+        public String PasswordConfirm { get => passwordConfirm; set { passwordConfirm = value; } }
+        public string firstName = "";
+        public String FirstName { get => firstName; set { firstName = value; } }
+        string lastName = "";
+        public String LastName { get => lastName; set { lastName = value; } }
+        string telephone = "";
+        public String Telephone { get => telephone; set { telephone = value; } }
 
 
 

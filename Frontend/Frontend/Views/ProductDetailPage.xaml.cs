@@ -1,11 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Input;
-using Frontend.Models;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -13,11 +8,11 @@ using Xamarin.Forms.Xaml;
 namespace Frontend.Views
 {
     [XamlCompilation(XamlCompilationOptions.Compile)]
-   
+
     public partial class ProductDetailPage : ContentPage
     {
         public ICommand GoBackCommand;
-        
+
         public ProductDetailPage()
         {
             InitializeComponent();

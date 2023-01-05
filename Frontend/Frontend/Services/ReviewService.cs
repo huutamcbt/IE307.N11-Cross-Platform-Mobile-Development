@@ -1,11 +1,7 @@
-﻿using System;
+﻿using Frontend.Models;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Frontend.Models;
-using Frontend.Services;
-using Newtonsoft.Json;
 
 namespace Frontend.Services
 {
@@ -21,7 +17,7 @@ namespace Frontend.Services
 
                 //dữ liệu giả
                 List<ReviewRendered> reviews = new List<ReviewRendered>();
-                reviews.Add(new ReviewRendered { ReviewID = 1, Content = "good", ProductID = 1, Rating = 4, UserID = 1, Logo = "profile.webp",Name = "Nguyễn Văn A" });
+                reviews.Add(new ReviewRendered { ReviewID = 1, Content = "good", ProductID = 1, Rating = 4, UserID = 1, Logo = "profile.webp", Name = "Nguyễn Văn A" });
                 reviews.Add(new ReviewRendered { ReviewID = 1, Content = "nice", ProductID = 1, Rating = 4, UserID = 2, Logo = "profile.webp", Name = "Nguyễn Văn B" });
                 return await Task.FromResult(reviews);
             }
@@ -39,7 +35,8 @@ namespace Frontend.Services
                 //var response = await Base.client.PostAsync("api/addReview", stringContent);
 
 
-                ReviewRendered reviewRendered = new ReviewRendered {
+                ReviewRendered reviewRendered = new ReviewRendered
+                {
                     ReviewID = review.ReviewID,
                     Content = review.Content,
                     UserID = review.UserID,
@@ -82,6 +79,6 @@ namespace Frontend.Services
                 throw e;
             }
         }
-        
+
     }
 }

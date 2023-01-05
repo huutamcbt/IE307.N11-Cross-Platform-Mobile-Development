@@ -6,7 +6,7 @@
              x:Name="RegisterView"
              Shell.TabBarIsVisible="False"
              Title="Đăng ký"
-             
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
              >
     <ContentPage.BindingContext>
         <viewmodel:RegisterViewModel/>
@@ -18,13 +18,25 @@
                     <ColumnDefinition Width="*"/>
                     <ColumnDefinition Width="120"/>
                 </Grid.ColumnDefinitions>
-                <Entry Grid.Row="0" Grid.ColumnSpan="2" Placeholder="Tên tài khoản"  x:Name="entryUsername" Text="{Binding username,Mode=OneWayToSource}" ></Entry>
-                <Entry Grid.Row="1" Grid.ColumnSpan="2" Placeholder="Mật khẩu" IsPassword="True" Text="{Binding password,Mode=OneWayToSource}" x:Name="entryPassword" />
-                <Entry Grid.Row="2" Grid.ColumnSpan="2" Placeholder="Xác nhận mật khẩu" IsPassword="True" Text="{Binding passwordConfirm,Mode=OneWayToSource}" x:Name="entryConfirmPassword" />
-                <Entry Grid.Row="3" Grid.Column="0" Placeholder="Họ" Text="{Binding firstName,Mode=OneWayToSource}"></Entry>
-                <Entry Grid.Row="3" Grid.Column="1" Placeholder="Tên" Text="{Binding lastName,Mode=OneWayToSource}"></Entry>
-                <Entry Grid.Row="4" Grid.ColumnSpan="2" Keyboard="Telephone" Text="{Binding telephone,Mode=OneWayToSource}" Placeholder="Số điện thoại" ClearButtonVisibility="WhileEditing"/>
-                <Button  Grid.Row="5" Grid.ColumnSpan="2" Text="Đăng ký" Background="#111">
+                <inputLayout:SfTextInputLayout Grid.Row="0" Grid.ColumnSpan="2"  Hint="Tên tài khoản">
+                <Entry   x:Name="entryUsername" Text="{Binding Username,Mode=TwoWay}" ></Entry>
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Grid.Row="1" Grid.ColumnSpan="2" Hint="Mật khẩu">
+                        <Entry   IsPassword="True" Text="{Binding Password,Mode=TwoWay}" x:Name="entryPassword" />
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Grid.Row="2" Grid.ColumnSpan="2" Hint="Xác nhận mật khẩu">
+                <Entry   IsPassword="True" Text="{Binding PasswordConfirm,Mode=TwoWay}" x:Name="entryConfirmPassword" />
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Grid.Row="3" Grid.Column="0" Hint="Họ">
+                <Entry Text="{Binding FirstName,Mode=OneWayToSource}"></Entry>
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Grid.Row="3" Grid.Column="1" Hint="Tên">
+                <Entry Grid.Row="3" Grid.Column="1" Text="{Binding LastName,Mode=TwoWay}"></Entry>
+                </inputLayout:SfTextInputLayout>
+                <inputLayout:SfTextInputLayout Grid.Row="4" Grid.ColumnSpan="2" Hint="Số điện thoại">
+                <Entry  Keyboard="Telephone" Text="{Binding Telephone,Mode=TwoWay}"  ClearButtonVisibility="WhileEditing"/>
+                </inputLayout:SfTextInputLayout>
+                <Button  Grid.Row="5" Grid.ColumnSpan="2" HeightRequest="60" Text="Đăng ký" Background="#111">
                     <Button.GestureRecognizers>
                         <TapGestureRecognizer Command="{Binding Source={x:Reference RegisterView}, Path=BindingContext.LoginTapCommand}" CommandParameter="{Binding .}"/>
                     </Button.GestureRecognizers>

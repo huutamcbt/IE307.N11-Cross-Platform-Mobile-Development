@@ -1,9 +1,7 @@
 ﻿using Frontend.Models;
-using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
 
 namespace Frontend.Services
@@ -16,7 +14,7 @@ namespace Frontend.Services
         {
             //
             cartItems = new List<Product>();
-            cartItems.Add(new Product { CategoryID=1,Image="chart.png",Name="abc",Price=654118,Quantity=2,ProductId=1,Stock=45,Description="sfvfsd"});
+            cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 654118, Quantity = 2, ProductId = 1, Stock = 45, Description = "sfvfsd" });
             cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 654118, Quantity = 2, ProductId = 2, Stock = 45, Description = "sfvfsd" });
             cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 65418, Quantity = 2, ProductId = 3, Stock = 45, Description = "sfvfsd" });
             cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 64118, Quantity = 2, ProductId = 4, Stock = 45, Description = "sfvfsd" });
@@ -112,5 +110,5 @@ namespace Frontend.Services
                 throw e;
             }
         }
-        }
+    }
 }

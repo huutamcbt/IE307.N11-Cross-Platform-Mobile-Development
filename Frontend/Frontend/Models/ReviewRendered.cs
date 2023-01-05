@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-
-namespace Frontend.Models
+﻿namespace Frontend.Models
 {
-    public class ReviewRendered :Review
+    public class ReviewRendered : Review
     {
         public string Name { get; set; }
         public string Logo { get; set; }
@@ -20,7 +16,7 @@ namespace Frontend.Models
         //    this.Name = name;
         //    this.Logo = logo;
         //    this.IsEditable = isEditable;
-            
+
         //}
 
     }

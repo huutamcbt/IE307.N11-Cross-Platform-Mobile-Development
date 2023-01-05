@@ -1,15 +1,13 @@
-﻿using System;
+﻿using Frontend.Models;
+using Frontend.Services;
+using Frontend.Views;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
-using Frontend.Models;
-using Frontend.Views;
 using Xamarin.Forms;
-using Frontend.Services;
 
 namespace Frontend.ViewModels
 {
@@ -22,13 +20,15 @@ namespace Frontend.ViewModels
         private IList<UserAddress> sourse1;
         public ObservableCollection<UserAddress> addressList { get; private set; }
         public double Total { get; set; }
-        int addressPickerIndex ;
-        public int AddressPickerIndex { 
+        int addressPickerIndex;
+        public int AddressPickerIndex
+        {
             get => addressPickerIndex;
-            set {
+            set
+            {
                 addressPickerIndex = value;
                 OnPropertyChanged("AddressPickerIndex");
-            } 
+            }
         }
         int paymentMethodPickerIndex = 0;
         public int PaymentMethodPickerIndex
@@ -48,11 +48,12 @@ namespace Frontend.ViewModels
             OnPropertyChanged("SHIPCOST");
             source = new List<Product>();
             sourse1 = new List<UserAddress>();
-            PlaceOrderCommand = new Command(async() => {
+            PlaceOrderCommand = new Command(async () =>
+            {
                 List<OrderItem> orderItems = new List<OrderItem>();
                 foreach (Product product in productList)
                 {
-                    orderItems.Add(new OrderItem {ProductId = product.ProductId, Quantity=product.Quantity });
+                    orderItems.Add(new OrderItem { ProductId = product.ProductId, Quantity = product.Quantity });
                 }
                 var response = await OrderService.PlaceOrder(orderItems, Total);
                 if (response.IsSuccessStatusCode)
@@ -60,7 +61,7 @@ namespace Frontend.ViewModels
                     await Shell.Current.DisplayAlert("Thông báo", "Đặt hàng thành công! \n bạn sẽ được đưa về trang chủ", "ok");
                     await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}");
                 }
-            
+
             });
             Task.Run(async () =>
             {
@@ -88,7 +89,7 @@ namespace Frontend.ViewModels
         async Task initializeCartItem()
         {
             List<Product> products = await CartService.getCartItem();
-            
+
             Total = SHIPCOST;
             foreach (Product product in products)
             {

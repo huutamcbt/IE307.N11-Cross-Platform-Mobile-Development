@@ -2,7 +2,7 @@
 
 namespace Frontend
 {
-    public class SearchBarNoUnderline:SearchBar
+    public class SearchBarNoUnderline : SearchBar
     {
     }
 }

@@ -1,10 +1,7 @@
-﻿using System;
+﻿using Frontend.Models;
+using System;
 using System.Collections.Generic;
-using System.Net.Http;
-using System.Text;
 using System.Threading.Tasks;
-using Frontend.Models;
-using Newtonsoft.Json;
 
 namespace Frontend.Services
 {
@@ -16,7 +13,7 @@ namespace Frontend.Services
         {
             //dữ liệu ảo khi chưa có api
             userAddresses = new List<UserAddress>();
-            userAddresses.Add(new UserAddress { AddressId = 1, Address = "123", City = "Gia Nghĩa", Country = "Việt Nam", District = "Hoàng Thế Thiện", Province = "Đăk Nông", UserId = 1 ,Mobile="0123456789"});
+            userAddresses.Add(new UserAddress { AddressId = 1, Address = "123", City = "Gia Nghĩa", Country = "Việt Nam", District = "Hoàng Thế Thiện", Province = "Đăk Nông", UserId = 1, Mobile = "0123456789" });
             userAddresses.Add(new UserAddress { AddressId = 2, Address = "456", City = "Thủ Đức", Country = "Việt Nam", District = "Mai Chí Thọ", Province = "Hồ Chí Minh", UserId = 1, Mobile = "0123456789" });
         }
         static async public Task<List<UserAddress>> GetAddressesByUserId(int UserId)
@@ -28,7 +25,7 @@ namespace Frontend.Services
                 //return addressesConverted;
 
 
-                return await Task.FromResult( userAddresses.FindAll((e) => e.UserId == UserId));
+                return await Task.FromResult(userAddresses.FindAll((e) => e.UserId == UserId));
             }
             catch (Exception e)
             {
@@ -67,7 +64,7 @@ namespace Frontend.Services
                 userAddresses.Add(address);
 
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
@@ -81,7 +78,7 @@ namespace Frontend.Services
                 await Task.FromResult(1);
                 userAddresses.Remove(address);
             }
-            catch(Exception e)
+            catch (Exception e)
             {
                 throw e;
             }
