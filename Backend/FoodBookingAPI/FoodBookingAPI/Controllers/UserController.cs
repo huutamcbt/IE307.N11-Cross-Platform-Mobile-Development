@@ -164,8 +164,8 @@ namespace FoodBookingAPI.Controllers
                 Users loginUser = JsonConvert.DeserializeObject<Users>(content);
                 param = null;
                 param = new Dictionary<string, object>();
-                param.Add(nameof(Users.UserId), loginUser.UserId);
-                DataTable testUser = UserRepository.GetUserById(param);
+                param.Add(nameof(Users.Username), loginUser.Username);
+                DataTable testUser = UserRepository.GetUserByUsername(param);
 
                 // Convert Datatable to object list ///////////
                 //DataTable tableUsers = UserRepository.GetUserById(param);
@@ -188,12 +188,16 @@ namespace FoodBookingAPI.Controllers
                 //Users matchedUser = userList[0];
                 //tableUsers.Rows[0].Field<string>(tableUsers.Columns["Pasword"]);
 
-                string testPassword = testUser.Rows[0].Field<string>(testUser.Columns["Password"]);
-                string newHashPassword = ConvertStringToHashPassword(loginUser.Password);
-                bool check = CompareTwoHashValues(testPassword, newHashPassword);
-                Debug.WriteLine("Login");
-                if (check == true)
-                    return Ok();
+                if(testUser != null)
+                {
+                    string testPassword = testUser.Rows[0].Field<string>(testUser.Columns["Password"]);
+                    string newHashPassword = ConvertStringToHashPassword(loginUser.Password);
+                    bool check = CompareTwoHashValues(testPassword, newHashPassword);
+                    Debug.WriteLine("Login");
+                    if (check == true)
+                        return Ok();
+                    return NotFound();
+                }
                 return NotFound();
             }
             catch (Exception)

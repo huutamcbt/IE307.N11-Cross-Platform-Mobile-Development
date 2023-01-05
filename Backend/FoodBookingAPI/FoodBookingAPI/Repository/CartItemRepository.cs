@@ -4,20 +4,21 @@ using System.Linq;
 using System.Web;
 using System.Data.SqlClient;
 using System.Data;
+
 using FoodBookingAPI.Models;
 using System.Diagnostics;
 
 namespace FoodBookingAPI.Repository
 {
-    public class UserRepository
+    public class CartItemRepository
     {
-        private static void AddParameters(SqlCommand command, Dictionary<string, object> param)
+        private static void AddParameters(SqlCommand command , Dictionary<string, object> param)
         {
-            if (param != null)
+            if(param != null)
             {
-                foreach (KeyValuePair<string, object> data in param)
+                foreach (KeyValuePair<string, object> data in param) 
                 {
-                    if (data.Value == null)
+                    if(data.Value == null)
                     {
                         command.Parameters.AddWithValue("@" + data.Key, DBNull.Value);
                     }
@@ -25,41 +26,35 @@ namespace FoodBookingAPI.Repository
                     {
                         switch (data.Key)
                         {
-                            case nameof(Users.UserId):
+                            case nameof(CartItems.CartItemId):
                                 command.Parameters.Add("@" + data.Key, SqlDbType.Int);
                                 command.Parameters["@" + data.Key].Value = data.Value;
+                                Debug.WriteLine("CartItemId" + command.Parameters["@" + data.Key].Value);
                                 break;
-                            case nameof(Users.Username):
-                                command.Parameters.Add("@" + data.Key, SqlDbType.VarChar, 20);
+                            case nameof(CartItems.SessionId):
+                                command.Parameters.Add("@" + data.Key, SqlDbType.Int);
                                 command.Parameters["@" + data.Key].Value = data.Value;
+                                Debug.WriteLine("SessionId" + command.Parameters["@" + data.Key].Value);
                                 break;
-                            case nameof(Users.Password):
-                                command.Parameters.Add("@" + data.Key, SqlDbType.Text);
+                            case nameof(CartItems.ProductId):
+                                command.Parameters.Add("@" + data.Key, SqlDbType.Int);
                                 command.Parameters["@" + data.Key].Value = data.Value;
+                                Debug.WriteLine("ProductId" + command.Parameters["@" + data.Key].Value);
                                 break;
-                            case nameof(Users.FirstName):
-                                command.Parameters.Add("@" + data.Key, SqlDbType.NVarChar, 50);
+                            case nameof(CartItems.Quantity):
+                                command.Parameters.Add("@" + data.Key, SqlDbType.Int);
                                 command.Parameters["@" + data.Key].Value = data.Value;
+                                Debug.WriteLine("Quantity" + command.Parameters["@" + data.Key].Value);
                                 break;
-                            case nameof(Users.LastName):
-                                command.Parameters.Add("@" + data.Key, SqlDbType.NVarChar, 20);
-                                command.Parameters["@" + data.Key].Value = data.Value;
-                                break;
-                            case nameof(Users.Telephone):
-                                command.Parameters.Add("@" + data.Key, SqlDbType.VarChar, 15);
-                                command.Parameters["@" + data.Key].Value = data.Value;
-                                break;
-                            case nameof(Users.CreatedDate):
+                            case nameof(CartItems.CreatedDate):
                                 command.Parameters.Add("@" + data.Key, SqlDbType.DateTime);
                                 command.Parameters["@" + data.Key].Value = data.Value;
+                                Debug.WriteLine("CreatedDate" + command.Parameters["@" + data.Key].Value);
                                 break;
-                            case nameof(Users.ModifiedDate):
+                            case nameof(CartItems.ModifiedDate):
                                 command.Parameters.Add("@" + data.Key, SqlDbType.DateTime);
                                 command.Parameters["@" + data.Key].Value = data.Value;
-                                break;
-                            case nameof(Users.Logo):
-                                command.Parameters.Add("@" + data.Key, SqlDbType.VarChar, 100);
-                                command.Parameters["@" + data.Key].Value = data.Value;
+                                Debug.WriteLine("ModifiedDate" + command.Parameters["@" + data.Key].Value);
                                 break;
                         }
                     }
@@ -67,16 +62,44 @@ namespace FoodBookingAPI.Repository
             }
         }
 
-        public static DataTable GetUserById(Dictionary<string, object> param)
+        public static bool AddCartItem(Dictionary<string, object> param)
         {
             try
             {
-                using (SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
+                using(SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
                 {
                     connection.Open();
-                  
-                    string query = Constant.User_Procedure_GetUserById;
-                    using (SqlCommand command = new SqlCommand(query, connection))
+
+                    string query = Constant.CartItem_Procedure_AddCartItem;
+                    using(SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        AddParameters(command, param);
+                        Debug.WriteLine(param);
+                        command.CommandType = CommandType.StoredProcedure;
+                        Int32 cartItemId = Convert.ToInt32(command.ExecuteScalar());
+
+                        if (cartItemId > 0)
+                            return true;
+                        return false;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return false;
+            }
+        }
+
+        public static DataTable GetCartItemBySessionId(Dictionary<string, object> param)
+        {
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
+                {
+                    connection.Open();
+
+                    string query = Constant.CartItem_Procedure_GetCartItemBySessionId;
+                    using(SqlCommand command = new SqlCommand(query, connection))
                     {
                         AddParameters(command, param);
 
@@ -96,8 +119,7 @@ namespace FoodBookingAPI.Repository
                 return null;
             }
         }
-
-        public static DataTable GetUserByUsername(Dictionary<string, object> param)
+        public static bool UpdateCartItem(Dictionary<string, object> param)
         {
             try
             {
@@ -105,45 +127,18 @@ namespace FoodBookingAPI.Repository
                 {
                     connection.Open();
 
-                    string query = $"SELECT * FROM {nameof(Users)} WHERE {nameof(Users.Username)} = @Username";
-                    using(SqlCommand command = new SqlCommand(query, connection))
-                    {
-                        AddParameters(command, param);
-                        command.CommandType = CommandType.Text;
-
-                        using (SqlDataAdapter adapter = new SqlDataAdapter(command))
-                        {
-                            DataTable result = new DataTable();
-                            adapter.Fill(result);
-
-                            return result;
-                        }
-                    }
-                }
-            }
-            catch (Exception)
-            {
-                return null;
-            }
-        }
-
-        public static bool AddUser(Dictionary<string, object> param)
-        {
-            try
-            {
-                using(SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
-                {
-                    connection.Open();
-
-                    string query = Constant.User_Procedure_AddUser;
+                    string query = Constant.CartItem_Procedure_UpdateCartItem;
                     using(SqlCommand command = new SqlCommand(query, connection))
                     {
                         AddParameters(command, param);
 
                         command.CommandType = CommandType.StoredProcedure;
-                        int userId = (int)command.ExecuteScalar();
+                        object result = command.ExecuteScalar();
 
-                        if (userId > 0)
+                        Int32 cartItemId = Convert.ToInt32(result);
+                        Debug.WriteLine(cartItemId);
+
+                        if (cartItemId > 0)
                             return true;
                         return false;
                     }
@@ -155,7 +150,7 @@ namespace FoodBookingAPI.Repository
             }
         }
 
-        public static bool UpdateUser(Dictionary<string, object> param)
+        public static bool DeleteCartItem(Dictionary<string, object> param)
         {
             try
             {
@@ -163,15 +158,15 @@ namespace FoodBookingAPI.Repository
                 {
                     connection.Open();
 
-                    string query = Constant.User_Procedure_UpdateUser;
+                    string query = Constant.CartItem_Procedure_DeleteCartItem;
                     using(SqlCommand command = new SqlCommand(query, connection))
                     {
                         AddParameters(command, param);
 
                         command.CommandType = CommandType.StoredProcedure;
-                        int userId = (int)command.ExecuteScalar();
+                        int cartItemId = (int)command.ExecuteScalar();
 
-                        if (userId > 0)
+                        if (cartItemId > 0)
                             return true;
                         return false;
                     }

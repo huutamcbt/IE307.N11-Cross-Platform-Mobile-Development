@@ -16,9 +16,9 @@ namespace Frontend.Services
         static OrderService()
         {
             orderDetails = new List<OrderDetail>();
-            orderDetails.Add(new OrderDetail { OrderId = 1, PaymentId = 1, Total = 134654, UserId = 1 });
-            orderDetails.Add(new OrderDetail { OrderId = 1, PaymentId = 1, Total = 134654, UserId = 1 });
-            orderDetails.Add(new OrderDetail { OrderId = 1, PaymentId = 1, Total = 134654, UserId = 1 });
+            orderDetails.Add(new OrderDetail { OrderId = 1,  Total = 134654, UserId = 1 });
+            orderDetails.Add(new OrderDetail { OrderId = 1,  Total = 134654, UserId = 1 });
+            orderDetails.Add(new OrderDetail { OrderId = 1,  Total = 134654, UserId = 1 });
 
             OrderItems = new List<OrderItem>();
             //OrderItems.Add(new OrderItem { })

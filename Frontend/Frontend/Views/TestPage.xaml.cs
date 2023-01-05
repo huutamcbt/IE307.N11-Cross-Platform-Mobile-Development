@@ -58,6 +58,16 @@ namespace Frontend.Views
             };
 
 
+            CartItem cartItem = new CartItem
+            {
+                CartItemId = 2,
+                SessionId = 1,
+                ProductId = 1,
+                Quantity = 200,
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now
+            };
+
             var json = JsonConvert.SerializeObject(user);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
             HttpResponseMessage response = await Base.client.PostAsync("api/Login/",stringContent);
