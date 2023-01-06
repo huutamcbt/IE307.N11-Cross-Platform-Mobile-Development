@@ -42,5 +42,10 @@ namespace Frontend.Views
         {
 
         }
+
+        private async void ChangePasswordEvent_Tapped(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"{nameof(EditPasswordPage)}");
+        }
     }
 }

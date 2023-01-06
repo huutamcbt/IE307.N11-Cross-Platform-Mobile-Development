@@ -17,7 +17,7 @@ namespace FoodBookingAPI
         public static int WRONG_ID => 15;
         // All unknow errors
         public static int UNKNOW_ERROR => 20;
-        // Error occurs when account is invalid
+        // Error occurs when account is invalid 
         public static int INVALID_ACCOUNT => 21;
     }
 }
