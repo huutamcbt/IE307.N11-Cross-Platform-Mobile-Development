@@ -42,5 +42,10 @@ namespace Frontend.Views
         {
 
         }
+
+        private async void TapGestureRecognizer_Tapped_5(object sender, EventArgs e)
+        {
+            await Shell.Current.GoToAsync($"{nameof(ChangePassswordPage)}");
+        }
     }
 }

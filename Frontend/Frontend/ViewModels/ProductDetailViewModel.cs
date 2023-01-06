@@ -20,13 +20,13 @@ namespace Frontend.ViewModels
 
         private IList<ReviewRendered> sourse;
         public ObservableCollection<ReviewRendered> reviewList { get; private set; }
-        private int ProductId;
+        private int productId;
         public int ProductId
         {
-            get => ProductId;
+            get => productId;
             set
             {
-                ProductId = value;
+                productId = value;
                 initializeProduct(value);
             }
         }
@@ -56,7 +56,7 @@ namespace Frontend.ViewModels
             sourse = new List<ReviewRendered>();
 
 
-            Product product = await ProductService.GetProductByProductId(ProductId);
+            Product product = await ProductService.GetProductByProductId(productId);
             Name = product.Name;
             Image = product.Image;
             Description = product.Description;
@@ -80,7 +80,7 @@ namespace Frontend.ViewModels
                 int UserId = UserService.GetUserId();
                 Review review = new Review
                 {
-                    ProductId = ProductId,
+                    ProductId = productId,
                     Content = reviewEntryValue,
                     Rating = ratingValue,
                     CreatedDate = DateTime.Now,

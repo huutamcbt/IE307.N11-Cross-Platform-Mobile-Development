@@ -1,0 +1,21 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="Frontend.Views.ChangePassswordPage"
+             Title="Đổi mật khẩu"
+             xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             >
+    <ContentPage.Content>
+        <StackLayout>
+            <inputLayout:SfTextInputLayout Hint="Mật khẩu cũ" ContainerType="Outlined">
+                <Entry x:Name="EntryOldPassword"  IsPassword="True" />
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout Hint="Mật khẩu mới" ContainerType="Outlined">
+                <Entry x:Name="EntryNewPassword"  IsPassword="True" />
+            </inputLayout:SfTextInputLayout>
+            <inputLayout:SfTextInputLayout Hint="Xác nhận mật khẩu" ContainerType="Outlined">
+                <Entry x:Name="EntryConfirmNewPassword"  IsPassword="True" />
+            </inputLayout:SfTextInputLayout>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>
