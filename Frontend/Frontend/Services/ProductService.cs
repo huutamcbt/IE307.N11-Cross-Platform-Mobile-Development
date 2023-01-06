@@ -35,11 +35,11 @@ namespace Frontend.Services
                 throw e;
             }
         }
-        public static async Task<Product> GetProductByProductID(int productID)
+        public static async Task<Product> GetProductByProductId(int ProductId)
         {
             try
             {
-                var product = await Base.client.GetStringAsync("api/GetProductByID/" + productID);
+                var product = await Base.client.GetStringAsync("api/GetProductByID/" + ProductId);
                 Product productConverted = JsonConvert.DeserializeObject<List<Product>>(product)[0];
                 return productConverted;
             }

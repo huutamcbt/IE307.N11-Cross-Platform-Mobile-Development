@@ -16,28 +16,41 @@ namespace Frontend.Services
         static UserService()
         {
 
-            user = new User
-            {
-                UserId = 1,
-                Username = "toinomon",
-                FirstName = "Nguyễn Văn",
-                LastName = "A",
-                Telephone = "0654986587",
-                Logo = "profile.webp",
-                CreatedDate = new DateTime(),
-                ModifiedDate = new DateTime()
-            };
+            //user = new User
+            //{
+            //    UserId = 1,
+            //    Username = "toinomon",
+            //    FirstName = "Nguyễn Văn",
+            //    LastName = "A",
+            //    Telephone = "0654986587",
+            //    Logo = "profile.webp",
+            //    CreatedDate = new DateTime(),
+            //    ModifiedDate = new DateTime()
+            //};
 
-            shoppingSession = new ShoppingSession { SessionId = 1, Total = 2, UserId = 1 };
+            //shoppingSession = new ShoppingSession { SessionId = 1, Total = 2, UserId = 1 };
 
         }
 
-        //Called after logging in
-        public static async Task InitializeShoppingSession(string userId)
+        public static async Task<User> GetUserById(int UserId)
         {
             try
             {
-                var userRequest = await Base.client.GetStringAsync("api/getUserById/" + userId);
+                var userRequest = await Base.client.GetStringAsync("api/GetUserById/" + UserId);
+                User _user = JsonConvert.DeserializeObject<List<User>>(userRequest)[0];
+                return _user; 
+                //var sessionRequest = await Base.client.GetStringAsync("api/getShoppingSessionByUserId/" + user.UserId);
+                //shoppingSession = JsonConvert.DeserializeObject<List<ShoppingSession>>(sessionRequest)[0];
+            }
+            catch (Exception e)
+            { throw e; }
+        }
+        //Called after logging in
+        public static async Task InitializeShoppingSession(string UserId)
+        {
+            try
+            {
+                var userRequest = await Base.client.GetStringAsync("api/GetUserById/" + UserId);
                 user = JsonConvert.DeserializeObject<List<User>>(userRequest)[0];
                 //var sessionRequest = await Base.client.GetStringAsync("api/getShoppingSessionByUserId/" + user.UserId);
                 //shoppingSession = JsonConvert.DeserializeObject<List<ShoppingSession>>(sessionRequest)[0];
@@ -56,7 +69,7 @@ namespace Frontend.Services
                 throw e;
             }
         }
-        public static int GetUserID()
+        public static int GetUserId()
         {
             return user.UserId;
         }
@@ -64,12 +77,17 @@ namespace Frontend.Services
         {
             return shoppingSession.SessionId;
         }
-        public static Task<int> UpdateUser(User _user)
+        public async static Task<HttpResponseMessage> UpdateUser(User _user)
         {
             try
             {
-                user = _user;
-                return Task.FromResult(1);
+                var stringContent = new StringContent(JsonConvert.SerializeObject(_user), UnicodeEncoding.UTF8, "application/json");
+                var result = await Base.client.PostAsync("/api/UpdateUser", stringContent);
+                if (result.IsSuccessStatusCode)
+                {
+                    user = _user;
+                }
+                return result;
             }
             catch (Exception e)
             {
@@ -84,11 +102,11 @@ namespace Frontend.Services
                 var result = await Base.client.PostAsync("/api/Login", stringContent);
                 if (result.IsSuccessStatusCode)
                 {
-                    var userId = await result.Content.ReadAsStringAsync();
+                    var UserId = await result.Content.ReadAsStringAsync();
 
-                    await InitializeShoppingSession( userId);
+                    await InitializeShoppingSession( UserId);
+                    App.isLogin = true;
                 }
-                App.isLogin = true;
                 return result;
             }
             catch (Exception e)

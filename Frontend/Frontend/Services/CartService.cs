@@ -72,7 +72,7 @@ namespace Frontend.Services
             try
             {
                 //HttpResponseMessage response = await Base.client
-                //    .DeleteAsync($"api/DeleteCartItems?productId{product.ProductId}&sessionId{UserService.GetSessionID()}");
+                //    .DeleteAsync($"api/DeleteCartItems?ProductId{product.ProductId}&sessionId{UserService.GetSessionID()}");
                 //return response;
 
                 await Task.FromResult(1);

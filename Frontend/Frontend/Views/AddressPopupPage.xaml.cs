@@ -12,7 +12,7 @@ namespace Frontend.Views
     public partial class AddressPopupPage : Rg.Plugins.Popup.Pages.PopupPage
     {
         int addressID;
-        int userID = UserService.GetUserID();
+        int UserId = UserService.GetUserId();
         public AddressPopupPage()
         {
 
@@ -41,9 +41,9 @@ namespace Frontend.Views
         {
             //await Navigation.PopModalAsync();
             if (addressID == 0)
-                await AddressService.AddAddress(new UserAddress { UserId = userID, Mobile = mobileEntry.Text, Address = addressEntry.Text, Province = provinceEntry.Text, City = cityEntry.Text, Country = countryEntry.Text, District = districtEntry.Text });
+                await AddressService.AddAddress(new UserAddress { UserId = UserId, Mobile = mobileEntry.Text, Address = addressEntry.Text, Province = provinceEntry.Text, City = cityEntry.Text, Country = countryEntry.Text, District = districtEntry.Text });
             else
-                await AddressService.UpdateAddress(new UserAddress { AddressId = addressID, UserId = userID, Mobile = mobileEntry.Text, Address = addressEntry.Text, Province = provinceEntry.Text, City = cityEntry.Text, Country = countryEntry.Text, District = districtEntry.Text });
+                await AddressService.UpdateAddress(new UserAddress { AddressId = addressID, UserId = UserId, Mobile = mobileEntry.Text, Address = addressEntry.Text, Province = provinceEntry.Text, City = cityEntry.Text, Country = countryEntry.Text, District = districtEntry.Text });
             MessagingCenter.Send<AddressPopupPage>(this, "refresh");
             await PopupNavigation.Instance.PopAsync(true);
         }

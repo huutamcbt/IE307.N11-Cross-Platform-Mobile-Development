@@ -28,7 +28,7 @@ namespace Frontend.Services
             try
             {
                 ////send a request to create order
-                //OrderDetail orderDetail = new OrderDetail { Total = Total, UserId = UserService.GetUserID() };
+                //OrderDetail orderDetail = new OrderDetail { Total = Total, UserId = UserService.GetUserId() };
                 //var orderStringContent = new StringContent(
                 //    JsonConvert.SerializeObject(orderDetail), 
                 //    UnicodeEncoding.UTF8, "application/json");
@@ -68,7 +68,7 @@ namespace Frontend.Services
         {
             try
             {
-                var orderDetail = await Base.client.GetStringAsync("api/getOrderDetailByUserId/" + UserService.GetUserID());
+                var orderDetail = await Base.client.GetStringAsync("api/getOrderDetailByUserId/" + UserService.GetUserId());
                 List<OrderDetail> orderDetailConverted = JsonConvert.DeserializeObject<List<OrderDetail>>(orderDetail);
                 return orderDetailConverted;
             }
@@ -83,7 +83,7 @@ namespace Frontend.Services
             try
             {
                 //HttpResponseMessage response = await Base.client
-                //    .DeleteAsync($"api/DeleteCartItems?productId{product.ProductId}&sessionId{UserService.GetSessionID()}");
+                //    .DeleteAsync($"api/DeleteCartItems?ProductId{product.ProductId}&sessionId{UserService.GetSessionID()}");
                 //return response;
 
 

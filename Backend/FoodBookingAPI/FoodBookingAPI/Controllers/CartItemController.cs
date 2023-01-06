@@ -99,16 +99,16 @@ namespace FoodBookingAPI.Controllers
             }
         }
 
-        [Route("api/DeleteCartItem/{productId}/{sessionId}")]
+        [Route("api/DeleteCartItem/{ProductId}/{sessionId}")]
         [HttpDelete]
-        public IHttpActionResult DeleteCartItem(int productId, int sessionId)
+        public IHttpActionResult DeleteCartItem(int ProductId, int sessionId)
         {
             try
             {
                 param = null;
                 param = new Dictionary<string, object>();
 
-                param.Add(nameof(CartItems.ProductId), productId);
+                param.Add(nameof(CartItems.ProductId), ProductId);
                 param.Add(nameof(CartItems.SessionId), sessionId);
 
                 bool success = CartItemRepository.DeleteCartItem(param);

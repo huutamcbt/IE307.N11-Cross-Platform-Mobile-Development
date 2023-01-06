@@ -10,7 +10,7 @@ using System.Windows.Input;
 using Xamarin.Forms;
 namespace Frontend.ViewModels
 {
-    [QueryProperty("ProductID", "productID")]
+    [QueryProperty("ProductId", "ProductId")]
     class ProductDetailViewModel : INotifyPropertyChanged
     {
         public string Name { get; private set; }
@@ -20,13 +20,13 @@ namespace Frontend.ViewModels
 
         private IList<ReviewRendered> sourse;
         public ObservableCollection<ReviewRendered> reviewList { get; private set; }
-        private int productID;
-        public int ProductID
+        private int ProductId;
+        public int ProductId
         {
-            get => productID;
+            get => ProductId;
             set
             {
-                productID = value;
+                ProductId = value;
                 initializeProduct(value);
             }
         }
@@ -51,12 +51,12 @@ namespace Frontend.ViewModels
 
         public ICommand AddReviewCommand { get; set; }
         public ICommand DeleteReviewCommand { get; set; }
-        public async void initializeProduct(int productID)
+        public async void initializeProduct(int ProductId)
         {
             sourse = new List<ReviewRendered>();
 
 
-            Product product = await ProductService.GetProductByProductID(productID);
+            Product product = await ProductService.GetProductByProductId(ProductId);
             Name = product.Name;
             Image = product.Image;
             Description = product.Description;
@@ -77,9 +77,29 @@ namespace Frontend.ViewModels
             AddReviewCommand = new Command(async () =>
             {
                 await Shell.Current.DisplayAlert("a", reviewEntryValue + "\n" + ratingValue, "a");
-                int userID = UserService.GetUserID();
+                int UserId = UserService.GetUserId();
+                Review review = new Review
+                {
+                    ProductId = ProductId,
+                    Content = reviewEntryValue,
+                    Rating = ratingValue,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now,
+                    UserId = UserId,
+                    DeletedDate =DateTime.Now
+                };
+                var reponse = await ReviewService.AddReview(review);
 
-                sourse.Insert(0, await ReviewService.AddReview(new Review { ProductID = productID, Content = reviewEntryValue, Rating = ratingValue, CreatedDate = new DateTime(), ModifiedDate = new DateTime(), UserID = userID }));
+                if ( reponse.IsSuccessStatusCode)
+                {
+                    User user = await UserService.GetUser();
+                    sourse.Insert(0, new ReviewRendered (review, user));
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Thông báo", "Thêm đánh giá thất bại", "ok");
+                }
+
 
                 reviewList = new ObservableCollection<ReviewRendered>(sourse);
                 ratingValue = 0;
@@ -92,18 +112,21 @@ namespace Frontend.ViewModels
             DeleteReviewCommand = new Command<ReviewRendered>(async (review) =>
             {
                 await Shell.Current.DisplayAlert("a", review.Content + "\n" + review.Rating, "a");
-                await ReviewService.DeleteReview(review.ReviewID);
+                await ReviewService.DeleteReview(review.ReviewId);
             });
 
         }
 
         async Task InitializeReview()
         {
-            List<ReviewRendered> reviews = await ReviewService.GetReviewsByProductId(productID);
-            foreach (ReviewRendered review in reviews)
+            List<Review> reviews = await ReviewService.GetReviewsByProductId(ProductId);
+
+
+            foreach (Review review in reviews)
             {
-                review.IsEditable = review.UserID == UserService.GetUserID();
-                sourse.Add(review);
+                User user = await UserService.GetUserById(review.UserId);
+                
+                sourse.Add(new ReviewRendered (review,user));
             }
             reviewList = new ObservableCollection<ReviewRendered>(sourse);
             OnPropertyChanged("reviewList");
@@ -117,7 +140,7 @@ namespace Frontend.ViewModels
 
         void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
-            PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
+            PropertyChanged?.Invoke(this,new PropertyChangedEventArgs(propertyName));
         }
         #endregion
     }

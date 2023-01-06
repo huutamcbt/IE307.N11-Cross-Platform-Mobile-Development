@@ -109,9 +109,9 @@ namespace FoodBookingAPI.Repository
                         AddParameters(command, param);
 
                         command.CommandType = CommandType.StoredProcedure;
-                        int reviewId = (int)command.ExecuteScalar();
+                        int ReviewId = (int)command.ExecuteScalar();
 
-                        if (reviewId > 0)
+                        if (ReviewId > 0)
                             return true;
                         return false;
                     }
@@ -137,9 +137,9 @@ namespace FoodBookingAPI.Repository
                         AddParameters(command, param);
 
                         command.CommandType = CommandType.StoredProcedure;
-                        int reviewId = (int)command.ExecuteScalar();
+                        int ReviewId = (int)command.ExecuteScalar();
 
-                        if (reviewId > 0)
+                        if (ReviewId > 0)
                             return true;
                         return false;
                     }
@@ -165,9 +165,9 @@ namespace FoodBookingAPI.Repository
                         AddParameters(command, param);
 
                         command.CommandType = CommandType.StoredProcedure;
-                        int reviewId = (int)command.ExecuteScalar();
+                        int ReviewId = (int)command.ExecuteScalar();
 
-                        if (reviewId > 0)
+                        if (ReviewId > 0)
                             return true;
                         return false;
                     }
