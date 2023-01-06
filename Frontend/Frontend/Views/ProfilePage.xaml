@@ -62,7 +62,7 @@
 
                         <StackLayout Margin="10,30,0,0">
 
-                            <!--  Start of Menu Item  -->
+                            <!--  Chỉnh sửa thông tin  -->
                             <StackLayout Margin="0,5,5,5">
 
                                 <StackLayout Orientation="Horizontal">
@@ -106,7 +106,7 @@
                             </StackLayout>
                             <!--  End of Menu Item  -->
 
-                            <!--  Start of Menu Item  -->
+                            <!--  Địa chỉ giao hàng -->
                             <StackLayout Margin="0,5,5,5">
 
                                 <StackLayout Orientation="Horizontal">
@@ -195,7 +195,7 @@
                             <!--  End of Menu Item  -->
 
 
-                            <!--  Start of Menu Item  -->
+                            <!-- Lịch sử đơn hàng -->
                             <StackLayout Margin="0,5,5,5">
 
                                 <StackLayout Orientation="Horizontal">
@@ -239,7 +239,7 @@
                             </StackLayout>
                             <!--  End of Menu Item  -->
 
-                            <!--  Start of Menu Item  -->
+                            <!--  Đơn hàng đang vận chuyển  -->
                             <StackLayout Margin="0,5,5,5">
 
                                 <StackLayout Orientation="Horizontal">
@@ -282,8 +282,52 @@
 
                             </StackLayout>
                             <!--  End of Menu Item  -->
+                            
+                            <!--  Đổi mật khẩu -->
+                            <StackLayout Margin="0,5,5,5">
 
-                            <!--  Start of Menu Item  -->
+                                <StackLayout Orientation="Horizontal">
+                                    <StackLayout Orientation="Horizontal">
+                                        <Image
+                                        Aspect="AspectFill"
+                                        HeightRequest="30"
+                                        HorizontalOptions="StartAndExpand"
+                                        Source="Icon_TrackOrder.png"
+                                        WidthRequest="30" />
+                                        <Label
+                                        Margin="15,0,0,0"
+                                        FontSize="18"
+                                        HorizontalOptions="StartAndExpand"
+                                        HorizontalTextAlignment="Start"
+                                        Text="Đổi mật khẩu"
+                                        TextColor="Black"
+                                        VerticalTextAlignment="Center">
+                                            <Label.FontFamily>
+                                                <OnPlatform x:TypeArguments="x:String">
+                                                    <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                                </OnPlatform>
+                                            </Label.FontFamily>
+                                        </Label>
+                                    </StackLayout>
+
+                                    <Image
+                                    Margin="20,0,20,0"
+                                    Aspect="AspectFit"
+                                    HeightRequest="10"
+                                    HorizontalOptions="EndAndExpand"
+                                    Source="icon_password"
+                                    VerticalOptions="CenterAndExpand"
+                                    WidthRequest="10" />
+
+                                    <StackLayout.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_5" />
+                                    </StackLayout.GestureRecognizers>
+                                </StackLayout>
+
+                            </StackLayout>
+                            <!--  End of Menu Item  -->
+
+                            <!--  Cài đặt  -->
                             <StackLayout Margin="0,5,5,5">
 
                                 <StackLayout Orientation="Horizontal">
@@ -327,7 +371,7 @@
                             </StackLayout>
                             <!--  End of Menu Item  -->
 
-                            <!--  Start of Menu Item  -->
+                            <!--  Đăng xuất  -->
                             <StackLayout Margin="0,5,5,5">
 
                                 <StackLayout Orientation="Horizontal">

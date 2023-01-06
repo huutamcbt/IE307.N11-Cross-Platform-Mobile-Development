@@ -281,7 +281,7 @@ namespace FoodBookingAPI.Controllers
                     if (check == true)
                     {
                         response.StatusCode = HttpStatusCode.OK;
-                        response.Content = new StringContent(nameof(Users.UserId));
+                        response.Content = new StringContent(JsonConvert.SerializeObject(testUser));
                     }
                     else
                     {

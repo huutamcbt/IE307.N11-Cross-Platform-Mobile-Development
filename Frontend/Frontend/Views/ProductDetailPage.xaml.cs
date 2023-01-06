@@ -28,7 +28,7 @@ namespace Frontend.Views
         //private async void InitializeProduct()
         //{
         //    ProductService service = new ProductService();
-        //    Product product = await service.GetProductByProductID(productID);
+        //    Product product = await service.GetProductByProductId(ProductId);
         //    labelProductName.Text = product.Name;
         //    labelProductDescription.Text = product.Description;
         //    imageMain.Source = product.Image;

@@ -48,10 +48,10 @@ namespace Frontend.Views
 
             Review review = new Review
             {
-                ReviewID = 1,
-                ProductID = 5,
+                ReviewId = 1,
+                ProductId = 5,
                 Rating = 5,
-                UserID = 1,
+                UserId = 1,
                 Content = "Sản phẩm chất lượng tốt, giao hàng nhanh",
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now,

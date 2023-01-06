@@ -175,7 +175,7 @@
     <AndroidResource Include="Resources\drawable\Icon_setting.png" />
   </ItemGroup>
   <ItemGroup>
-    <AndroidResource Include="Resources\drawable\Icon_change_password.png" />
+    <AndroidResource Include="Resources\drawable\icon_password.png" />
   </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Xamarin\Android\Xamarin.Android.CSharp.targets" />
   <ProjectExtensions>

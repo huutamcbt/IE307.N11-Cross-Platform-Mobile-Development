@@ -32,7 +32,7 @@ namespace Frontend.ViewModels
 
             ItemTapCommand = new Command<Product>(async (item) =>
             {
-                await Shell.Current.GoToAsync($"/{nameof(ProductDetailPage)}?productID={item.ProductId}");
+                await Shell.Current.GoToAsync($"/{nameof(ProductDetailPage)}?ProductId={item.ProductId}");
             });
 
             CatTapCommand = new Command<Category>(async (items) =>

@@ -19216,7 +19216,7 @@ namespace Frontend.Droid
 			public const int Icon_logout = 2131165339;
 			
 			// aapt resource value: 0x7F07009C
-			public const int icon_noodle = 2131165340;
+			public const int icon_password = 2131165340;
 			
 			// aapt resource value: 0x7F07009D
 			public const int Icon_profile = 2131165341;
