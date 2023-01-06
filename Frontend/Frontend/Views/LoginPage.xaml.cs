@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Frontend.Models;
+using Frontend.Services;
+using System;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 
@@ -29,14 +31,21 @@ namespace Frontend.Views
         private async void TapGestureRecognizer_Tapped_1(object sender, EventArgs e)
         {
             await Shell.Current.GoToAsync(nameof(RegisterPage));
-        }
+        }   
 
 
         private async void Button_Clicked(object sender, EventArgs e)
         {
-            
-            App.isLogin = true;
-            await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}");
+            var reponse = await UserService.Login(new User { Username = entryUsername.Text, Password = entryPassword.Text });
+            if (reponse.IsSuccessStatusCode)
+            {
+                App.isLogin = true;
+                await Shell.Current.GoToAsync($"//Main/{nameof(HomePage)}");
+            }
+            else
+            {
+                await Shell.Current.DisplayAlert("Đăng nhập sai", "Thông tin tài khoản hoặc mật khẩu không chính xác", "ok");
+            }
         }
     }
 }

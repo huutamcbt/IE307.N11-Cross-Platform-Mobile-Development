@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Frontend.Models;
+using Frontend.Services;
+using System;
 using System.ComponentModel;
+using System.Net.Http;
 using System.Runtime.CompilerServices;
 using System.Windows.Input;
 using Xamarin.Forms;
@@ -29,8 +32,20 @@ namespace Frontend.ViewModels
             RegisterCommand = new Command(async () =>
             {
                 // await call account service
+                User user = new User { UserId = 0, Username = username, Password = password, FirstName = firstName, LastName = lastName, Telephone = telephone,CreatedDate= DateTime.Now,ModifiedDate= DateTime.Now,  Logo = "Profile.webp" };
+                HttpResponseMessage response = await UserService.AddUser(user);
 
-                await Shell.Current.DisplayAlert("a", $"username: {username}, \npassword: {password}, \npasswordConfirm: {passwordConfirm}, \nfirstName: {firstName}, \nlastName: {lastName},, \ntelephone: {telephone}", "ok");
+                if (response.IsSuccessStatusCode)
+                {
+                    await Shell.Current.DisplayAlert("Thông báo", "Tạo tài khoản thành công", "ok");
+                    await Shell.Current.Navigation.PopAsync();
+                }
+                else
+                {
+                    await Shell.Current.DisplayAlert("Thông báo", "Tạo tài khoản thất bại" , "ok");
+                }
+
+                //await Shell.Current.DisplayAlert("a", $"username: {username}, \npassword: {password}, \npasswordConfirm: {passwordConfirm}, \nfirstName: {firstName}, \nlastName: {lastName},, \ntelephone: {telephone}", "ok");
 
 
 

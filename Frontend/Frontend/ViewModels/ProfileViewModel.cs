@@ -50,7 +50,7 @@ namespace Frontend.ViewModels
         async Task InitializeProfile()
         {
             _user = await UserService.GetUser();
-            Name = _user.Firstname + " " + _user.Lastname;
+            Name = _user.FirstName + " " + _user.LastName;
             OnPropertyChanged("Name");
             OnPropertyChanged("user");
         }

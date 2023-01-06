@@ -7,11 +7,11 @@ namespace Frontend.Models
         public int UserId { get; set; }
         public String Username { get; set; }
         public String Password { get; set; }
-        public String Firstname { get; set; }
-        public String Lastname { get; set; }
+        public String FirstName { get; set; }
+        public String LastName { get; set; }
         public String Telephone { get; set; }
-        public String Logo { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
+        public String Logo { get; set; }
     }
 }

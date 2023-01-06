@@ -25,8 +25,8 @@ namespace Frontend.Views
             {
                 UserId = 5,
                 Username = "Username_1",
-                Firstname = "Văn B",
-                Lastname = "Nguyễn",
+                FirstName = "Văn B",
+                LastName = "Nguyễn",
                 Telephone = "0123456789",
                 Logo = "logo.png",
                 CreatedDate = DateTime.Now,
