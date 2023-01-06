@@ -142,12 +142,12 @@ CREATE PROCEDURE usp_AddUser
 AS
 BEGIN
     INSERT INTO Users(Username, Password, FirstName, LastName, Telephone, CreatedDate, ModifiedDate, Logo)
-    OUTPUT Inserted.UserId
     VALUES(@Username, @Password, @FirstName, @LastName, @Telephone, @CreatedDate, @ModifiedDate, @Logo)
+
 END
 
 GO
-
+--drop PROCEDURE usp_AddUser;
 ---------------------------------------------------------------------------------------------------------
 
 CREATE PROCEDURE usp_UpdateUser

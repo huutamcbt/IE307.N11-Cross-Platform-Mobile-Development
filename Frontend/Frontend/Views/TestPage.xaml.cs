@@ -6,6 +6,7 @@ using System.Net.Http;
 using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
+using System.Net;
 
 namespace Frontend.Views
 {
@@ -22,7 +23,7 @@ namespace Frontend.Views
           
             User user = new User
             {
-                UserId = -1,
+                UserId = 5,
                 Username = "Username_1",
                 FirstName = "Văn B",
                 LastName = "Nguyễn",
@@ -56,7 +57,7 @@ namespace Frontend.Views
                 ModifiedDate = DateTime.Now,
                 DeletedDate = DateTime.Now
             };
-
+            
 
             CartItem cartItem = new CartItem
             {
@@ -70,12 +71,13 @@ namespace Frontend.Views
 
             var json = JsonConvert.SerializeObject(user);
             var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
-            HttpResponseMessage response = await Base.client.PostAsync("api/Login/",stringContent);
+            HttpResponseMessage response = await Base.client.GetAsync("api/GetUserById/"+ user.UserId);
             var statusCode = response.StatusCode;
 
             string content = response.Content.ReadAsStringAsync().Result;
             response_content.Text = $"Status code: {statusCode}\n"
-                + $"Content: {content}";
+                + $"Content: {content}\n"
+                + $"Content: {int.Parse(content) +5 == (int)20}";
         }
     }
 }

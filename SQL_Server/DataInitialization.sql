@@ -277,4 +277,4 @@ VALUES(1, 20000000,'','');
 INSERT INTO  ShoppingSessions (UserId, Total, CreatedDate, ModifiedDate)
 VALUES(1, 10, '','');
 
-SELECT * FROM ShoppingSessions;
+
