@@ -127,7 +127,7 @@ namespace FoodBookingAPI.Repository
             }
         }
 
-        public static bool AddUser(Dictionary<string, object> param)
+        public static int AddUser(Dictionary<string, object> param)
         {
             try
             {
@@ -141,21 +141,23 @@ namespace FoodBookingAPI.Repository
                         AddParameters(command, param);
 
                         command.CommandType = CommandType.StoredProcedure;
-                        int userId = (int)command.ExecuteScalar();
+                        int existedCheck = (int)command.ExecuteScalar();
 
-                        if (userId > 0)
-                            return true;
-                        return false;
+                        if (existedCheck == CheckedCode.EXISTED_USER)
+                            return CheckedCode.EXISTED_USER;
+
+                        // In case, the repository will return a opposite value of EXISTED_USER when the user has not already exitsted
+                        return -CheckedCode.EXISTED_USER;
                     }
                 }
             }
             catch (Exception)
             {
-                return false;
+                return CheckedCode.UNKNOW_ERROR;
             }
         }
 
-        public static bool UpdateUser(Dictionary<string, object> param)
+        public static int UpdateUser(Dictionary<string, object> param)
         {
             try
             {
@@ -169,17 +171,19 @@ namespace FoodBookingAPI.Repository
                         AddParameters(command, param);
 
                         command.CommandType = CommandType.StoredProcedure;
-                        int userId = (int)command.ExecuteScalar();
+                        int existedCheck = (int)command.ExecuteScalar();
 
-                        if (userId > 0)
-                            return true;
-                        return false;
+                        if (existedCheck == CheckedCode.EXISTED_USER)
+                            return CheckedCode.EXISTED_USER;
+
+                        // In case, the repository will return a opposite value of EXISTED_USER when the user has not already exitsted
+                        return -CheckedCode.EXISTED_USER;
                     }
                 }
             }
             catch (Exception)
             {
-                return false;
+                return CheckedCode.UNKNOW_ERROR;
             }
         }
     }
