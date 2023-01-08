@@ -7,6 +7,8 @@ using System.Text;
 using Xamarin.Forms;
 using Xamarin.Forms.Xaml;
 using System.Net;
+using System.Diagnostics;
+using System.Text.RegularExpressions;
 
 namespace Frontend.Views
 {
@@ -20,18 +22,18 @@ namespace Frontend.Views
 
         private async void send_request_Clicked(object sender, EventArgs e)
         {
-          
+
             User user = new User
             {
-                UserId = 5,
-                Username = "Username_1",
+                UserId = 3,
+                Username = "Username_2",
                 FirstName = "Văn B",
                 LastName = "Nguyễn",
-                Telephone = "0123456789",
+                Telephone = "0123454321",
                 Logo = "logo.png",
                 CreatedDate = DateTime.Now,
                 ModifiedDate = DateTime.Now,
-                Password = "Username@12"
+                Password = "12345"
             };
 
             UserAddress address = new UserAddress
@@ -57,7 +59,7 @@ namespace Frontend.Views
                 ModifiedDate = DateTime.Now,
                 DeletedDate = DateTime.Now
             };
-            
+
 
             CartItem cartItem = new CartItem
             {
@@ -69,15 +71,38 @@ namespace Frontend.Views
                 ModifiedDate = DateTime.Now
             };
 
-            var json = JsonConvert.SerializeObject(user);
-            var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
-            HttpResponseMessage response = await Base.client.GetAsync("api/GetUserById/"+ user.UserId);
-            var statusCode = response.StatusCode;
+            var obj = new
+            {
+                UserId = 4,
+                oldPassword = "12345",
+                newPassword = "uit"
+            };
 
-            string content = response.Content.ReadAsStringAsync().Result;
-            response_content.Text = $"Status code: {statusCode}\n"
-                + $"Content: {content}\n"
-                + $"Content: {int.Parse(content) +5 == (int)20}";
+            //var json = JsonConvert.SerializeObject(UserService.user);
+            //var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
+            //HttpResponseMessage response = await Base.client.PostAsync("api/AddUser",stringContent);
+            //var statusCode = response.StatusCode;
+
+            //string content = response.Content.ReadAsStringAsync().Result;
+            //if (statusCode == HttpStatusCode.OK)
+            //{
+            //    response_content.Text = $"Status code: {statusCode}";
+            //}
+            //else
+            //{
+            //    response_content.Text = $"Status code: {statusCode}\n"
+            //        + $"Content: {content}\n"
+            //        + $"Content: {int.Parse(content) + 5 == (int)20}";
+
+            //}
+            var input = "P@ssw0rd";
+
+            var hasNumber = new Regex(@"[0-9]+");
+            var hasUpperChar = new Regex(@"[A-Z]+");
+            var hasMinimum8Chars = new Regex(@".{8,}");
+
+            var isValidated = hasNumber.IsMatch(input) && hasUpperChar.IsMatch(input) && hasMinimum8Chars.IsMatch(input);
+            Console.WriteLine(isValidated);
         }
     }
 }

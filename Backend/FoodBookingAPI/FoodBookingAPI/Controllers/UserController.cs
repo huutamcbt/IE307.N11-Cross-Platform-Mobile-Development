@@ -17,7 +17,7 @@ namespace FoodBookingAPI.Controllers
 {
     public class UserController : ApiController
     {
-        Dictionary<string, object> param;
+        Dictionary<string, object> param = new Dictionary<string, object>();
         HttpResponseMessage response;
         [NonAction]
         private string ConvertStringToHashPassword(string clearTextPassword)
@@ -69,8 +69,6 @@ namespace FoodBookingAPI.Controllers
             response = new HttpResponseMessage();
             try
             {
-                param = null;
-                param = new Dictionary<string, object>();
                 param.Add(nameof(Users.UserId), UserId);
                 DataTable result = UserRepository.GetUserById(param);
 
@@ -107,8 +105,7 @@ namespace FoodBookingAPI.Controllers
                 string content;
 
                 content = Request.Content.ReadAsStringAsync().Result;
-                param = null;
-                param = new Dictionary<string, object>();
+
                 Debug.WriteLine(content);
                 Users newUser = JsonConvert.DeserializeObject<Users>(content);
 
@@ -155,10 +152,6 @@ namespace FoodBookingAPI.Controllers
                 // Get  content of Post request
                 string content = Request.Content.ReadAsStringAsync().Result;
 
-                // Init param variable for add parameters
-                param = null;
-                param = new Dictionary<string, object>();
-
                 // Convert from jsonContent to Users object
                 Users updatedUser = JsonConvert.DeserializeObject<Users>(content);
 
@@ -178,7 +171,6 @@ namespace FoodBookingAPI.Controllers
                         {
                             param = null;
                             param = new Dictionary<string, object>();
-
                             param.Add(nameof(Users.UserId), updatedUser.UserId);
                             param.Add(nameof(Users.Username), updatedUser.Username);
                             param.Add(nameof(Users.Password), updatedUser.Password);
@@ -243,8 +235,6 @@ namespace FoodBookingAPI.Controllers
                 // Convert content to Users object
                 Users loginUser = JsonConvert.DeserializeObject<Users>(content);
 
-                param = null;
-                param = new Dictionary<string, object>();
                 param.Add(nameof(Users.Username), loginUser.Username);
 
                 DataTable testUser = UserRepository.GetUserByUsername(param);
@@ -302,6 +292,93 @@ namespace FoodBookingAPI.Controllers
                 response.Content = new StringContent(Convert.ToString(CheckedCode.UNKNOW_ERROR));
                 return response;
             }
+        }
+
+        [Route("api/UpdatePassword")]
+        [HttpPost]
+        public HttpResponseMessage UpdatePassword()
+        {
+            param = null;
+            param = new Dictionary<string, object>();
+            response = new HttpResponseMessage();
+            try
+            {
+                
+                var requestContent = new
+                {
+                    UserId = -1,
+                    oldPassword = "",
+                    newPassword = ""
+                };
+                
+                // Get a content of the post request
+                string content = Request.Content.ReadAsStringAsync().Result;
+                requestContent = ConvertToTObject(requestContent, content);
+                Debug.WriteLine(requestContent);
+                param.Add(nameof(Users.UserId), Convert.ToInt32(requestContent.UserId));
+                
+                // Get test user by UserId
+                DataTable testUser = UserRepository.GetUserById(param);
+
+                if(testUser.Rows.Count > 0)
+                {
+                    // Compare a old password with a password of test user
+                    string testPassword = testUser.Rows[0].Field<string>(nameof(Users.Password));
+
+                    string oldHashString = ConvertStringToHashPassword(requestContent.oldPassword);
+
+                    if (CompareTwoHashValues(testPassword, oldHashString) == true)
+                    {
+                        param = null;
+                        param = new Dictionary<string, object>();
+                        string newHashString = ConvertStringToHashPassword(requestContent.newPassword);
+                        param.Add(nameof(Users.UserId), requestContent.UserId);
+                        param.Add(nameof(Users.Username), null);
+                        param.Add(nameof(Users.Password),newHashString);
+                        param.Add(nameof(Users.FirstName), null);
+                        param.Add(nameof(Users.LastName), null);
+                        param.Add(nameof(Users.Telephone), null);
+                        param.Add(nameof(Users.CreatedDate), null);
+                        param.Add(nameof(Users.ModifiedDate), null);
+                        param.Add(nameof(Users.Logo), null);
+
+                        int check = UserRepository.UpdatePassword(param);
+
+                        if(check == CheckedCode.OK)
+                        {
+                            response.StatusCode = HttpStatusCode.OK;
+                        }
+                        else
+                        {
+                            response.StatusCode = HttpStatusCode.BadRequest;
+                            response.Content = new StringContent(Convert.ToString(CheckedCode.UNKNOW_ERROR));
+                        }
+                    }
+                    else
+                    {
+                        response.StatusCode = HttpStatusCode.BadRequest;
+                        response.Content = new StringContent(Convert.ToString(CheckedCode.WRONG_PASSWORD));
+                    }
+                }
+                else
+                {
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    response.Content = new StringContent(Convert.ToString(CheckedCode.WRONG_ID));
+                }
+
+                return response;
+            }
+            catch (Exception)
+            {
+                response.StatusCode = HttpStatusCode.BadRequest;
+                response.Content = new StringContent(Convert.ToString(CheckedCode.UNKNOW_ERROR));
+                return response;
+            }
+        }
+        [NonAction]
+        private T ConvertToTObject<T>(T typeHolder, string content)
+        {
+            return JsonConvert.DeserializeObject<T>(content);
         }
     }
 }

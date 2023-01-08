@@ -8,16 +8,20 @@ namespace FoodBookingAPI
     public class CheckedCode
     {
         // User has already existed
-        public static int EXISTED_USER => 5;
+        public const int EXISTED_USER = 5;
         // Error occurs when username is wrong
-        public static int WRONG_USERNAME => 6;
+        public const int WRONG_USERNAME = 21;
         // Error occurs when password is wrong
-        public static int WRONG_PASSWORD => 9;
+        public const int WRONG_PASSWORD = 22;
         // Error occurs when id is wrong
-        public static int WRONG_ID => 15;
+        public const int WRONG_ID = 23;
         // All unknow errors
-        public static int UNKNOW_ERROR => 20;
+        public const int UNKNOW_ERROR = 20;
         // Error occurs when account is invalid 
-        public static int INVALID_ACCOUNT => 21;
+        public const int INVALID_ACCOUNT = 24;
+        // Error occurs when updated password has already existed
+        public const int EXISTED_PASSWORD = 6;
+        // Successful value
+        public const int OK = 200;
     }
 }
