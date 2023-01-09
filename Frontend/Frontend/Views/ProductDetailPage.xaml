@@ -16,11 +16,13 @@
     <ContentPage.Content>
         <Grid>
             <!--  Body  -->
-            <StackLayout  IsClippedToBounds="True">
+            <StackLayout 
+                IsClippedToBounds="True"
+                >
                 <Image
                     x:Name="imageMain"
                     Aspect="AspectFill"
-                    HeightRequest="200"
+                    HeightRequest="250"
                     Source="{Binding Image}"
                     />
                 <ScrollView Scrolled="ScrollView_Scrolled">
@@ -351,56 +353,7 @@
 
             </StackLayout>
 
-            <!--  header  -->
-            <StackLayout
-                Margin="15"
-                HorizontalOptions="FillAndExpand"
-                Orientation="Horizontal"
-                VerticalOptions="StartAndExpand">
-                <Frame
-                    Padding="0"
-                    BackgroundColor="Transparent"
-                    CornerRadius="45"
-                    HasShadow="False"
-                    HeightRequest="40"
-                    HorizontalOptions="StartAndExpand"
-                    WidthRequest="40">
-                    <StackLayout Orientation="Horizontal">
-                        <Label
-                            Margin="0,10"
-                            FontFamily="MaterialFontFamily"
-                            FontSize="26"
-                            HorizontalOptions="StartAndExpand"
-                            Text="&#xf141;"
-                            TextColor="Black" />
 
-                    </StackLayout>
-                    <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
-                    </Frame.GestureRecognizers>
-                </Frame>
-
-                <StackLayout>
-                    <Frame
-                        Padding="0"
-                        BackgroundColor="White"
-                        CornerRadius="20"
-                        HasShadow="False"
-                        HeightRequest="40"
-                        WidthRequest="40">
-                        <Label
-                            FontFamily="MaterialFontFamily"
-                            FontSize="28"
-                            HorizontalOptions="Center"
-                            HorizontalTextAlignment="Center"
-                            Text="&#xf4d2;"
-                            TextColor="Black"
-                            VerticalOptions="Center"
-                            VerticalTextAlignment="Center" />
-                    </Frame>
-
-                </StackLayout>
-            </StackLayout>
         </Grid>
     </ContentPage.Content>
 </ContentPage>
