@@ -62,10 +62,10 @@ namespace Frontend.Services
         {
             try
             {
-                var userRequest = await Base.client.GetStringAsync("api/GetUserById/" + UserId);
-                user = JsonConvert.DeserializeObject<List<User>>(userRequest)[0];
-                //var sessionRequest = await Base.client.GetStringAsync("api/getShoppingSessionByUserId/" + user.UserId);
-                //shoppingSession = JsonConvert.DeserializeObject<List<ShoppingSession>>(sessionRequest)[0];
+                //var userRequest = await Base.client.GetStringAsync("api/GetUserById/" + UserId);
+                //user = JsonConvert.DeserializeObject<List<User>>(userRequest)[0];
+                var sessionRequest = await Base.client.GetStringAsync("api/getShoppingSessionByUserId/" + user.UserId);
+                shoppingSession = JsonConvert.DeserializeObject<List<ShoppingSession>>(sessionRequest)[0];
             }
             catch (Exception e)
             { throw e; }
@@ -110,13 +110,14 @@ namespace Frontend.Services
         {
             try
             {
-                var stringContent = new StringContent(JsonConvert.SerializeObject(_user), UnicodeEncoding.UTF8, "application/json");
+                var json = JsonConvert.SerializeObject(_user);
+                var stringContent= new StringContent(json, UnicodeEncoding.UTF8, "application/json");
                 var result = await Base.client.PostAsync("/api/Login", stringContent);
                 if (result.IsSuccessStatusCode)
                 {
-                    var UserId = await result.Content.ReadAsStringAsync();
-
-                    await InitializeShoppingSession(UserId);
+                    var userString = await result.Content.ReadAsStringAsync();
+                    user = JsonConvert.DeserializeObject<List<User>>(userString)[0];
+                    //await InitializeShoppingSession( UserId);
                     App.isLogin = true;
                 }
                 return result;

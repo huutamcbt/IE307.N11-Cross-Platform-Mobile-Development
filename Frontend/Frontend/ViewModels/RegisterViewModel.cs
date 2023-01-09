@@ -11,14 +11,14 @@ namespace Frontend.ViewModels
 {
 
 
-    class RegisterViewModel : INotifyPropertyChanged
+    class RegisterViewModel :  INotifyPropertyChanged
     {
         string username = "";
         public String Username { get => username; set { username = value; } }
         string password = "";
         public String Password { get => password; set { password = value; } }
         string passwordConfirm;
-        public String PasswordConfirm { get => passwordConfirm; set { passwordConfirm = value; } }
+        public String PasswordConfirm { get => passwordConfirm; set { passwordConfirm = value;} }
         public string firstName = "";
         public String FirstName { get => firstName; set { firstName = value; } }
         string lastName = "";
@@ -61,5 +61,6 @@ namespace Frontend.ViewModels
             PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(propertyName));
         }
         #endregion
+
     }
 }

@@ -2,11 +2,38 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Frontend.Views.BlogPage">
+    
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
-        </StackLayout>
+        <CollectionView x:Name="BlogList" Margin="5">
+        <CollectionView.ItemsLayout>
+            <GridItemsLayout Orientation="Vertical" Span="1" VerticalItemSpacing="10"/>
+        </CollectionView.ItemsLayout>
+        <CollectionView.EmptyView>
+            <StackLayout>
+                <Label Text="Not found Blog" HorizontalOptions="Center"
+                               TextColor="OrangeRed" FontSize="24" Margin="10"/>
+            </StackLayout>
+        </CollectionView.EmptyView>
+        <CollectionView.ItemTemplate>
+            <DataTemplate>
+                <Frame Padding="0">
+                    <Grid ColumnDefinitions="1.5*, 1.2*, 1.1*" RowDefinitions="45, 40, 50" ColumnSpacing="0">
+                        <Image Source="{Binding Img}" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Aspect="AspectFill"></Image>
+                        <Label Text="{Binding Title}" Grid.Column="1" Grid.Row="0" Grid.ColumnSpan="2" FontSize="16" TextColor="Black" FontAttributes="Bold" 
+                                           Margin="5, 0, 0, 0" LineBreakMode="TailTruncation" MaxLines="3"></Label>
+                        <Label Text="{Binding Description}" Grid.Column="1" Grid.ColumnSpan="2" Grid.Row="1" FontSize="14" TextColor="Gray" Margin="5, 0, 0, 0" LineBreakMode="TailTruncation" MaxLines="3"></Label>
+
+                        <Label Text="{Binding Author}" Grid.Column="1" Grid.Row="2" TextColor="OrangeRed"
+                                           FontSize="16" VerticalOptions="Center" Padding="5" LineBreakMode="TailTruncation" MaxLines="2"></Label>
+                        <Label Text="{Binding Date}" TextColor="Black" FontSize="14" Grid.Column="2" Grid.Row="2" HorizontalOptions="End" VerticalOptions="Center" Margin="5"></Label>
+
+                    </Grid>
+                    <Frame.GestureRecognizers>
+                        <TapGestureRecognizer x:Name="TapBlog" Tapped="TapBlog_Tapped" CommandParameter="{Binding .}"></TapGestureRecognizer>
+                    </Frame.GestureRecognizers>
+                </Frame>
+            </DataTemplate>
+        </CollectionView.ItemTemplate>
+    </CollectionView>
     </ContentPage.Content>
 </ContentPage>
