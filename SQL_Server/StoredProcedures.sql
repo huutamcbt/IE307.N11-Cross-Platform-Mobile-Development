@@ -132,7 +132,7 @@ GO
 ---------------------------------------------------------------------------------------------------------
 CREATE PROCEDURE usp_AddUser
     @Username VARCHAR(20),
-	@Password TEXT,
+	@Password VARCHAR(50),
 	@FirstName NVARCHAR(50),
 	@LastName NVARCHAR(20),
 	@Telephone VARCHAR(15),
@@ -153,7 +153,7 @@ GO
 CREATE PROCEDURE usp_UpdateUser
     @UserId INT,
     @Username VARCHAR(20), 
-    @Password TEXT, 
+    @Password VARCHAR(50), 
     @FirstName NVARCHAR(50), 
     @LastName NVARCHAR(20), 
     @Telephone VARCHAR(15), 
@@ -167,7 +167,6 @@ BEGIN
                 FirstName = @FirstName, LastName = @LastName, 
                 Telephone = @Telephone, CreatedDate = @CreatedDate, 
                 ModifiedDate = @ModifiedDate, Logo = @Logo
-    OUTPUT Inserted.UserId
     WHERE UserId = @UserId;
 END
 

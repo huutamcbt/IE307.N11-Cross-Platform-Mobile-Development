@@ -5,13 +5,14 @@ using System.Collections.Generic;
 using System.Net.Http;
 using System.Text;
 using System.Threading.Tasks;
+using System.Net;
 
 namespace Frontend.Services
 {
     public static class UserService
     {
         //save user info after login
-        static User user;
+        public static User user;
         static ShoppingSession shoppingSession;
         static UserService()
         {
@@ -29,7 +30,18 @@ namespace Frontend.Services
             //};
 
             //shoppingSession = new ShoppingSession { SessionId = 1, Total = 2, UserId = 1 };
-
+            user = new User
+            {
+                UserId = 6,
+                Username = "Username_3",
+                FirstName = "Văn C",
+                LastName = "Nguyễn",
+                Telephone = "0123456789",
+                Logo = "user_logo.png",
+                CreatedDate = DateTime.Now,
+                ModifiedDate = DateTime.Now,
+                Password = "12345"
+            };
         }
 
         public static async Task<User> GetUserById(int UserId)
@@ -38,7 +50,7 @@ namespace Frontend.Services
             {
                 var userRequest = await Base.client.GetStringAsync("api/GetUserById/" + UserId);
                 User _user = JsonConvert.DeserializeObject<List<User>>(userRequest)[0];
-                return _user; 
+                return _user;
                 //var sessionRequest = await Base.client.GetStringAsync("api/getShoppingSessionByUserId/" + user.UserId);
                 //shoppingSession = JsonConvert.DeserializeObject<List<ShoppingSession>>(sessionRequest)[0];
             }
@@ -123,6 +135,24 @@ namespace Frontend.Services
                 var stringContent = new StringContent(json, Encoding.UTF8, "application/json");
                 var result = await Base.client.PostAsync("/api/AddUser", stringContent);
                 return result;
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
+
+        public static async Task<HttpResponseMessage> UpdatePassword(object passwords)
+        {
+            HttpResponseMessage response = new HttpResponseMessage();
+            try
+            {
+                //string content = $"oldPassword={passwords.oldPassword}&newPassword={passwords.newPassword}";
+                string content = JsonConvert.SerializeObject(passwords);
+                StringContent stringContent = new StringContent(content, UTF8Encoding.UTF8, "application/x-www-form-urlencoded");
+                response = await Base.client.PostAsync("api/UpdatePassword", stringContent);
+
+                return response;
             }
             catch (Exception e)
             {

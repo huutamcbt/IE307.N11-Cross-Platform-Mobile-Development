@@ -34,7 +34,7 @@ namespace FoodBookingAPI.Repository
                                 command.Parameters["@" + data.Key].Value = data.Value;
                                 break;
                             case nameof(Users.Password):
-                                command.Parameters.Add("@" + data.Key, SqlDbType.Text);
+                                command.Parameters.Add("@" + data.Key, SqlDbType.VarChar, 50);
                                 command.Parameters["@" + data.Key].Value = data.Value;
                                 break;
                             case nameof(Users.FirstName):
@@ -147,7 +147,7 @@ namespace FoodBookingAPI.Repository
                             return CheckedCode.EXISTED_USER;
 
                         // In case, the repository will return a opposite value of EXISTED_USER when the user has not already exitsted
-                        return -CheckedCode.EXISTED_USER;
+                        return CheckedCode.OK;
                     }
                 }
             }
@@ -177,7 +177,33 @@ namespace FoodBookingAPI.Repository
                             return CheckedCode.EXISTED_USER;
 
                         // In case, the repository will return a opposite value of EXISTED_USER when the user has not already exitsted
-                        return -CheckedCode.EXISTED_USER;
+                        return CheckedCode.OK;
+                    }
+                }
+            }
+            catch (Exception)
+            {
+                return CheckedCode.UNKNOW_ERROR;
+            }
+        }
+
+        public static int UpdatePassword(Dictionary<string, object> param)
+        {
+            try
+            {
+                using(SqlConnection connection = new SqlConnection(Constant.SQLConnectionString))
+                {
+                    connection.Open();
+
+                    string query =Constant.User_Procedure_UpdateUser;
+                    using(SqlCommand command = new SqlCommand(query, connection))
+                    {
+                        AddParameters(command, param);
+                        command.CommandType = CommandType.StoredProcedure;
+
+                        int UserId = (int)command.ExecuteScalar();
+
+                        return CheckedCode.OK;   
                     }
                 }
             }

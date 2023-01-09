@@ -27,6 +27,7 @@ namespace Frontend
             Routing.RegisterRoute(nameof(TestPage), typeof(TestPage));
             Routing.RegisterRoute(nameof(OrderDetailPage), typeof(OrderDetailPage));
             Routing.RegisterRoute(nameof(ChangePassswordPage), typeof(ChangePassswordPage));
+            Routing.RegisterRoute(nameof(ProfilePage), typeof(ProfilePage));
         }
 
     }

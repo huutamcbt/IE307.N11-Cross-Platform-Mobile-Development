@@ -106,7 +106,9 @@
                             </StackLayout>
                             <!--  End of Menu Item  -->
 
-                            <!--  Địa chỉ giao hàng -->
+                           
+
+                            <!--  Start of Menu Item  -->
                             <StackLayout Margin="0,5,5,5">
 
                                 <StackLayout Orientation="Horizontal">

@@ -130,7 +130,7 @@ create table FOODBOOKING.dbo.Users
 (
 	UserId INT not null identity(1,1),
 	Username VARCHAR(20),
-	Password TEXT,
+	Password VARCHAR(50),
 	FirstName NVARCHAR(50),
 	LastName NVARCHAR(20),
 	Telephone VARCHAR(15),

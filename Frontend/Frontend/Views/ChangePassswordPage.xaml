@@ -4,18 +4,74 @@
              x:Class="Frontend.Views.ChangePassswordPage"
              Title="Đổi mật khẩu"
              xmlns:inputLayout="clr-namespace:Syncfusion.XForms.TextInputLayout;assembly=Syncfusion.Core.XForms"
+             xmlns:vm="clr-namespace:Frontend.ViewModels"
+             xmlns:local="clr-namespace:Frontend"
+             x:Name="ChangePasswordView"
              >
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <local:PasswordConverter x:Key="passwordConverter"/>
+        </ResourceDictionary>
+    </ContentPage.Resources>
+    <ContentPage.BindingContext>
+        <vm:PasswordViewModel/>
+    </ContentPage.BindingContext>
+    <ContentPage.ToolbarItems>
+        <ToolbarItem Text="Lưu"
+                     Command="{Binding Source={x:Reference ChangePasswordView}, Path=BindingContext.StorageCommand}">
+            <ToolbarItem.CommandParameter>
+                <MultiBinding Converter="{StaticResource passwordConverter}">
+                    <MultiBinding.Bindings>
+                        <Binding Path="Text" Source="{x:Reference EntryOldPassword}"/>
+                        <Binding Path="Text" Source="{x:Reference EntryNewPassword}"/>
+                        <Binding Path="Text" Source="{x:Reference EntryConfirmNewPassword}"/>
+                        <Binding Path="IsVisible" Source="{x:Reference oldPasswordNotification}" />
+                        <Binding Path="IsVisible" Source="{x:Reference newPasswordNotification}"/>
+                        <Binding Path="IsVisible" Source="{x:Reference confirmationPasswordNotification}"/>
+                    </MultiBinding.Bindings>
+                </MultiBinding>
+            </ToolbarItem.CommandParameter>
+        </ToolbarItem>
+    </ContentPage.ToolbarItems>
     <ContentPage.Content>
-        <StackLayout>
-            <inputLayout:SfTextInputLayout Hint="Mật khẩu cũ" ContainerType="Outlined">
-                <Entry x:Name="EntryOldPassword"  IsPassword="True" />
+        <StackLayout Padding="35,20,35,0" HeightRequest="900">
+            <inputLayout:SfTextInputLayout Hint="Mật khẩu cũ" ContainerType="None">
+                <Entry x:Name="EntryOldPassword"  
+                       IsPassword="True" 
+                       Text="{Binding oldPassword}"
+                       ClearButtonVisibility="WhileEditing"
+                       Unfocused="EntryOldPassword_Unfocused"/>
             </inputLayout:SfTextInputLayout>
-            <inputLayout:SfTextInputLayout Hint="Mật khẩu mới" ContainerType="Outlined">
-                <Entry x:Name="EntryNewPassword"  IsPassword="True" />
+            <Label x:Name="oldPasswordNotification" 
+                   IsVisible="{Binding OldPasswordCheck}"
+                   Text="Mật khẩu không hợp lệ"
+                   TextColor="Red"/>
+            <inputLayout:SfTextInputLayout Hint="Mật khẩu mới" ContainerType="None">
+                <Entry x:Name="EntryNewPassword"  
+                       IsPassword="True" 
+                       Text="{Binding newPassword}"
+                       ClearButtonVisibility="WhileEditing"
+                       Unfocused="EntryNewPassword_Unfocused"/>
             </inputLayout:SfTextInputLayout>
-            <inputLayout:SfTextInputLayout Hint="Xác nhận mật khẩu" ContainerType="Outlined">
-                <Entry x:Name="EntryConfirmNewPassword"  IsPassword="True" />
+            <Label x:Name="newPasswordNotification" 
+                   IsVisible="{Binding NewPasswordCheck}"
+                   Text="Mật khẩu không hợp lệ"
+                   TextColor="Red"/>
+            <inputLayout:SfTextInputLayout Hint="Xác nhận mật khẩu" ContainerType="None">
+                <Entry x:Name="EntryConfirmNewPassword"  
+                       IsPassword="True" 
+                       Text="{Binding confirmationPassword}"
+                       ClearButtonVisibility="WhileEditing"
+                       Unfocused="EntryConfirmNewPassword_Unfocused"/>
             </inputLayout:SfTextInputLayout>
+            <Label x:Name="confirmationPasswordNotification" 
+                   IsVisible="{Binding ConfirmationPasswordCheck}"
+                   Text="Mật khẩu không hợp lệ"
+                   TextColor="Red"/>
+            <Label Text="Mật khẩu của bạn phải từ 8 ký tự trở lên và bao gồm chữ thường, chữ in hoa và ký tự đặc biệt"
+                   FontSize="17" 
+                   CharacterSpacing="0.5"
+                   TextColor="Black"/>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
