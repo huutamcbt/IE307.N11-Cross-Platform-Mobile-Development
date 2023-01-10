@@ -2,13 +2,37 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Frontend.Views.OrderHistoryPage"
-             Title="ORder History"
+             Title="Lịch sử đơn hàng"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
+             x:Name="OrderHistoryView"
              >
+    <ContentPage.BindingContext>
+        <viewmodel:OrderHistoryViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+        <StackLayout Padding="10,10,10,10">
+            <CollectionView ItemsSource="{Binding orderList}" >
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Margin="0,0,0,25">
+                            <Grid Padding="30,0,0,0" >
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="210"/>
+                                </Grid.ColumnDefinitions>
+                                <Label Grid.Row="0" Grid.Column="0" Text="Mã đơn hàng:" FontAttributes="Bold" FontSize="16"></Label>
+                                <Label Grid.Row="0" Grid.Column="1" FontSize="16"  Text="{Binding OrderId}"/>
+                                <Label Grid.Row="1" Grid.Column="0" FontSize="16"  FontAttributes="Bold" Text="Tổng cộng: "/>
+                                <Label Grid.Row="1" Grid.Column="1" FontSize="16" HorizontalOptions="Start" Text="{Binding Total,StringFormat='{0:c0}'}"/>
+                                <Label Grid.Row="2" Grid.Column="0" Grid.ColumnSpan="2" Text="{Binding CreatedDate}"/>
+                            </Grid>
+                            <StackLayout.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference OrderHistoryView}, Path=BindingContext.OrderTapCommand}" CommandParameter="{Binding .}"/>
+                            </StackLayout.GestureRecognizers>
+                        </StackLayout >
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+                
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
