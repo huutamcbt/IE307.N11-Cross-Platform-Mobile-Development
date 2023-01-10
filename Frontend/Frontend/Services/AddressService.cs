@@ -35,6 +35,26 @@ namespace Frontend.Services
                 throw e;
             }
         }
+        static async public Task<UserAddress> GetAddressesByAddressId(int AddressId)
+        {
+            try
+            {
+                //var addresses = await Base.client.GetStringAsync("api/GetAddressesByAddressId/" + AddressId);
+                //UserAddress addressesConverted = JsonConvert.DeserializeObject<List<UserAddress>>(addresses)[0];
+                //return addressesConverted;
+
+                var addresses = await Base.client.GetStringAsync("api/GetAddressesByUserId/" + AddressId);
+                UserAddress addressesConverted = JsonConvert.DeserializeObject<List<UserAddress>>(addresses)[0];
+                return addressesConverted;
+
+
+                //return await Task.FromResult(userAddresses.FindAll((e) => e.UserId == UserId));
+            }
+            catch (Exception e)
+            {
+                throw e;
+            }
+        }
         static async public Task<HttpResponseMessage> UpdateAddress(UserAddress address)
         {
             try

@@ -3,19 +3,108 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
              xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
+             xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
              x:Class="Frontend.Views.OrderDetailPage">
+    <ContentPage.BindingContext>
+        <viewmodel:OrderDetailViewModel/>
+    </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout>
-            <expander:SfExpander  HeaderIconPosition="End" BackgroundColor="#FFFFFF" HeaderBackgroundColor="#FFFFFF" AnimationDuration="200" IsExpanded="True">
-                <expander:SfExpander.Header>
-                    <Label Text="title"/>
+        <StackLayout Margin="0,0,0,10">
+            <Label BackgroundColor="LightGray" Padding="10,10,10,10" FontAttributes="Bold" HorizontalTextAlignment="Center" TextColor="Black">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="Mã đơn hàng: ">
+                        </Span>
+                        <Span Text="{Binding OrderId}"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+            <StackLayout Margin="20,0,20,0">
+            <!--<expander:SfExpander  HeaderIconPosition="End" BackgroundColor="#FFFFFF" HeaderBackgroundColor="#FFFFFF" AnimationDuration="200" IsExpanded="True">-->
+                <!--<expander:SfExpander.Header>
+                    <Label Text="" FontSize="18" TextColor="Black" />
                 </expander:SfExpander.Header>
                 <expander:SfExpander.Content>
-                    <Label Text="Content"/>
-                    <!--<progressBar:SfStepProgressBar TitleAlignment="Start" BackgroundColor="Transparent" Orientation="Vertical" x:Name="stepProgress" Margin="16">
-                    </progressBar:SfStepProgressBar>-->
+                        <StackLayout>-->
+                        <Label >
+                            <Label.FormattedText>
+                                <FormattedString>
+                                    <Span Text="Ngày đơn hàng được tạo: ">
+                                    </Span>
+                                    <Span Text="{Binding paymentDetail.CreatedDate}"/>
+                                </FormattedString>
+                            </Label.FormattedText>
+                        </Label>
+                            <Label >
+                                <Label.FormattedText>
+                                    <FormattedString>
+                                        <Span Text="Ngày thanh toán: ">
+                                        </Span>
+                                        <Span Text="{Binding paymentDetail.ModifiedDate}"/>
+                                    </FormattedString>
+                                </Label.FormattedText>
+                            </Label>
+                        <!--</StackLayout>
+                    </expander:SfExpander.Content>
+            </expander:SfExpander>-->
+            <expander:SfExpander  HeaderIconPosition="End" BackgroundColor="#FFFFFF" HeaderBackgroundColor="#FFFFFF" AnimationDuration="200" IsExpanded="False">
+                <expander:SfExpander.Header>
+                    <Label Text="Các sản phẩm" />
+                </expander:SfExpander.Header>
+                <expander:SfExpander.Content>
+                    <CollectionView  ItemsSource="{Binding productList}">
+                        <CollectionView.ItemTemplate>
+                            <DataTemplate>
+                                <StackLayout  >
+                                    <Grid HeightRequest="100">
+                                        <Grid.ColumnDefinitions>
+                                            <ColumnDefinition Width="100"/>
+                                            <ColumnDefinition Width="*"/>
+                                        </Grid.ColumnDefinitions>
+                                        <Image HorizontalOptions="Start"  HeightRequest="100" Grid.Column="0" Grid.Row="0" Grid.RowSpan="3" Source="{Binding Image}" />
+                                        <Label Grid.Column="1" Grid.Row="0" VerticalOptions="End" FontSize="16" Text="{Binding Name}"/>
+                                        <Label
+                                            Grid.Column="1" Grid.Row="1"
+                                            FontSize="16"
+                                            HorizontalOptions="End"
+                                                                Text="{Binding Price, StringFormat='{0:c0}'}"
+                                                                TextColor="#00C569">
+                                            <Label.FontFamily>
+                                                <OnPlatform x:TypeArguments="x:String">
+                                                    <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                                </OnPlatform>
+                                            </Label.FontFamily>
+                                        </Label>
+                                        <Label Grid.Column="1" Grid.Row="2" VerticalOptions="Start" 
+                                            HorizontalOptions="End">
+                                            <Label.FormattedText>
+                                                <FormattedString>
+                                                    <Span Text="x"></Span>
+                                                    <Span Text="{Binding Quantity}"/>
+                                                </FormattedString>
+                                            </Label.FormattedText>
+                                            <Label.FontFamily>
+                                                <OnPlatform x:TypeArguments="x:String">
+                                                    <On Platform="Android" Value="SFPro.ttf#Bold" />
+                                                </OnPlatform>
+                                            </Label.FontFamily>
+                                        </Label>
+                                    </Grid>
+                                </StackLayout>
+                            </DataTemplate>
+                        </CollectionView.ItemTemplate>
+                    </CollectionView>
                 </expander:SfExpander.Content>
             </expander:SfExpander>
+            <expander:SfExpander  HeaderIconPosition="End" BackgroundColor="#FFFFFF" HeaderBackgroundColor="#FFFFFF" AnimationDuration="200" IsExpanded="True">
+                <expander:SfExpander.Header>
+                    <Label Text="Địa chỉ giao hàng"/>
+                </expander:SfExpander.Header>
+                <expander:SfExpander.Content>
+                    <Label Text="{Binding userAddress.Display}"/>
+                </expander:SfExpander.Content>
+            </expander:SfExpander>
+            </StackLayout>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

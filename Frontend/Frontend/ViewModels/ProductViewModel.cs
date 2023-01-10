@@ -14,6 +14,7 @@ using Xamarin.Forms;
 namespace Frontend.ViewModels
 {
     [QueryProperty("CategoryID", "categoryID")]
+    [QueryProperty("Keyword", "Keyword")]
     class ProductViewModel : INotifyPropertyChanged
     {
         private bool loaded = false;
@@ -26,6 +27,14 @@ namespace Frontend.ViewModels
         public ICommand CatTapCommand { get; set; }
         public int sortMode = 0;
         private int categoryID = 0;
+        private string keyword = "";
+        public string Keyword { get => keyword;
+        set {
+                keyword = value;
+                if(loaded)
+                    FilterWithKeyword();
+            }
+        }
         public int CategoryID
         {
             get => categoryID;
@@ -69,6 +78,8 @@ namespace Frontend.ViewModels
                 await InitializeCategoryCollection();
                 await InitializeProductList();
             }).Wait();
+            //if (keyword != "")
+                
 
 
             ProductTapCommand = new Command<Product>(async (item) =>
@@ -123,7 +134,18 @@ namespace Frontend.ViewModels
             productList = new ObservableCollection<Product>(products);
             OnPropertyChanged("productList");
         }
+        void FilterWithKeyword()
+        {
+            foreach(Product product in source)
+            {
+                if (!product.Name.Contains(keyword) && !product.Description.Contains(keyword))
+                {
+                    source.Remove(product);
+                }
 
+            }
+            productList = new ObservableCollection<Product>(source);
+        }
         async Task InitializeProductList()
         {
             List<Product> products = await ProductService.GetAllProduct();

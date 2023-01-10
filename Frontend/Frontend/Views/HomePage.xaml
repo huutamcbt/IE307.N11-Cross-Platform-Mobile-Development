@@ -12,7 +12,8 @@
     <Shell.TitleView >
         <FlexLayout Padding="0,0,20,0" HeightRequest="40" JustifyContent="SpaceBetween" AlignContent="Center" FlowDirection="LeftToRight">
 
-            <frontend:SearchBarNoUnderline   Placeholder="Tìm kiếm món ăn" FontSize="13">
+            <frontend:SearchBarNoUnderline   Placeholder="Tìm kiếm món ăn" FontSize="13" SearchCommand="{Binding Source={x:Reference HomeView}, Path=BindingContext.SearchTapCommand}" 
+                                             SearchCommandParameter="{Binding Text ,Source={x:Reference searchBar}}" x:Name="searchBar">
 
             </frontend:SearchBarNoUnderline>
             <StackLayout WidthRequest="30" >
