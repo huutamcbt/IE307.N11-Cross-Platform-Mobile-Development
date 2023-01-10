@@ -250,7 +250,7 @@
                                         Aspect="AspectFill"
                                         HeightRequest="30"
                                         HorizontalOptions="StartAndExpand"
-                                        Source="Icon_TrackOrder.png"
+                                        Source="icon_password"
                                         WidthRequest="30" />
                                         <Label
                                         Margin="15,0,0,0"
@@ -273,7 +273,7 @@
                                     Aspect="AspectFit"
                                     HeightRequest="10"
                                     HorizontalOptions="EndAndExpand"
-                                    Source="icon_password"
+                                    Source="more"
                                     VerticalOptions="CenterAndExpand"
                                     WidthRequest="10" />
 
