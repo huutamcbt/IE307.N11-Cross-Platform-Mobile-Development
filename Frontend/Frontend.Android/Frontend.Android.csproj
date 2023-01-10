@@ -60,6 +60,12 @@
     <PackageReference Include="Syncfusion.Xamarin.Core">
       <Version>20.4.0.38</Version>
     </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.Expander">
+      <Version>20.4.0.38</Version>
+    </PackageReference>
+    <PackageReference Include="Syncfusion.Xamarin.SfProgressBar">
+      <Version>20.4.0.38</Version>
+    </PackageReference>
     <PackageReference Include="Syncfusion.Xamarin.SfRating">
       <Version>20.4.0.38</Version>
     </PackageReference>
