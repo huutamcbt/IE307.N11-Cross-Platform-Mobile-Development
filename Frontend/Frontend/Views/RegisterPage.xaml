@@ -12,47 +12,79 @@
         <viewmodel:RegisterViewModel/>
     </ContentPage.BindingContext>
     <ContentPage.Content>
-        <StackLayout Padding="10,120,10,0" >
-            <Grid Padding="40,0,40,0" RowSpacing="20">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="120"/>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="70"/>
-                    <RowDefinition Height="60"/>
-                </Grid.RowDefinitions>
-                <inputLayout:SfTextInputLayout  Grid.Row="0" Grid.ColumnSpan="2"  Hint="Tên tài khoản">
-                    <Entry x:Name="entryUsername" HeightRequest="60" Text="{Binding Username,Mode=TwoWay}" ></Entry>
+        <ScrollView>
+            <StackLayout Padding="30,50,30,0" >
+
+                <inputLayout:SfTextInputLayout    Hint="Tên tài khoản">
+                    <Entry x:Name="entryUsername" HeightRequest="60" Text="{Binding Username,Mode=TwoWay}" Unfocused="entryUsername_Unfocused"></Entry>
                 </inputLayout:SfTextInputLayout>
-                <inputLayout:SfTextInputLayout Grid.Row="1" Grid.ColumnSpan="2" Hint="Mật khẩu">
-                        <Entry   IsPassword="True" Text="{Binding Password,Mode=TwoWay}" x:Name="entryPassword" />
+                <Label x:Name="UsernameNotification" 
+                       Text="Tên đăng nhập đã tồn tại" 
+                       IsVisible="False"
+                       TextColor="Red"/>
+                <inputLayout:SfTextInputLayout Hint="Mật khẩu">
+                    <Entry  IsPassword="True" Text="{Binding Password,Mode=TwoWay}" x:Name="entryPassword" Unfocused="entryPassword_Unfocused"/>
                 </inputLayout:SfTextInputLayout>
-                <inputLayout:SfTextInputLayout Grid.Row="2" Grid.ColumnSpan="2" Hint="Xác nhận mật khẩu">
-                 <Entry   IsPassword="True" Text="{Binding PasswordConfirm,Mode=TwoWay}" x:Name="entryConfirmPassword" />
+                <Label x:Name="PasswordNotification" 
+                       Text="Mật khẩu phải có ít nhất 8 ký tự bao gồm chữ thường, chữ in hoa, chữ số và ký tự đặc biệt" 
+                       IsVisible="False"
+                       TextColor="Red"/>
+                <inputLayout:SfTextInputLayout  Hint="Xác nhận mật khẩu">
+                    <Entry   IsPassword="True" Text="{Binding PasswordConfirm,Mode=TwoWay}" x:Name="entryConfirmPassword" Unfocused="entryConfirmPassword_Unfocused"/>
                 </inputLayout:SfTextInputLayout>
-                <inputLayout:SfTextInputLayout Grid.Row="3" Grid.Column="0" Hint="Họ">
-                    <Entry Text="{Binding FirstName,Mode=OneWayToSource}"></Entry>
+                <Label x:Name="ConfirmationPasswordNotification" 
+                       Text="Mật khẩu phải có ít nhất 8 ký tự bao gồm chữ thường, chữ in hoa, chữ số và ký tự đặc biệt" 
+                       IsVisible="False"
+                       TextColor="Red"/>
+                <Grid x:Name="NameSection">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="120"/>
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="75"/>
+                    </Grid.RowDefinitions>
+                    <StackLayout Grid.Row="0" Grid.Column="0" x:Name="FirstnameSection">
+                        <inputLayout:SfTextInputLayout  Hint="Họ"  Margin="0,0,0,0" Padding="0,0,0,0">
+                            <Entry x:Name="FirstName" Text="{Binding FirstName,Mode=OneWayToSource}" Unfocused="FirstName_Unfocused" ></Entry>
+                        </inputLayout:SfTextInputLayout>
+                        <Label x:Name="FirstNameNotification" 
+                                    Text="Tên không hợp lệ" 
+                                    IsVisible="False"
+                                    TextColor="Red"/>
+                    </StackLayout>
+                    <StackLayout Grid.Row="0" Grid.Column="1" x:Name="LastnameSection">
+                        <inputLayout:SfTextInputLayout  Hint="Tên">
+                            <Entry x:Name="LastName" Text="{Binding LastName,Mode=TwoWay}" Unfocused="LastName_Unfocused"></Entry>
+                        </inputLayout:SfTextInputLayout>
+                        <Label x:Name="LastNameNotification" 
+                                Text="Họ không hợp lệ" 
+                                IsVisible="False"
+                                TextColor="Red" />
+                    </StackLayout>
+                </Grid>
+
+                <inputLayout:SfTextInputLayout  Hint="Số điện thoại">
+                    <Entry x:Name="TelephoneNumber" Keyboard="Telephone" Text="{Binding Telephone,Mode=TwoWay}"  ClearButtonVisibility="WhileEditing" Unfocused="TelephoneNumber_Unfocused"/>
                 </inputLayout:SfTextInputLayout>
-                <inputLayout:SfTextInputLayout Grid.Row="3" Grid.Column="1" Hint="Tên">
-                    <Entry Grid.Row="3" Grid.Column="1" Text="{Binding LastName,Mode=TwoWay}"></Entry>
-                </inputLayout:SfTextInputLayout>
-                <inputLayout:SfTextInputLayout Grid.Row="4" Grid.ColumnSpan="2" Hint="Số điện thoại">
-                    <Entry  Keyboard="Telephone" Text="{Binding Telephone,Mode=TwoWay}"  ClearButtonVisibility="WhileEditing"/>
-                </inputLayout:SfTextInputLayout>
-                <Button  Grid.Row="5" Grid.ColumnSpan="2" HeightRequest="60" Text="Đăng ký" Background="#111" Command="{Binding Source={x:Reference RegisterView}, Path=BindingContext.RegisterCommand}" >
+                <Label x:Name="TelephoneNumberNotification" 
+                                Text="Sô điện thoại không hợp lệ" 
+                                IsVisible="False"
+                                TextColor="Red" />
+                <Button   x:Name="SendRequestButton"  
+                          HeightRequest="60" Text="Đăng ký" Background="#111" 
+                          Command="{Binding Source={x:Reference RegisterView}, Path=BindingContext.RegisterCommand}" 
+                          CornerRadius="5"
+                          FontSize="17"
+                          Clicked="SendRequestButton_Clicked">
                 </Button>
-                <Label Grid.Row="6" Text="Đăng nhập ngay" TextColor="Blue" FontSize="Small" >
+                <Label Text="Đăng nhập ngay" TextColor="Blue" FontSize="Small" >
                     <Label.GestureRecognizers>
                         <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
                     </Label.GestureRecognizers>
                 </Label>
-                
 
-            </Grid>
-        </StackLayout>
+            </StackLayout>
+        </ScrollView>
     </ContentPage.Content>
 </ContentPage>

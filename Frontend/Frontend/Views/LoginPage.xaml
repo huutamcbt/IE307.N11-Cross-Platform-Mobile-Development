@@ -27,8 +27,8 @@
                 <inputLayout:SfTextInputLayout Grid.Row="1" Hint="Mật khẩu"  ContainerType="Outlined">
                     <Entry   IsPassword="True" x:Name="entryPassword" />
                 </inputLayout:SfTextInputLayout>
-                <Button Margin="0,20,0,0"  Grid.Row="2" HeightRequest="60" Text="Đăng nhập" Background="#111" Clicked="Button_Clicked"></Button>
-                <FlexLayout Grid.Row="3" JustifyContent="SpaceBetween">
+                <Button Margin="0,20,0,0"  Grid.Row="2" HeightRequest="60" Text="Đăng nhập" Background="#111" Clicked="Button_Clicked" CornerRadius="5" FontSize="17"></Button>
+                <FlexLayout Grid.Row="3" JustifyContent="SpaceBetween" Margin="0,5,0,0">
                     <Label Text="Đăng ký ngay" TextColor="Blue" FontSize="Small" >
                         <Label.GestureRecognizers>
                             <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />

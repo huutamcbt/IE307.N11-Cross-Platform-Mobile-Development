@@ -130,66 +130,88 @@ namespace Frontend.ViewModels
 
 
             passwords = Cast(passwords, obj);
-            if (passwords.oldPasswordCheck == true || passwords.newPasswordCheck == true || passwords.confirmationPasswordCheck == true)
+            if(oldPassword == null || newPassword == null || confirmationPassword == null)
             {
                 // Display a pop-ups to notify the result
                 messageParameters = null;
                 messageParameters = new Dictionary<string, string>();
                 messageParameters.Add(Constant.MessagingCenter_Title, "Lỗi");
-                messageParameters.Add(Constant.MessagingCenter_Message, "Giá trị mật khẩu không hợp lệ");
+                messageParameters.Add(Constant.MessagingCenter_Message, "Hãy nhập đầy đủ các thông tin");
                 MessagingCenter.Send<PasswordViewModel, Dictionary<string, string>>(this, "PasswordEvent", messageParameters);
             }
             else
             {
-                // Check the equality of old password and new password
-                if (Object.Equals(passwords.oldPassword, passwords.newPassword) == false)
+                // Check the validity of password
+                if (passwords.oldPasswordCheck == true || passwords.newPasswordCheck == true || passwords.confirmationPasswordCheck == true)
                 {
-                    // Check the equality of new password and confirmation password
-                    if (Object.Equals(passwords.newPassword, passwords.confirmationPassword))
+                    // Display a pop-ups to notify the result
+                    messageParameters = null;
+                    messageParameters = new Dictionary<string, string>();
+                    messageParameters.Add(Constant.MessagingCenter_Title, "Lỗi");
+                    messageParameters.Add(Constant.MessagingCenter_Message, "Giá trị mật khẩu không hợp lệ");
+                    MessagingCenter.Send<PasswordViewModel, Dictionary<string, string>>(this, "PasswordEvent", messageParameters);
+                }
+                else
+                {
+                    // Check the equality of old password and new password
+                    if (Object.Equals(passwords.oldPassword, passwords.newPassword) == false)
                     {
-                        // Create anonymous object to send to the update password api
-                        var requestContent = new
+                        // Check the equality of new password and confirmation password
+                        if (Object.Equals(passwords.newPassword, passwords.confirmationPassword))
                         {
-                            UserId = UserService.user.UserId,
-                            oldPassword = passwords.oldPassword,
-                            newPassword = passwords.newPassword
-                        };
+                            // Create anonymous object to send to the update password api
+                            var requestContent = new
+                            {
+                                UserId = UserService.user.UserId,
+                                oldPassword = passwords.oldPassword,
+                                newPassword = passwords.newPassword
+                            };
 
-                        // Send the update password request
-                        HttpResponseMessage response = await UserService.UpdatePassword(requestContent);
+                            // Send the update password request
+                            HttpResponseMessage response = await UserService.UpdatePassword(requestContent);
 
-                        HttpStatusCode statusCode = response.StatusCode;
-                        Debug.WriteLine(response.StatusCode + " " + response.Content);
-                        // Check the status code
-                        // If  the request is successful
-                        if (Object.Equals(statusCode, HttpStatusCode.OK))
-                        {
-                            // Display a pop-ups to notify the result
-                            messageParameters = null;
-                            messageParameters = new Dictionary<string, string>();
-                            messageParameters.Add(Constant.MessagingCenter_Title, "Thông báo");
-                            messageParameters.Add(Constant.MessagingCenter_Message, "Đổi mật khẩu thành công");
-                            MessagingCenter.Send<PasswordViewModel, Dictionary<string, string>>(this, "PasswordEvent", messageParameters);
-
-                            await Shell.Current.GoToAsync(nameof(ProfilePage));
-                        }
-                        // If the request if failed
-                        if (Object.Equals(statusCode, HttpStatusCode.BadRequest))
-                        {
-                            int code = Convert.ToInt32(response.Content.ReadAsStringAsync().Result);
-                            // Check the CheckedCode
-                            if (code == CheckedCode.WRONG_PASSWORD)
+                            HttpStatusCode statusCode = response.StatusCode;
+                            Debug.WriteLine(response.StatusCode + " " + response.Content);
+                            // Check the status code
+                            // If  the request is successful
+                            if (Object.Equals(statusCode, HttpStatusCode.OK))
                             {
                                 // Display a pop-ups to notify the result
                                 messageParameters = null;
                                 messageParameters = new Dictionary<string, string>();
-                                messageParameters.Add(Constant.MessagingCenter_Title, "Lỗi");
-                                messageParameters.Add(Constant.MessagingCenter_Message, "Sai mật khẩu");
+                                messageParameters.Add(Constant.MessagingCenter_Title, "Thông báo");
+                                messageParameters.Add(Constant.MessagingCenter_Message, "Đổi mật khẩu thành công");
                                 MessagingCenter.Send<PasswordViewModel, Dictionary<string, string>>(this, "PasswordEvent", messageParameters);
-                            }
 
-                            //Debug.WriteLine($"Status Code: {response.StatusCode} \n" +
-                            //    $"Content: {response.Content.ReadAsStringAsync().Result}");
+                                await Shell.Current.GoToAsync(nameof(ProfilePage));
+                            }
+                            // If the request if failed
+                            if (Object.Equals(statusCode, HttpStatusCode.BadRequest))
+                            {
+                                int code = Convert.ToInt32(response.Content.ReadAsStringAsync().Result);
+                                // Check the CheckedCode
+                                if (code == CheckedCode.WRONG_PASSWORD)
+                                {
+                                    // Display a pop-ups to notify the result
+                                    messageParameters = null;
+                                    messageParameters = new Dictionary<string, string>();
+                                    messageParameters.Add(Constant.MessagingCenter_Title, "Lỗi");
+                                    messageParameters.Add(Constant.MessagingCenter_Message, "Sai mật khẩu");
+                                    MessagingCenter.Send<PasswordViewModel, Dictionary<string, string>>(this, "PasswordEvent", messageParameters);
+                                }
+
+                                //Debug.WriteLine($"Status Code: {response.StatusCode} \n" +
+                                //    $"Content: {response.Content.ReadAsStringAsync().Result}");
+                            }
+                        }
+                        else
+                        {
+                            // Display a pop-ups to notify the result
+                            messageParameters = null;
+                            messageParameters = new Dictionary<string, string>();
+                            messageParameters.Add(Constant.MessagingCenter_Title, "Lỗi");
+                            messageParameters.Add(Constant.MessagingCenter_Message, "Mật khẩu mới và mật khẩu xác nhận không trùng khớp nhau");
+                            MessagingCenter.Send<PasswordViewModel, Dictionary<string, string>>(this, "PasswordEvent", messageParameters);
                         }
                     }
                     else
@@ -198,21 +220,11 @@ namespace Frontend.ViewModels
                         messageParameters = null;
                         messageParameters = new Dictionary<string, string>();
                         messageParameters.Add(Constant.MessagingCenter_Title, "Lỗi");
-                        messageParameters.Add(Constant.MessagingCenter_Message, "Mật khẩu mới và mật khẩu xác nhận không trùng khớp nhau");
+                        messageParameters.Add(Constant.MessagingCenter_Message, "Mật khẩu mới phải khác mật khẩu ban đầu");
                         MessagingCenter.Send<PasswordViewModel, Dictionary<string, string>>(this, "PasswordEvent", messageParameters);
                     }
                 }
-                else
-                {
-                    // Display a pop-ups to notify the result
-                    messageParameters = null;
-                    messageParameters = new Dictionary<string, string>();
-                    messageParameters.Add(Constant.MessagingCenter_Title, "Lỗi");
-                    messageParameters.Add(Constant.MessagingCenter_Message, "Mật khẩu mới phải khác mật khẩu ban đầu");
-                    MessagingCenter.Send<PasswordViewModel, Dictionary<string, string>>(this, "PasswordEvent", messageParameters);
-                }
             }
-
         }
 
         private T Cast<T>(T typeHolder, object o)
