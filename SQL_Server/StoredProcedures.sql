@@ -304,7 +304,59 @@ BEGIN
     WHERE SessionId = @SessionId AND ProductId = @ProductId;
 END
 
+GO
 
+---------------------------------------------------------------------------------------------------------
+-- OrderDetail Stored Procedure
 
+CREATE PROCEDURE usp_AddOrderDetail
+    @UserId INT,
+	@Total FLOAT,
+	@CreatedDate DATETIME,
+	@ModifiedDate DATETIME
+AS
+BEGIN
+    INSERT INTO OrderDetails (UserId, Total, CreatedDate,ModifiedDate)
+    OUTPUT Inserted.OrderId
+    VALUES(@UserId, @Total, @CreatedDate, @ModifiedDate)
+END
 
+GO
 
+---------------------------------------------------------------------------------------------------------
+
+CREATE PROCEDURE usp_GetOrderDetailByUserId
+    @UserId INT
+AS
+BEGIN
+    SELECT * FROM OrderDetails WHERE UserId = @UserId
+END
+
+GO
+
+---------------------------------------------------------------------------------------------------------
+-- OrderItem Stored Procedure
+
+CREATE PROCEDURE usp_AddOrderItem
+    @OrderId INT,
+	@ProductId INT,
+	@Quantity INT,
+	@CreatedDate DATETIME,
+	@ModifiedDate DATETIME
+AS
+BEGIN
+    INSERT INTO OrderItems (OrderId, ProductId, Quantity, CreatedDate, ModifiedDate)
+    OUTPUT Inserted.OrderItemId
+    VALUES(@OrderId, @ProductId, @Quantity, @CreatedDate, @ModifiedDate)
+END
+
+GO
+
+---------------------------------------------------------------------------------------------------------
+-- Blog Stored Procedure
+
+CREATE PROCEDURE usp_GetAllBlogs
+AS
+BEGIN
+    SELECT * FROM Blogs;
+END

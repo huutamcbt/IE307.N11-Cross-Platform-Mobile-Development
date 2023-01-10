@@ -69,6 +69,8 @@ namespace FoodBookingAPI.Controllers
             response = new HttpResponseMessage();
             try
             {
+                param = null;
+                param = new Dictionary<string, object>();
                 param.Add(nameof(Users.UserId), UserId);
                 DataTable result = UserRepository.GetUserById(param);
 
@@ -112,6 +114,8 @@ namespace FoodBookingAPI.Controllers
                 // Convert original password to hexadicimal string password
                 passString = ConvertStringToHashPassword(newUser.Password);
 
+                param = null;
+                param = new Dictionary<string, object>();
                 param.Add(nameof(Users.Username), newUser.Username);
                 param.Add(nameof(Users.Password), passString);
                 param.Add(nameof(Users.FirstName), newUser.FirstName);
@@ -156,6 +160,8 @@ namespace FoodBookingAPI.Controllers
                 Users updatedUser = JsonConvert.DeserializeObject<Users>(content);
 
                 // Add parameter for get test user
+                param = null;
+                param = new Dictionary<string, object>();
                 param.Add(nameof(Users.UserId), updatedUser.UserId);
                 DataTable testUser = UserRepository.GetUserById(param);
 
@@ -235,6 +241,8 @@ namespace FoodBookingAPI.Controllers
                 // Convert content to Users object
                 Users loginUser = JsonConvert.DeserializeObject<Users>(content);
 
+                param = null;
+                param = new Dictionary<string, object>();
                 param.Add(nameof(Users.Username), loginUser.Username);
 
                 DataTable testUser = UserRepository.GetUserByUsername(param);

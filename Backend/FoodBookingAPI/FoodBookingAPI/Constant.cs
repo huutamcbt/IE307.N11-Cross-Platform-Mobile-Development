@@ -39,6 +39,16 @@ namespace FoodBookingAPI
         public const string CartItem_Procedure_UpdateCartItem = "usp_UpdateCartItem";
         public const string CartItem_Procedure_DeleteCartItem = "usp_DeleteCartItem";
 
+        // OrderDetail
+        public const string OrderDetail_Procedure_AddOrderDetail = "usp_AddOrderDetail";
+        public const string OrderDetail_Procedure_GetOrderDetailByUserId = "usp_GetOrderDetailByUserId";
+
+        // OrderItem
+        public const string OrderItem_Procedure_AddOrderItem = "usp_AddOrderItem";
+
+        // Blog
+        public const string Blog_Procedure_GetAllBlogs = "usp_GetAllBlogs";
+
         // SQL Connection
         public static string SQLConnectionString => ConfigurationManager.ConnectionStrings["FoodBooking"].ConnectionString;
     }

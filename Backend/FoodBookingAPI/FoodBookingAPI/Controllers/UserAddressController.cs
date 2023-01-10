@@ -24,6 +24,8 @@ namespace FoodBookingAPI.Controllers
         {
             try
             {
+                param = null;
+                param = new Dictionary<string, object>();
                 param.Add(nameof(UserAddresss.UserId), UserId);
                 DataTable dataTable = UserAddressRepository.GetAddressesByUserId(param);
 

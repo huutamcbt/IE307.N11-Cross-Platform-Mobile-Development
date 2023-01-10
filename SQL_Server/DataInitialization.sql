@@ -34,7 +34,7 @@ create table FOODBOOKING.dbo.Discounts
 	Active bit,
 	CreatedDate DateTime,
 	ModifiedDate DateTime,
-	DeletedDate DateTime,
+	DeletedDate DateTime
 );
 
 create table FOODBOOKING.dbo.ProductCategorys
@@ -45,7 +45,7 @@ create table FOODBOOKING.dbo.ProductCategorys
 	Image varchar(100),
 	CreatedDate DateTime,
 	ModifiedDate DateTime,
-	DeletedDate DateTime,
+	DeletedDate DateTime
 );
 
 CREATE TABLE FOODBOOKING.dbo.Products
@@ -60,7 +60,7 @@ CREATE TABLE FOODBOOKING.dbo.Products
 	ModifiedDate DateTime,
 	DeletedDate DateTime,
 	Stock int,
-	Image varchar(200),
+	Image varchar(200)
 );
 
 create table FOODBOOKING.dbo.OrderItems
@@ -70,7 +70,7 @@ create table FOODBOOKING.dbo.OrderItems
 	ProductId INT,
 	Quantity INT,
 	CreatedDate DATETIME,
-	ModifiedDate DATETIME,
+	ModifiedDate DATETIME
 );
 
 create table FOODBOOKING.dbo.OrderDetails
@@ -80,7 +80,7 @@ create table FOODBOOKING.dbo.OrderDetails
 	UserId INT,
 	Total FLOAT,
 	CreatedDate DATETIME,
-	ModifiedDate DATETIME,
+	ModifiedDate DATETIME
 );
 
 create table FOODBOOKING.dbo.CartItems
@@ -165,7 +165,7 @@ create table FOODBOOKING.dbo.Blogs
 (
 	BlogId int not null identity(1,1),
 	Title nvarchar(30),
-	Content varchar(300),
+	Content nvarchar(900),
 	CreatedDate DateTime,
 	ModifiedDate DateTime,
 	DeletedDate DateTime
@@ -277,4 +277,12 @@ VALUES(1, 20000000,'','');
 INSERT INTO  ShoppingSessions (UserId, Total, CreatedDate, ModifiedDate)
 VALUES(1, 10, '','');
 
+INSERT into OrderDetails(UserId, Total, CreatedDate, ModifiedDate)
+VALUES(1, 100.5, '','')
+
+INSERT into OrderItems(OrderId,ProductId, Quantity, CreatedDate, ModifiedDate)
+VALUES(1,1, 10,'','')
+
+INSERT INTO Blogs (Title, Content, CreatedDate, ModifiedDate, DeletedDate)
+VALUES(N'Tiêu đề bài blog 1',N'Nội dung bài blog 1','','','')
 
