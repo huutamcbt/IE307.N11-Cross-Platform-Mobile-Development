@@ -19,6 +19,7 @@ namespace Frontend.ViewModels
 
         private IList<UserAddress> sourse1;
         public ObservableCollection<UserAddress> addressList { get; private set; }
+   
         public double Total { get; set; }
         int addressPickerIndex;
         public int AddressPickerIndex
@@ -66,12 +67,7 @@ namespace Frontend.ViewModels
             Task.Run(async () =>
             {
                 await InitializeAddresses();
-            }).Wait();
-            Task.Run(async () =>
-            {
-                await initializeCartItem();
-                addressPickerIndex = 0;
-                OnPropertyChanged("AddressPickerIndex");
+                await InitializeCartItem();
 
             }).Wait();
         }
@@ -80,13 +76,14 @@ namespace Frontend.ViewModels
             List<UserAddress> userAddresses = await AddressService.GetAddressesByUserId(1);
             foreach (UserAddress address in userAddresses)
             {
-                address.Display = $"{address.Mobile}\n{address.Address}, {address.District}, {address.City}, {address.City}";
+                address.Display = $"{address.Mobile}\n{address.Address}, {address.District}, {address.City}, {address.Country}";
                 sourse1.Add(address);
             }
             addressList = new ObservableCollection<UserAddress>(sourse1);
-            OnPropertyChanged("addressList");
+            addressPickerIndex = 1;
+            OnPropertyChanged("AddressPickerIndex");
         }
-        async Task initializeCartItem()
+        async Task InitializeCartItem()
         {
             List<Product> products = await CartService.getCartItem();
 
@@ -102,6 +99,7 @@ namespace Frontend.ViewModels
             OnPropertyChanged("Total");
 
         }
+
         #region INotifyPropertyChanged
         public event PropertyChangedEventHandler PropertyChanged;
 
