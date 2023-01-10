@@ -22,7 +22,7 @@ namespace Frontend.ViewModels
         {
             sourse = new List<OrderDetail>();
             OrderTapCommand = new Command<OrderDetail>(async (orderDetail) => {
-                await Shell.Current.GoToAsync($"{nameof(OrderDetailPage)}?OrderId={orderDetail.OrderId}");
+                await Shell.Current.GoToAsync($"{nameof(OrderDetailPage)}?OrderId={orderDetail.OrderId}&AddressId={orderDetail.AddressId}");
             });
             Task.Run(async () =>
             {
