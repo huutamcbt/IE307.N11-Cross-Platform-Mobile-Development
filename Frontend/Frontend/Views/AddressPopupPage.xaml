@@ -103,9 +103,9 @@
                     HasShadow="True"
                     HorizontalOptions="FillAndExpand"
                     VerticalOptions="CenterAndExpand">
-                    <StackLayout Orientation="Horizontal" VerticalOptions="CenterAndExpand">
+                    <StackLayout Orientation="Horizontal" Padding="40,0,40,0" VerticalOptions="CenterAndExpand">
                         <Frame
-                            Margin="-5,0,5,0"
+                            Margin="-5,0,15,0"
                             Padding="0"
                             BackgroundColor="Transparent"
                             BorderColor="#00C569"
@@ -114,9 +114,9 @@
                             HorizontalOptions="EndAndExpand"
                             VerticalOptions="CenterAndExpand">
                             <Label
-                                Margin="54,15,54,15"
+                                Margin="44,15,44,15"
                                 FontSize="14"
-                                HorizontalOptions="Center"
+                                HorizontalOptions="Start"
                                 Text="THOÁT"
                                 TextColor="Black"
                                 VerticalTextAlignment="Center">
@@ -133,7 +133,7 @@
 
 
                         <Frame
-                            Margin="5,0,15,0"
+                            Margin="-5,0,15,0"
                             Padding="0"
                             BackgroundColor="#00C569"
                             CornerRadius="5"
@@ -141,7 +141,7 @@
                             HorizontalOptions="EndAndExpand"
                             VerticalOptions="CenterAndExpand">
                             <Label
-                                Margin="54,15,54,15"
+                                Margin="44,15,44,15"
                                 FontSize="14"
                                 HorizontalOptions="Center"
                                 Text="LƯU"
