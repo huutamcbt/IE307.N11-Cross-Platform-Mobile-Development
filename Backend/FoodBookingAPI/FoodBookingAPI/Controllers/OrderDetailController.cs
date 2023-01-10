@@ -29,6 +29,7 @@ namespace FoodBookingAPI.Controllers
 
                 param = null;
                 param = new Dictionary<string, object>();
+                param.Add(nameof(OrderDetails.AddressId), orderDetails.AddressId);
                 param.Add(nameof(OrderDetails.UserId), orderDetails.UserId);
                 param.Add(nameof(OrderDetails.Total), orderDetails.Total);
                 param.Add(nameof(OrderDetails.CreatedDate), orderDetails.CreatedDate);

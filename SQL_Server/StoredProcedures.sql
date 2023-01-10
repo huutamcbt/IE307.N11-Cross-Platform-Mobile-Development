@@ -310,15 +310,16 @@ GO
 -- OrderDetail Stored Procedure
 
 CREATE PROCEDURE usp_AddOrderDetail
+    @AddressId INT,
     @UserId INT,
 	@Total FLOAT,
 	@CreatedDate DATETIME,
 	@ModifiedDate DATETIME
 AS
 BEGIN
-    INSERT INTO OrderDetails (UserId, Total, CreatedDate,ModifiedDate)
+    INSERT INTO OrderDetails (AddressId, UserId, Total, CreatedDate,ModifiedDate)
     OUTPUT Inserted.OrderId
-    VALUES(@UserId, @Total, @CreatedDate, @ModifiedDate)
+    VALUES(@AddressId, @UserId, @Total, @CreatedDate, @ModifiedDate)
 END
 
 GO

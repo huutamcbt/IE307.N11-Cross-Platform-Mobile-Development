@@ -24,21 +24,28 @@ namespace FoodBookingAPI.Controllers
             try
             {
                 string content = Request.Content.ReadAsStringAsync().Result;
-                OrderItems orderItems = JsonConvert.DeserializeObject<OrderItems>(content);
+                List<OrderItems> orderItemList = JsonConvert.DeserializeObject<List<OrderItems>>(content);
+                int count = 0;
+                foreach (OrderItems orderItems in orderItemList )
+                {
+                    param = null;
+                    param = new Dictionary<string, object>();
+                    param.Add(nameof(OrderItems.OrderId), orderItems.OrderId);
+                    param.Add(nameof(OrderItems.ProductId), orderItems.ProductId);
+                    param.Add(nameof(OrderItems.Quantity), orderItems.Quantity);
+                    param.Add(nameof(OrderItems.CreatedDate), orderItems.CreatedDate);
+                    param.Add(nameof(OrderItems.ModifiedDate), orderItems.ModifiedDate);
 
-                param = null;
-                param = new Dictionary<string, object>();
-                param.Add(nameof(OrderItems.OrderId), orderItems.OrderId);
-                param.Add(nameof(OrderItems.ProductId), orderItems.ProductId);
-                param.Add(nameof(OrderItems.Quantity), orderItems.Quantity);
-                param.Add(nameof(OrderItems.CreatedDate), orderItems.CreatedDate);
-                param.Add(nameof(OrderItems.ModifiedDate), orderItems.ModifiedDate);
+                    int OrderItemId = OrderItemRepository.AddOrderItem(param);
 
-                int OrderItemId = OrderItemRepository.AddOrderItem(param);
-                if (OrderItemId > 0)
+                    if (OrderItemId > 0)
+                        count++;
+                }
+                
+                if (count == orderItemList.Count)
                 {
                     response.StatusCode = HttpStatusCode.OK;
-                    response.Content = new StringContent(Convert.ToString(OrderItemId));
+                    response.Content = new StringContent(Convert.ToString(orderItemList[0].OrderId));
                 }
                 else
                 {

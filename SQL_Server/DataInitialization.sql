@@ -77,6 +77,7 @@ create table FOODBOOKING.dbo.OrderDetails
 (
 	OrderId INT NOT NULL IDENTITY(1,1),
 	--PaymentId INT,
+	AddressId INT,
 	UserId INT,
 	Total FLOAT,
 	CreatedDate DATETIME,

@@ -73,19 +73,27 @@ namespace FoodBookingAPI.Controllers
                 param = new Dictionary<string, object>();
                 param.Add(nameof(Users.UserId), UserId);
                 DataTable result = UserRepository.GetUserById(param);
-
-                if (result.Rows.Count > 0)
+                if(result != null)
                 {
-                    response.StatusCode = HttpStatusCode.OK;
-                    string jsonContent = JsonConvert.SerializeObject(result);
-                    response.Content = new StringContent(jsonContent, UnicodeEncoding.UTF8, "application/json");
+                    if (result.Rows.Count > 0)
+                    {
+                        response.StatusCode = HttpStatusCode.OK;
+                        string jsonContent = JsonConvert.SerializeObject(result);
+                        response.Content = new StringContent(jsonContent, UnicodeEncoding.UTF8, "application/json");
+                    }
+                    else
+                    {
+                        // In case, No result returned to result variable
+                        response.StatusCode = HttpStatusCode.NotFound;
+                        response.Content = new StringContent((Convert.ToString(CheckedCode.WRONG_ID)));
+                    }
                 }
                 else
                 {
-                    // In case, No result returned to result variable
-                    response.StatusCode = HttpStatusCode.NotFound;
-                    response.Content = new StringContent((Convert.ToString(CheckedCode.WRONG_ID)));
+                    response.StatusCode = HttpStatusCode.BadRequest;
+                    response.Content = new StringContent(Convert.ToString(CheckedCode.UNKNOW_ERROR));
                 }
+                
                 return response;
             }
             catch (Exception)

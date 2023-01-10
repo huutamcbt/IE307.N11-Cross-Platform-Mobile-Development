@@ -25,6 +25,10 @@ namespace FoodBookingAPI.Repository
                     {
                         switch (data.Key)
                         {
+                            case nameof(OrderDetails.AddressId):
+                                command.Parameters.Add("@" + data.Key, SqlDbType.Int);
+                                command.Parameters["@" + data.Key].Value = data.Value;
+                                break;
                             case nameof(OrderDetails.OrderId):
                                 command.Parameters.Add("@" + data.Key, SqlDbType.Int);
                                 command.Parameters["@" + data.Key].Value = data.Value;
