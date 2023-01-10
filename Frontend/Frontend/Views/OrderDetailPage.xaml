@@ -1,12 +1,21 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:expander="clr-namespace:Syncfusion.XForms.Expander;assembly=Syncfusion.Expander.XForms"
+             xmlns:progressBar="clr-namespace:Syncfusion.XForms.ProgressBar;assembly=Syncfusion.SfProgressBar.XForms"
              x:Class="Frontend.Views.OrderDetailPage">
     <ContentPage.Content>
         <StackLayout>
-            <Label Text="Welcome to Xamarin.Forms!"
-                VerticalOptions="CenterAndExpand" 
-                HorizontalOptions="CenterAndExpand" />
+            <expander:SfExpander  HeaderIconPosition="End" BackgroundColor="#FFFFFF" HeaderBackgroundColor="#FFFFFF" AnimationDuration="200" IsExpanded="True">
+                <expander:SfExpander.Header>
+                    <Label Text="title"/>
+                </expander:SfExpander.Header>
+                <expander:SfExpander.Content>
+                    <Label Text="Content"/>
+                    <!--<progressBar:SfStepProgressBar TitleAlignment="Start" BackgroundColor="Transparent" Orientation="Vertical" x:Name="stepProgress" Margin="16">
+                    </progressBar:SfStepProgressBar>-->
+                </expander:SfExpander.Content>
+            </expander:SfExpander>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
