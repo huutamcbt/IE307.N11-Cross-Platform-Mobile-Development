@@ -24,6 +24,7 @@ namespace Frontend.ViewModels
         public ICommand ItemTapCommand { get; set; }
         public ICommand CatTapCommand { get; set; }
         public ICommand CarouselTapCommand { get; set; }
+        public ICommand SearchTapCommand { get; set; }
         public HomeViewModel()
         {
             source = new List<Product>();
@@ -46,7 +47,10 @@ namespace Frontend.ViewModels
                 string navigationRoute = items.NavigateRoute;
                 await Shell.Current.GoToAsync(navigationRoute);
             });
-
+            SearchTapCommand = new Command<string>(async (keyword) =>
+            {
+                await Shell.Current.GoToAsync($"/{nameof(ProductPage)}?Keyword={keyword}");
+            });
 
             CreateItemCollection();
             CreateCategoriesCollection();
