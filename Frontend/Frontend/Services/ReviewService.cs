@@ -67,6 +67,7 @@ namespace Frontend.Services
                 //var json = JsonConvert.SerializeObject(review);
                 //var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
                 //var response = await Base.client.PostAsync("api/updateReview", stringContent);
+                await Task.FromResult(1);
             }
             catch (Exception e)
             {

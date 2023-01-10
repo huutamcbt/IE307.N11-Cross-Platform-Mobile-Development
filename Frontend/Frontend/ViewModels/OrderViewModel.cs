@@ -56,7 +56,7 @@ namespace Frontend.ViewModels
                 {
                     orderItems.Add(new OrderItem { ProductId = product.ProductId, Quantity = product.Quantity });
                 }
-                var response = await OrderService.PlaceOrder(orderItems, Total);
+                var response = await OrderService.PlaceOrder(orderItems, Total,addressList[addressPickerIndex].AddressId);
                 if (response.IsSuccessStatusCode)
                 {
                     await Shell.Current.DisplayAlert("Thông báo", "Đặt hàng thành công! \n bạn sẽ được đưa về trang chủ", "ok");

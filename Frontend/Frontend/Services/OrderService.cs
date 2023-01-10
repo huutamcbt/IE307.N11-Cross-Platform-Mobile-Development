@@ -25,12 +25,12 @@ namespace Frontend.Services
             orderItems.Add(new OrderItem { OrderId = 1, OrderItemId = 1, ProductId = 1, Quantity = 3 });
             orderItems.Add(new OrderItem { OrderId = 1, OrderItemId = 1, ProductId = 1, Quantity = 3 });
         }
-        public static async Task<HttpResponseMessage> PlaceOrder(List<OrderItem> orderItems, double Total)
+        public static async Task<HttpResponseMessage> PlaceOrder(List<OrderItem> orderItems, double Total,int AddressId)
         {
             try
             {
                 ////send a request to create order
-                //OrderDetail orderDetail = new OrderDetail { Total = Total, UserId = UserService.GetUserId() };
+                //OrderDetail orderDetail = new OrderDetail { Total = Total, UserId = UserService.GetUserId(),AddressId = AddressId };
                 //var orderStringContent = new StringContent(
                 //    JsonConvert.SerializeObject(orderDetail),
                 //    UnicodeEncoding.UTF8, "application/json");
