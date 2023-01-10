@@ -31,7 +31,7 @@
                      <Image 
                          HeightRequest="50"
                          WidthRequest="50"
-                         Source="Profile.webp"></Image>
+                         Source="{Binding user.Logo}"></Image>
                 </Frame>
                     <Label Margin="20,0,0,0" Text="{Binding user.Username}" TextColor="Black" FontSize="20" ></Label>
                 </FlexLayout>

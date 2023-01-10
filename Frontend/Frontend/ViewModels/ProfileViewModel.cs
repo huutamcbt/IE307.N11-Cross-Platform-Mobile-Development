@@ -1,5 +1,6 @@
 ﻿using Frontend.Models;
 using Frontend.Services;
+using Frontend.Views;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 using System.Threading.Tasks;
@@ -32,17 +33,30 @@ namespace Frontend.ViewModels
             {
                 await InitializeProfile();
             }).Wait();
-
+            MessagingCenter.Subscribe<ProfileViewModel>(this, "refresh", async (sender) =>
+            {
+                await InitializeProfile();
+                // Do something whenever the "Hi" message is received
+            });
             SaveProfileCommand = new Command(async () =>
             {
                 bool confirm = await Shell.Current.DisplayAlert("Thông báo", "Bạn có chắc thay đổi những thông tin này", "Xác nhận", "Thoát");
                 if (confirm)
                 {
-                    await UserService.UpdateUser(_user);
-                    await Shell.Current.GoToAsync("..");
+                    var response = await UserService.UpdateUser(_user);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        await Shell.Current.DisplayAlert("Thông báo", "Cập nhật thành công!", "ok");
+                        MessagingCenter.Send<ProfileViewModel>(this, "refresh");
+                        await Shell.Current.GoToAsync("..");
+   
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Thông báo", "Cập nhật thất bại!", "ok");
+                    }
                 }
-                else
-                    await Shell.Current.GoToAsync("..");
+
             });
 
         }

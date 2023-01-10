@@ -37,11 +37,18 @@ namespace Frontend.ViewModels
                 bool confirm = await Shell.Current.DisplayAlert("Thông báo", "Bạn có chắc xóa địa chỉ này không", "Có", "Không");
                 if (confirm)
                 {
-                    await AddressService.RemoveAddress(address);
-                    sourse.Remove(address);
-                    addressList = new ObservableCollection<UserAddress>(sourse);
-                    OnPropertyChanged("addressList");
-                    await Shell.Current.DisplayAlert("Thông báo", "Đã xóa thành công", "ok");
+                    var response = await AddressService.RemoveAddress(address);
+                    if (response.IsSuccessStatusCode)
+                    {
+                        sourse.Remove(address);
+                        addressList = new ObservableCollection<UserAddress>(sourse);
+                        OnPropertyChanged("addressList");
+                        await Shell.Current.DisplayAlert("Thông báo", "Đã xóa thành công", "ok");
+                    }
+                    else
+                    {
+                        await Shell.Current.DisplayAlert("Thông báo", "Xóa thất bại", "ok");
+                    }
                 }
 
             });
@@ -64,9 +71,10 @@ namespace Frontend.ViewModels
 
         async Task InitializeAddresses()
         {
-            List<UserAddress> userAddresses = await AddressService.GetAddressesByUserId(1);
+            List<UserAddress> userAddresses = await AddressService.GetAddressesByUserId(UserService.GetUserId());
             foreach (UserAddress address in userAddresses)
             {
+                address.Display = $"{address.Mobile}\n{address.Address}, {address.District}, {address.City}, {address.Country}";
                 sourse.Add(address);
             }
             addressList = new ObservableCollection<UserAddress>(sourse);
