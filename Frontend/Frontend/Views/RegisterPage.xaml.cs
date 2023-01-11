@@ -122,7 +122,17 @@ namespace Frontend.Views
                 if (Regex.IsMatch(text, validationPasswordPattern))
                     ConfirmationPasswordNotification.IsVisible = false;
                 else
+                {
+                    ConfirmationPasswordNotification.Text = "Mật khẩu phải có ít nhất 8 ký tự bao gồm chữ thường, chữ in hoa, chữ số và ký tự đặc biệt";
                     ConfirmationPasswordNotification.IsVisible = true;
+                }
+                if(text != entryPassword.Text)
+                {
+                    ConfirmationPasswordNotification.Text = "Xác nhận mật khẩu khác mật khẩu đã nhập!";
+                    ConfirmationPasswordNotification.IsVisible = true;
+                }
+                else
+                    ConfirmationPasswordNotification.IsVisible = false;
             }
             else
                 ConfirmationPasswordNotification.IsVisible = false;

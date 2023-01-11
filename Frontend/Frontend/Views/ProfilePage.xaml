@@ -198,7 +198,7 @@
                             <!--  End of Menu Item  -->
 
                             <!--  Đơn hàng đang vận chuyển  -->
-                            <StackLayout Margin="0,5,5,5">
+                            <!--<StackLayout Margin="0,5,5,5">
 
                                 <StackLayout Orientation="Horizontal">
                                     <StackLayout Orientation="Horizontal">
@@ -238,7 +238,7 @@
                                     </StackLayout.GestureRecognizers>
                                 </StackLayout>
 
-                            </StackLayout>
+                            </StackLayout>-->
                             <!--  End of Menu Item  -->
                             
                             <!--  Đổi mật khẩu -->

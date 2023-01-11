@@ -21,6 +21,7 @@ namespace Frontend.ViewModels
             set
             {
                 orderId = value;
+                OnPropertyChanged("OrderId");
                 InitializeOrder();
             }
         }
@@ -52,7 +53,7 @@ namespace Frontend.ViewModels
                 source.Add(product);
             }
             productList = new ObservableCollection<Product>(source);
-            paymentDetail = new PaymentDetail { OrderId = 1, CreatedDate = DateTime.Now };
+            paymentDetail = new PaymentDetail { OrderId = 1, CreatedDate = DateTime.Now,ModifiedDate = DateTime.Today,Status ="Đã thanh toán" };
             OnPropertyChanged("paymentDetail");
             OnPropertyChanged("productList");
         }
