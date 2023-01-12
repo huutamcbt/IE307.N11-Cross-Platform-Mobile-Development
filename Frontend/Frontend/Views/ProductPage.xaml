@@ -119,6 +119,8 @@
                                                         HorizontalOptions="Center"
                                                         Text="{Binding Description}"
                                                         TextColor="#929292"
+                                                               WidthRequest="165"
+                                                    LineBreakMode="TailTruncation" MaxLines="1"
                                                         VerticalOptions="Start">
                                                 <Label.FontFamily>
                                                     <OnPlatform x:TypeArguments="x:String">

@@ -335,10 +335,10 @@
                             HorizontalOptions="EndAndExpand"
                             VerticalOptions="CenterAndExpand">
                             <Label
-                                Margin="54,15,54,15"
+                                Margin="24,15,24,15"
                                 FontSize="14"
                                 HorizontalOptions="Center"
-                                Text="ADD"
+                                Text="Thêm vào giỏ hàng"
                                 TextColor="White"
                                 VerticalTextAlignment="Center">
                                 <Label.FontFamily>
@@ -347,6 +347,9 @@
                                     </OnPlatform>
                                 </Label.FontFamily>
                             </Label>
+                            <Frame.GestureRecognizers>
+                                <TapGestureRecognizer Command="{Binding Source={x:Reference ProductDetailView},Path=BindingContext.AddToCartCommand}"/>
+                            </Frame.GestureRecognizers>
                         </Frame>
                     </StackLayout>
                 </Frame>

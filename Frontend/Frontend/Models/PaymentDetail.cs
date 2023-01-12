@@ -10,7 +10,7 @@ namespace Frontend.Models
         public int OrderId { get; set; }
         public double Amount { get; set; }
         public string Provider { get; set; }
-        public string status { get; set; }
+        public string Status { get; set; }
         public DateTime CreatedDate { get; set; }
         public DateTime ModifiedDate { get; set; }
     }

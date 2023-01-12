@@ -11,13 +11,20 @@ namespace Frontend.Services
     public static class ProductService
     {
 
-
+        //static List<Product> products;
         static ProductService()
         {
-
+            //initialize();
         }
 
-
+        //static async void initialize()
+        //{
+        //    HttpResponseMessage response = await Base.client.GetAsync("api/GetAllProducts");
+        //    string productList = response.Content.ReadAsStringAsync().Result;
+        //    Debug.WriteLine("Product list: " + productList);
+        //    //var productList = await client.GetStringAsync("api/GetAllProduct");
+        //    products = JsonConvert.DeserializeObject<List<Product>>(productList);
+        //}
         public static async Task<List<Product>> GetAllProduct()
         {
             try
@@ -28,6 +35,7 @@ namespace Frontend.Services
                 //var productList = await client.GetStringAsync("api/GetAllProduct");
                 List<Product> productListConverted = JsonConvert.DeserializeObject<List<Product>>(productList);
                 return productListConverted;
+                //return await Task.FromResult(products);
             }
             catch (Exception e)
             {
@@ -42,6 +50,7 @@ namespace Frontend.Services
                 var product = await Base.client.GetStringAsync("api/GetProductByID/" + ProductId);
                 Product productConverted = JsonConvert.DeserializeObject<List<Product>>(product)[0];
                 return productConverted;
+                //return await Task.FromResult(products.Find((product) => product.ProductId == ProductId));
             }
             catch (Exception e)
             {

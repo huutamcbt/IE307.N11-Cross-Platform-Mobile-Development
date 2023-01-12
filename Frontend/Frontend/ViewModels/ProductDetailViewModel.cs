@@ -51,6 +51,7 @@ namespace Frontend.ViewModels
 
         public ICommand AddReviewCommand { get; set; }
         public ICommand DeleteReviewCommand { get; set; }
+        public ICommand AddToCartCommand { get; set; }
         public async void initializeProduct(int ProductId)
         {
             sourse = new List<ReviewRendered>();
@@ -114,7 +115,16 @@ namespace Frontend.ViewModels
                 await Shell.Current.DisplayAlert("a", review.Content + "\n" + review.Rating, "a");
                 await ReviewService.DeleteReview(review.ReviewId);
             });
-
+            AddToCartCommand = new Command(async () =>
+            {
+                var response = await CartService.AddToCart(new Product { ProductId = productId, Description = Description, Image = Image, Price = Price, Name = Name, Quantity = 1, Stock = 99 });
+                if (response.IsSuccessStatusCode)
+                {
+                    await Shell.Current.DisplayAlert("Thông báo", "Thêm vào giỏ hàng thành công", "ok");
+                }
+                else
+                    await Shell.Current.DisplayAlert("Thông báo", "Thêm vào giỏ hàng thất bại", "ok");
+            });
         }
 
         async Task InitializeReview()

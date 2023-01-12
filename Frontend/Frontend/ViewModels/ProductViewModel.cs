@@ -28,11 +28,29 @@ namespace Frontend.ViewModels
         public int sortMode = 0;
         private int categoryID = 0;
         private string keyword = "";
-        public string Keyword { get => keyword;
-        set {
+        public string Keyword
+        {
+            get => keyword;
+            set
+            {
                 keyword = value;
-                if(loaded)
-                    FilterWithKeyword();
+                //if(loaded)
+                //    FilterWithKeyword();
+                if (loaded)
+                {
+                    List<Product> products = new List<Product>(source);
+                    source = new List<Product>();
+                    foreach(Product product in products)
+                    {
+                        if(product.Name.Contains(keyword) || product.Description.Contains(keyword))
+                        {
+                            source.Add(product);
+                        }
+                    }
+                    productList = new ObservableCollection<Product>(source);
+                    OnPropertyChanged("productList");
+
+                }
             }
         }
         public int CategoryID
@@ -79,7 +97,7 @@ namespace Frontend.ViewModels
                 await InitializeProductList();
             }).Wait();
             //if (keyword != "")
-                
+
 
 
             ProductTapCommand = new Command<Product>(async (item) =>
@@ -134,26 +152,28 @@ namespace Frontend.ViewModels
             productList = new ObservableCollection<Product>(products);
             OnPropertyChanged("productList");
         }
-        void FilterWithKeyword()
-        {
-            foreach(Product product in source)
-            {
-                if (!product.Name.Contains(keyword) && !product.Description.Contains(keyword))
-                {
-                    source.Remove(product);
-                }
+        //void FilterWithKeyword()
+        //{
+        //    foreach(Product product in source)
+        //    {
+        //        if (!product.Name.Contains(keyword) && !product.Description.Contains(keyword))
+        //        {
+        //            source.Remove(product);
+        //        }
 
-            }
-            productList = new ObservableCollection<Product>(source);
-        }
+        //    }
+        //    productList = new ObservableCollection<Product>(source);
+        //    OnPropertyChanged("productList");
+        //}
         async Task InitializeProductList()
         {
             List<Product> products = await ProductService.GetAllProduct();
 
-            foreach (Product product in products)
-            {
-                source.Add(product);
-            }
+
+                foreach (Product product in products)
+                {
+                    source.Add(product);
+                }
             productList = new ObservableCollection<Product>(source);
             OnPropertyChanged("productList");
             loaded = true;

@@ -26,30 +26,38 @@
                 </expander:SfExpander.Header>
                 <expander:SfExpander.Content>
                         <StackLayout>-->
-                        <Label >
+                        <Label TextColor="Black" >
                             <Label.FormattedText>
                                 <FormattedString>
-                                    <Span Text="Ngày đơn hàng được tạo: ">
+                            <Span FontAttributes="Bold" Text="Ngày đơn hàng được tạo: ">
                                     </Span>
                                     <Span Text="{Binding paymentDetail.CreatedDate}"/>
                                 </FormattedString>
                             </Label.FormattedText>
                         </Label>
-                            <Label >
+                <Label TextColor="Black" >
                                 <Label.FormattedText>
                                     <FormattedString>
-                                        <Span Text="Ngày thanh toán: ">
+                                        <Span FontAttributes="Bold" Text="Ngày thanh toán: ">
                                         </Span>
                                         <Span Text="{Binding paymentDetail.ModifiedDate}"/>
                                     </FormattedString>
                                 </Label.FormattedText>
                             </Label>
+            <Label TextColor="Black">
+                    <Label.FormattedText>
+                        <FormattedString>
+                            <Span FontAttributes="Bold" Text="Trạng thái: " ></Span>
+                            <Span Text="{Binding paymentDetail.Status}"/>
+                        </FormattedString>
+                    </Label.FormattedText>
+            </Label>
                         <!--</StackLayout>
                     </expander:SfExpander.Content>
             </expander:SfExpander>-->
             <expander:SfExpander  HeaderIconPosition="End" BackgroundColor="#FFFFFF" HeaderBackgroundColor="#FFFFFF" AnimationDuration="200" IsExpanded="False">
                 <expander:SfExpander.Header>
-                    <Label Text="Các sản phẩm" />
+                        <Label Text="Các sản phẩm"  FontSize="18" TextColor="Black" />
                 </expander:SfExpander.Header>
                 <expander:SfExpander.Content>
                     <CollectionView  ItemsSource="{Binding productList}">
@@ -96,12 +104,12 @@
                     </CollectionView>
                 </expander:SfExpander.Content>
             </expander:SfExpander>
-            <expander:SfExpander  HeaderIconPosition="End" BackgroundColor="#FFFFFF" HeaderBackgroundColor="#FFFFFF" AnimationDuration="200" IsExpanded="True">
+            <expander:SfExpander  HeaderIconPosition="End" BackgroundColor="#FFFFFF" HeaderBackgroundColor="#FFFFFF" AnimationDuration="200" >
                 <expander:SfExpander.Header>
-                    <Label Text="Địa chỉ giao hàng"/>
+                    <Label Text="Địa chỉ giao hàng" FontSize="18" TextColor="Black"/>
                 </expander:SfExpander.Header>
                 <expander:SfExpander.Content>
-                    <Label Text="{Binding userAddress.Display}"/>
+                        <Label Text="{Binding userAddress.Display}" TextColor="Black"/>
                 </expander:SfExpander.Content>
             </expander:SfExpander>
             </StackLayout>

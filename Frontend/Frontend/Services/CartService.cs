@@ -1,43 +1,60 @@
 ﻿using Frontend.Models;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Net.Http;
+using System.Text;
 using System.Threading.Tasks;
 
 namespace Frontend.Services
 {
     public static class CartService
     {
-        //fake cartItem
         static List<Product> cartItems;
         static CartService()
         {
             //
             cartItems = new List<Product>();
-            cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 654118, Quantity = 2, ProductId = 1, Stock = 45, Description = "sfvfsd" });
-            cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 654118, Quantity = 2, ProductId = 2, Stock = 45, Description = "sfvfsd" });
-            cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 65418, Quantity = 2, ProductId = 3, Stock = 45, Description = "sfvfsd" });
-            cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 64118, Quantity = 2, ProductId = 4, Stock = 45, Description = "sfvfsd" });
+            //Task.Delay(5000).ContinueWith((task) => {
+            initializeCart();
+        //});
+            //cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 654118, Quantity = 2, ProductId = 1, Stock = 45, Description = "sfvfsd" });
+            //cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 654118, Quantity = 2, ProductId = 2, Stock = 45, Description = "sfvfsd" });
+            //cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 65418, Quantity = 2, ProductId = 3, Stock = 45, Description = "sfvfsd" });
+            //cartItems.Add(new Product { CategoryID = 1, Image = "chart.png", Name = "abc", Price = 64118, Quantity = 2, ProductId = 4, Stock = 45, Description = "sfvfsd" });
 
+        }
+        public static async void initializeCart()
+        {
+            //string json = await Base.client.GetStringAsync("api/GetCartItemBySessionId/1");
+            //List<CartItem> carts = JsonConvert.DeserializeObject<List<CartItem>>(json);
+            //foreach(CartItem cartItem in carts)
+            //{
+            //    Product product = await ProductService.GetProductByProductId(cartItem.ProductId);
+            //    product.Quantity = cartItem.Quantity;
+            //    cartItems.Add(product);
+            //}
         }
         public static async Task<HttpResponseMessage> AddToCart(Product product)
         {
             try
             {
-                //CartItem cartItem = new CartItem
-                //{
-                //    SessionId = UserService.GetSessionID(),
-                //    ProuductId = product.ProductId,
-                //    Quantity = product.Quantity,
-                //    CreatedDate = new DateTime(),
-                //    ModifiedDate = new DateTime()
-                //};
+                CartItem cartItem = new CartItem
+                {
+                    SessionId = 1,
+                    ProductId = product.ProductId,
+                    Quantity = product.Quantity,
+                    CreatedDate = DateTime.Now,
+                    ModifiedDate = DateTime.Now
+
+                };
                 //var json = JsonConvert.SerializeObject(cartItem);
                 //var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json"); // use MediaTypeNames.Application.Json in Core 3.0+ and Standard 2.1+
                 //var response = await Base.client.PostAsync("api/AddToCart", stringContent);
 
-                await Task.FromResult(1);
-                cartItems.Add(product);
+                ////await Task.FromResult(1);
+                //if (response.IsSuccessStatusCode)
+                    cartItems.Add(product);
                 var response = new HttpResponseMessage { StatusCode = System.Net.HttpStatusCode.OK };
                 return response;
             }
@@ -91,7 +108,7 @@ namespace Frontend.Services
                 //CartItem cartItem = new CartItem
                 //{
                 //    SessionId = UserService.GetSessionID(),
-                //    ProuductId = product.ProductId,
+                //    ProductId = product.ProductId,
                 //    Quantity = product.Quantity,
                 //    ModifiedDate = new DateTime()
                 //};
