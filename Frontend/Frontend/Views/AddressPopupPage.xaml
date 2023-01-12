@@ -41,7 +41,7 @@
                         WidthRequest="10" />
 
                     <Frame.GestureRecognizers>
-                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped" />
+                        <TapGestureRecognizer Tapped="TapGestureRecognizer_Tapped_1" />
                     </Frame.GestureRecognizers>
                 </Frame>
                 <Label
