@@ -21,8 +21,8 @@ namespace Frontend.Views
 
             await loading_progress.ProgressTo(1, 5000, Easing.SpringIn);
             //await Shell.Current.GoToAsync(nameof(ChangePassswordPage));
-            //await Shell.Current.GoToAsync(nameof(LoginPage));
-            await Shell.Current.GoToAsync(nameof(ProfilePage));
+            await Shell.Current.GoToAsync(nameof(LoginPage));
+            //await Shell.Current.GoToAsync(nameof(ProfilePage));
         }
 
       
