@@ -257,25 +257,25 @@ Insert into Products
 values(N'Bánh mì thịt', N'Bánh mì với nguyên liệu hoàn toàn từ nhà làm', 5, 15000, 1, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Bread%2Fbanhmithit.jpg?alt=media&token=6981704e-3284-4f20-a8f5-ac307e1a00e0');
 Insert into Products
 	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
-values(N'Bún chả các Nha Trang', N'Bún chả cá Nha trang được chế biến, nêm nếm chuẩn vị', 1, 35000, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_cha_ca_Nha_Trang.jpeg?alt=media&token=683d78a5-de7b-4c77-aead-e0ba7be8e89d');
+values(N'Bún chả các Nha Trang', N'Bún chả cá Nha trang được chế biến, nêm nếm chuẩn vị', 1, 35000, 1, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FBun_cha_ca_Nha_Trang.jpeg?alt=media&token=683d78a5-de7b-4c77-aead-e0ba7be8e89d');
 Insert into Products
 	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
-values(N'Hủ tiếu nam vang', N'Món hủ tiếu nam vang ngon lành, nóng hổi', 1, 29000, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FHu_tieu_Nam_Vang.jpg?alt=media&token=e751bf7c-e177-460e-93c4-2dc70cd1f9c2');
+values(N'Hủ tiếu nam vang', N'Món hủ tiếu nam vang ngon lành, nóng hổi', 1, 29000, 1, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FHu_tieu_Nam_Vang.jpg?alt=media&token=e751bf7c-e177-460e-93c4-2dc70cd1f9c2');
 Insert into Products
 	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
-values(N'Phở bò', N'Phở bò với nước dùng ngon tuyệt', 1, 29000, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FPho_bo.jpg?alt=media&token=3dfb1a60-71fd-4bed-8f96-e2b19123152d');
+values(N'Phở bò', N'Phở bò với nước dùng ngon tuyệt', 1, 29000, 1, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Food%2FPho_bo.jpg?alt=media&token=3dfb1a60-71fd-4bed-8f96-e2b19123152d');
 Insert into Products
 	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
-values(N'Cafe', N'Cafe được xay trực tiếp từ nguyên liệu thô', 1, 25000, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Drink%2Fcafe.JPG?alt=media&token=8ea896d4-a047-41e0-9b0c-fc3181930dc7');
+values(N'Cafe', N'Cafe được xay trực tiếp từ nguyên liệu thô', 3, 25000, 1, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Drink%2Fcafe.JPG?alt=media&token=8ea896d4-a047-41e0-9b0c-fc3181930dc7');
 Insert into Products
 	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
-values(N'Cơm tấm sườn trứng', N'Cơm tấm kèm canh chua, dưa leo và nước mắm', 2, 30000, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Dry_Food%2FCom_tam.jpg?alt=media&token=9c66b339-5cc6-4dd5-93e8-d433dea38ddb');
+values(N'Cơm tấm sườn trứng', N'Cơm tấm kèm canh chua, dưa leo và nước mắm', 2, 30000, 1, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Dry_Food%2FCom_tam.jpg?alt=media&token=9c66b339-5cc6-4dd5-93e8-d433dea38ddb');
 Insert into Products
 	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
-values(N'Khoai tây chiên', N'Khoai tây chiên phủ bột phô mai Có kèm tương ớt', 4, 10000, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Snack%2Fkhoaitaychien.jpg?alt=media&token=b1278ed3-9188-4d1a-a8a8-78b919e47185');
+values(N'Khoai tây chiên', N'Khoai tây chiên phủ bột phô mai Có kèm tương ớt', 4, 10000, 1, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Snack%2Fkhoaitaychien.jpg?alt=media&token=b1278ed3-9188-4d1a-a8a8-78b919e47185');
 Insert into Products
 	(Name,Description,CategoryId,Price,DiscountId,CreatedDate,ModifiedDate,DeletedDate,Stock,Image)
-values(N'Trà tắc', N'...', 2, 12000, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Drink%2Ftratac.jpg?alt=media&token=73064593-dfdb-4ff0-b36f-2a171f668302');
+values(N'Trà tắc', N'...', 3, 12000, 1, '', '', '', 99, 'https://firebasestorage.googleapis.com/v0/b/elegant-skein-350903.appspot.com/o/Drink%2Ftratac.jpg?alt=media&token=73064593-dfdb-4ff0-b36f-2a171f668302');
 
 
 -- SET IDENTITY_INSERT UserAddresss ON;
