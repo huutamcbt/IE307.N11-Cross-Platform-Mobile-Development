@@ -330,10 +330,8 @@
     <Compile Include="Repository\ReviewRepository.cs" />
     <Compile Include="Repository\UserAddressRepository.cs" />
     <Compile Include="Repository\UserRepository.cs" />
-    <Compile Include="Test.cs" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="archlinux.png" />
     <Content Include="Areas\HelpPage\HelpPage.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
