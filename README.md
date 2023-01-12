@@ -1,6 +1,6 @@
 # IE307.N11-Cross-Platform-Mobile-Development
 ## This is a mobile food booking app 
-Some demo page in application
+Some demo pages in application
 
 ![][Login Page] ![][Home Page]
 
