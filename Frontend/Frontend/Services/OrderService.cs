@@ -17,13 +17,12 @@ namespace Frontend.Services
         {
             orderDetails = new List<OrderDetail>();
             orderDetails.Add(new OrderDetail { OrderId = 1,AddressId= 2,  Total = 134654, UserId = 1,CreatedDate = DateTime.Now, ModifiedDate= DateTime.Now });
-            orderDetails.Add(new OrderDetail { OrderId = 1, AddressId = 2, Total = 134654, UserId = 1, CreatedDate = DateTime.Now, ModifiedDate = DateTime.Now });
-            orderDetails.Add(new OrderDetail { OrderId = 1, AddressId = 2, Total = 134654, UserId = 1, CreatedDate = DateTime.Now, ModifiedDate = DateTime.Now });
+            //orderDetails.Add(new OrderDetail { OrderId = 1, AddressId = 2, Total = 134654, UserId = 1, CreatedDate = DateTime.Now, ModifiedDate = DateTime.Now });
+            //orderDetails.Add(new OrderDetail { OrderId = 1, AddressId = 2, Total = 134654, UserId = 1, CreatedDate = DateTime.Now, ModifiedDate = DateTime.Now });
 
             orderItems = new List<OrderItem>();
             orderItems.Add(new OrderItem { OrderId = 1, OrderItemId = 1, ProductId = 1, Quantity = 3 });
-            orderItems.Add(new OrderItem { OrderId = 1, OrderItemId = 1, ProductId = 1, Quantity = 3 });
-            orderItems.Add(new OrderItem { OrderId = 1, OrderItemId = 1, ProductId = 1, Quantity = 3 });
+            orderItems.Add(new OrderItem { OrderId = 1, OrderItemId = 2, ProductId = 2, Quantity = 1 });
         }
         public static async Task<HttpResponseMessage> PlaceOrder(List<OrderItem> orderItems, double Total,int AddressId)
         {

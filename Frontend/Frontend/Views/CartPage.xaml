@@ -2,7 +2,7 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="Frontend.Views.CartPage"
-             Title="cart page"
+             Title="Giỏ hàng"
              xmlns:viewmodel="clr-namespace:Frontend.ViewModels"
              x:Name="cartView"
              >
