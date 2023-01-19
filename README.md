@@ -1,9 +1,10 @@
 # IE307.N11-Cross-Platform-Mobile-Development
-## This is a mobile food booking app 
+## Application
 Some demo pages in application
 
 ![][Login Page] ![][Home Page]
 
+The FrontEnd of this app is referenced from [this project][Reference Project]
 ## Some functions of application
 
 * Login, Logout, Register
@@ -27,3 +28,4 @@ To start ASP.NET you will start similar above by click Debug button or publish p
 
 [Login Page]: ./Assets/LoginPage.png
 [Home Page]: ./Assets/HomePage.png
+[Reference Project]: https://github.com/exendahal/ecommerceXF
