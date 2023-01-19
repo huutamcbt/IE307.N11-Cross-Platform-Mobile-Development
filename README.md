@@ -2,7 +2,7 @@
 ## Application
 Some demo pages in application
 
-![][Login Page] ![][Home Page]
+![][Login Page]   ![][Home Page]
 
 The FrontEnd of this app is referenced from [this project][Reference Project]
 ## Some functions of application
