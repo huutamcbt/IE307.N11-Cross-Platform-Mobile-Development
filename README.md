@@ -5,6 +5,13 @@ Some demo pages in application
 ![][Login Page]   ![][Home Page]
 
 The FrontEnd of this app is referenced from [this project][Reference Project]
+## Members of the group
+
+|Order number|Name            |Student code|
+|:----------:|:--------------:|:----------:|
+|1           |Nguyễn Hữu Tâm  |19520255    |
+|2           |Nguyễn Đăng Định|19521362    |
+
 ## Some functions of application
 
 * Login, Logout, Register
